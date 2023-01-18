@@ -1,0 +1,223 @@
+# lab 00 single number readme notes
+deadline is Friday January 27th, 2023
+
+**to do list**
+
+1. scrape through the code and understand what you don't understand
+    CURRENTLY ON LINE 199
+
+2. write out function definitions
+3. test
+4. submit
+
+**what i dont understand**
+
+- `MyNumber<float> a {num};`
+
+
+**contents**
+
+- [starter code contents](#Lab00_SingleNumber-1.zip-starter-code-contents)
+- [readme](#readme)
+- [objective](#objective)
+- [specification of data structures](#specification-of-data-structures)
+- [physical requirements](#physical-requirements)
+- [testing and grading](#testing-and-grading)
+- [submission](#submission)
+
+### `Lab00_SingleNumber-1.zip` starter code contents
+
+```zsh
+❯ tree
+.
+├── Lab00_SingleNumber
+│   ├── EECS560_Lab00_SingleNumber.pdf
+│   ├── GradingScript.py
+│   ├── Inputs
+│   │   ├── input_0.txt
+│   │   ├── input_1.txt
+│   │   ├── input_2.txt
+│   │   ├── input_3.txt
+│   │   ├── input_4.txt
+│   │   ├── input_5.txt
+│   │   ├── input_6.txt
+│   │   ├── input_7.txt
+│   │   ├── input_8.txt
+│   │   └── input_9.txt
+│   ├── MainTest.cpp
+│   ├── MyNumber_Template.h
+│   ├── Outputs
+│   │   ├── output_0.txt
+│   │   ├── output_1.txt
+│   │   ├── output_2.txt
+│   │   ├── output_3.txt
+│   │   ├── output_4.txt
+│   │   ├── output_5.txt
+│   │   ├── output_6.txt
+│   │   ├── output_7.txt
+│   │   ├── output_8.txt
+│   │   └── output_9.txt
+│   ├── README.txt
+│   └── ~$CS560_Lab00_SingleNumber.docx
+└── README.md
+
+4 directories, 27 files
+```
+
+**readme**
+
+1.  compile MainTest to test data files
+
+`g++ -std=c++11 MainTest.cpp -o Lab1`
+
+```make
+g++ -std=c++11 -g -Wall -c main.cpp
+g++ -std=c++11 -g -Wall main.o -o lab1
+```
+
+2.  running the testing program
+
+`./Lab1 input.txt >results.txt`
+
+3.  comparing your results with expected output
+
+`python3 GradingScript.py result.txt output.txt`
+
+if you see `yes`, the your program is correct
+if you see `no`, then your program is incorrect
+
+**objective** 
+- get familiar with coding with c++
+- recap c++ fundamentals such as object, constructor, destructor, template, and overloading
+- get familiar with adt implementation with c++ and the lab setup for this course
+
+**specification of data structure**
+
+- define your data structure as `template <typename DataType> class MyNumber`
+
+- constructor functions
+    
+    - `explicit MyNumber(DataType rhs = 0) // default constructor` 
+    - `MyNumber(const MyNumber<DataType> & rhs) // copy constructor`
+    - `MyNumber(MyNumber<DataType&& rhs) // move constructor`
+
+- destructor functions
+
+    - `~MyNumber(void) // collects allocated memory before the destruction of the object`
+
+- data access
+
+    - `DataType read(void) const // returns the number being stored`
+
+- data update
+
+    - `void write(DataType rhs) // record the parameter`
+    - `MyNumber & operator= (const MyNumber<DataType> &rhs // copy assignment`
+    - `MyNumber & operator= (MyNumber<DataType> &&rhs) // move assignment`
+
+**physical requirements**
+
+1.  install [valgrind](https://valgrind.org) to ubuntu linux system `sudo apt install valgrind`
+
+2.  you should use `new` to allocate memory space to the variable that stores the data (a number with DataType)
+
+3.  you should use `delete` to collect the allocated memory space upon the destruction of the object instance.
+
+**testing and grading**
+
+- we will test your implementation using the tester main function posted online
+- the posted input and output example should be used for a testing purpose, while we will use another set of inputs for grading
+- **your code will be compiled under Ubunti 20.04 LTS using g++ version 9.3.0 (default) with C++11 standard**
+- **your final score will be determined by the success percentage of your program when fed with many random inputs**
+- <p style="color:red">**if your program does not compile, you will get 0 points**</p>
+
+**submission**
+submit your implementation as a single `.h` file named `MyNumber_m358b583.h`
+
+## `MainTest.cpp`
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <iosmanip>
+
+#include "MyNumber.h"
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        std::cout << "please provide the test input" << std::endl;
+        return(0);
+    } else {
+
+        ifstream f_input;
+        f_input.open(argv[1]);
+        // if f_input.is_open() is false, so if it fails to open then this conditional will be executed 
+
+        if (0 == f_input.is_open()) {
+
+            std::cout << "error for opening the test input" << std::endl;
+
+            return (0);
+
+        } else {
+
+            std::string line;
+            
+            // getline will return a boolean value
+            // getline() functions return the number of characters written, excluding the terminating NULL character
+            // the value -1 is returned if an error occurs, of if end-of-file is reaches
+            // thus while the file still has lines lets read the file and store it into variables, num, a, b, and c
+            while(getline(f_input, line)) {
+                
+                // the stof() function converts a string (in this case, the variable "line" with a data type of float
+                // float is a decimal number with single precision
+                // the value num is the set to the result of the `stof()` function
+                // the stof() function converts a string in this case "line" which is of type string to a float
+                float num = stof(line)
+
+                // `a` is an instance of the class MyNumber aka a new object
+                // `a` is of type MyNumber and the data type is float
+                // the template parameter is the data type of the object type
+                // the <float> indicates that the MyNumber class is a template class and it is instantiated with type float
+                // the curly braces {} after the object name `a` is used to initialize the object with the value of the variable `num`
+                // tldr; the object `a` an object of class MyNumber and assigns the value of the variable "num" to it
+                MyNumber<float> a {num};
+                MyNumber<float> b = a;
+                MyNumber <float> c;
+
+                // you will need to write the this function
+                /*
+                 * void write(DataType rhs) {} // record the parameter
+                 */
+
+                c.write(a.read() / 2);
+
+                std::cout.setf(ios::fixed);
+
+                std::cout << setprecision(3) << a.read() << "\t" << b.read() << "\t" << c.read() << std::endl;
+             }
+
+```
+
+## `MyNumber_Template.h`
+
+```cpp
+#ifndef __MYNUMBER_H__
+#define __MYNUMBER_H__
+#include <algorithm>
+#include <iostream>
+
+// using namespace essentially means that you not need to type std:: before every function
+using namespace std;
+
+template <typename DataType>
+
+class MyNumber {
+    public:
+        explicit MyNumber(DataType rhs = 0) 
+
+
+
+
+
