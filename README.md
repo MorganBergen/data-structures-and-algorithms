@@ -1,7 +1,7 @@
 # data-structures-and-algorithms
 The repo abstract data structures and algorithmic design making use of these structures. Topics include     asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms
 
-
+<p><a href="https://en.wikipedia.org/wiki/File:Heckert_GNU_white.svg#/media/File:Heckert_GNU_white.svg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1200px-Heckert_GNU_white.svg.png" alt="Heckert GNU white.svg"></a><br>By &lt;a rel="nofollow" class="external text" href="http://wiki.colivre.net/Aurium/"&gt;Aurelio A. Heckert&lt;/a&gt; &amp;lt;aurium@gmail.com&amp;gt; - &lt;a rel="nofollow" class="external text" href="http://www.gnu.org/graphics/heckert_gnu.html"&gt;gnu.org&lt;/a&gt;, <a href="https://creativecommons.org/licenses/by-sa/2.0/" title="Creative Commons Attribution-ShareAlike 2.0">CC BY-SA 2.0</a>, <a href="https://en.wikipedia.org/w/index.php?curid=33285325">Link</a></p>
 **contents**
 
 [01 overview](./course/01-overview/README.md)
@@ -10,11 +10,7 @@ A first course in abstract data structures and algorithmic design making use of 
 
 EECS 330: Data Structures and Algorithms Syllabus Spring 2023
 
- 
-
 A first course in abstract data structures and algorithmic design making use of these structures. Topics include asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms. Special emphasis will be placed on the implementations of these structures and their performance tradeoffs. Both asymptotic complexity analysis and experimental profiling techniques will be introduced. Labs will be used to provide students with hands-on experience in the implementations of various abstract data types and to perform experimental performance analysis.
-
- 
 
 Class Meetings:
 
@@ -25,8 +21,6 @@ Backup Zoom section:
 Meeting ID: 921 7229 8462
 
 Passcode: 701883
-
- 
 
 Labs:
 

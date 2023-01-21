@@ -18,7 +18,8 @@ friday jan 20 2023
 11. [template](#template)
 12. [function parameter and function object](#function-parameter-and-function-object)
 13. [complexity analysis](#complexity-analysis)
-14. [summary](#summary)
+14. [lldb debugger](#lldb-debugger)
+15. [summary](#summary)
 
 ## acknowledgement
 
@@ -182,5 +183,7 @@ int main() {
 ## complexity analysis
 
 ## summary
+
+## lldb debugger
 
 

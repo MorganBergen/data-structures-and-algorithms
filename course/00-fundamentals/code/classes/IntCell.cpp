@@ -26,7 +26,10 @@ IntCell::IntCell(int initial_value) {
 // but it is more efficient
 // : is an operator that tells the compiler to initialize the member variables
 // function body is empty because well there's nothing more to do
-explicit IntCell::IntCell(int initial_value) : stored_value{initial_value} {
+
+// signatures of an implemented memeber function  must match exactly to the signature listed in the class interface
+// default parameters values are specified in the interfae and are omitted in the implementation
+IntCell::IntCell(int initial_value) : stored_value{initial_value} {
     // empty
 }
 
@@ -43,6 +46,7 @@ int IntCell::read() {
  * a non-constant member function can change the state of its object
  * is a mutator function
  */
+// scope resolution operator :: is used to access a member of a class
 void IntCell::write(int x) {
     stored_value = x;
 }

@@ -245,6 +245,10 @@ MyNumber::Mynumber(DataType rhs = 0) {
 
 ```
 
+In C++, constructors can be defined with an initialization list, which is a list of initializations for the data members of the class that is used to set their initial values. The initializer list is placed after the constructor's parameter list, separated by a colon (:) from the constructor's body.
+
+It's important to note that the initialization list is executed before the constructor's body, so any code that you put inside the constructor's body will be executed after the member variables have been initialized.
+
 
 
 

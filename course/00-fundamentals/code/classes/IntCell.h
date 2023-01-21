@@ -23,10 +23,11 @@ class IntCell {
         /*
         IntCell();
         IntCell(int initial_value);
+        is replaced by the constructor below
         */
        
-        explicit IntCell(int initialvalue = 0): 
-            stored_value{initialvalue} {}
+        // explicit keyword is only used in headers, not implementation files
+        explicit IntCell(int initialvalue = 0);
 
         int read();
 
