@@ -94,17 +94,57 @@ data structure comprised on [storage] and [operation], then there is the [interf
     - `readFile(input_file, array) #reads the integer from the input file and store then into array`
     - `myVector test_vector(array) # initialize the object according to the specified api`
     - `std::cout << test_vector.retrieve(5) << std::endl; # output a number according to the specified api`
+- input instance:
+    - `5, 3, 2, 4, 76, 12, 34, 9`
+- output instance:
+    - `12`
+- grading script:
+    - `if (answer == 12) return 10; else return 0;`
+- submission
+    - the myVector.h file
+    - the myVector.cc file
+    - running time vs. input size plots if required
+
+**resubmission courtesy**
+- Resubmission courtesy: If you didn’t do well in the lab or were late without a good reason, you can resubmit within 3 days after the release of the grading. You only have one chance.
 
 ## adt abstract data type
+
+- adt is a mathematical abstraction of a data structre, it refers to both the data and methods
+- example
+    - `vector`is an ADT
+    - its object primarily contains an array
+    - its method may include `retrieve(i)`, which returns the value of its ith element, and `size()`, which returns the number of elements in the vector
+- the goal of this course is to gain a deep understanding of the implementational details of many fundamental ADTs (both data and methods)
+- the secondary goal is to analyze the efficiency for the methods of different adts
+- we will be working on 
+    - simple ADTs:  list, queue, stack, and hash table
+    - tree-based adts:  search trees, heaps, disjoint sets
+    - graph adts 
+    - sorting algorithms
 
 ## fundamentals 
 
 - one of the largest differences between cpp and python is in terms of memory cpp allows you do interact with stack and heap python will handle your memory automatically ## c++ features
+- this module will review over the fundamentals for learning data structure
+    - c++ features and general guidelines for implementing data structures
+    - basic concepts in time complexity analysis
 
 ## pointer
 
 - a pointer is a variable that stores the memory address where another object resides
 - assume we have an object named IntCall, we can use $\ast$ to indicate that the variable is an object
+
+```cpp
+int main() {
+    IntCell *m;     // m is a pointer that points an address that store the IntCell type
+    m = new IntCell { 0 };
+    m -> write( 5 );
+    std::cout << "cell contents: " << m-> read( ) << std::endl;
+    delete m;
+    return(0);
+}
+```
 
 ```cpp
 int main() {
