@@ -1,7 +1,8 @@
 # data-structures-and-algorithms
 The repo abstract data structures and algorithmic design making use of these structures. Topics include     asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms
 
-<p><a href="https://en.wikipedia.org/wiki/File:Heckert_GNU_white.svg#/media/File:Heckert_GNU_white.svg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1200px-Heckert_GNU_white.svg.png" alt="Heckert GNU white.svg"></a><br>By &lt;a rel="nofollow" class="external text" href="http://wiki.colivre.net/Aurium/"&gt;Aurelio A. Heckert&lt;/a&gt; &amp;lt;aurium@gmail.com&amp;gt; - &lt;a rel="nofollow" class="external text" href="http://www.gnu.org/graphics/heckert_gnu.html"&gt;gnu.org&lt;/a&gt;, <a href="https://creativecommons.org/licenses/by-sa/2.0/" title="Creative Commons Attribution-ShareAlike 2.0">CC BY-SA 2.0</a>, <a href="https://en.wikipedia.org/w/index.php?curid=33285325">Link</a></p>
+<p><a href="https://en.wikipedia.org/wiki/File:Heckert_GNU_white.svg#/media/File:Heckert_GNU_white.svg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1200px-Heckert_GNU_white.svg.png" </a></p>
+
 **contents**
 
 [01 overview](./course/01-overview/README.md)

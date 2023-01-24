@@ -3,7 +3,9 @@
 #include <string>
 #include <iomanip>
 
-#include "MyNumber.h"
+// do not change this code
+// #include "MyNumber.h"
+#include "MyNumber_Template.h"
 
 using namespace std;
 

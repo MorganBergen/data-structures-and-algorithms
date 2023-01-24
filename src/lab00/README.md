@@ -1,6 +1,10 @@
 # lab 00 single number readme notes
 deadline is Friday January 27th, 2023
 
+**submission**
+
+Turn in `MyNumber_[3073682].h`
+
 **to do list**
 
 1. scrape through the code and understand what you don't understand
@@ -27,41 +31,38 @@ deadline is Friday January 27th, 2023
 
 ### `Lab00_SingleNumber-1.zip` starter code contents
 
-```zsh
+```
 ❯ tree
 .
-├── Lab00_SingleNumber
-│   ├── EECS560_Lab00_SingleNumber.pdf
-│   ├── GradingScript.py
-│   ├── Inputs
-│   │   ├── input_0.txt
-│   │   ├── input_1.txt
-│   │   ├── input_2.txt
-│   │   ├── input_3.txt
-│   │   ├── input_4.txt
-│   │   ├── input_5.txt
-│   │   ├── input_6.txt
-│   │   ├── input_7.txt
-│   │   ├── input_8.txt
-│   │   └── input_9.txt
-│   ├── MainTest.cpp
-│   ├── MyNumber_Template.h
-│   ├── Outputs
-│   │   ├── output_0.txt
-│   │   ├── output_1.txt
-│   │   ├── output_2.txt
-│   │   ├── output_3.txt
-│   │   ├── output_4.txt
-│   │   ├── output_5.txt
-│   │   ├── output_6.txt
-│   │   ├── output_7.txt
-│   │   ├── output_8.txt
-│   │   └── output_9.txt
-│   ├── README.txt
-│   └── ~$CS560_Lab00_SingleNumber.docx
-└── README.md
+├── EECS560_Lab00_SingleNumber.pdf  // the assignment specification
+├── GradingScript.py                // grading script
+├── Inputs                          // set of input instances
+│   ├── input_0.txt                 // input instance 0
+│   ├── input_1.txt                 // input instance 1
+│   ├── input_2.txt                 // input instance 2
+│   ├── input_3.txt                 // input instance 3
+│   ├── input_4.txt                 // input instance 4
+│   ├── input_5.txt                 // input instance 5
+│   ├── input_6.txt                 // input instance 6
+│   ├── input_7.txt                 // input instance 7
+│   ├── input_8.txt                 // input instance 8
+│   └── input_9.txt                 // input instance 9
+├── MainTest.cpp                    // tester main function
+├── MyNumber_Template.h             // api of the adt
+├── Outputs                         // set of output instances
+│   ├── output_0.txt                // output instance 0
+│   ├── output_1.txt                // output instance 1
+│   ├── output_2.txt                // output instance 2
+│   ├── output_3.txt                // output instance 3
+│   ├── output_4.txt                // output instance 4
+│   ├── output_5.txt                // output instance 5
+│   ├── output_6.txt                // output instance 6
+│   ├── output_7.txt                // output instance 7
+│   ├── output_8.txt                // output instance 8
+│   └── output_9.txt                // output instance 9
+└── README.txt                      // how to compile and run the tester main function
 
-4 directories, 27 files
+3 directories, 25 files
 ```
 
 **readme**
@@ -77,7 +78,7 @@ g++ -std=c++11 -g -Wall main.o -o lab1
 
 2.  running the testing program
 
-`./Lab1 input.txt >results.txt`
+`./Lab1 Inputs/input_#.txt >results.txt`
 
 3.  comparing your results with expected output
 
