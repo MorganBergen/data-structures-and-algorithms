@@ -283,6 +283,7 @@ void getNumbers(int& input1, int& input2) {
 }
 
 ```
+![call-by-ref](https://user-images.githubusercontent.com/65584733/214719370-2adf6945-8d3b-46bb-ad5f-415799de413b.png)
 
 ## object
 
