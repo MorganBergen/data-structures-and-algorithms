@@ -33,7 +33,6 @@ IntCell::IntCell(int initial_value) : stored_value{initial_value} {
     // empty
 }
 
-
 /* read()
  * a constant member function examines but does not change the state
  * of its object is an accessor function
@@ -50,4 +49,3 @@ int IntCell::read() {
 void IntCell::write(int x) {
     stored_value = x;
 }
-

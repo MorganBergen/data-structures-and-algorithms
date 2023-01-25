@@ -48,10 +48,6 @@ int main() {
     return(0);
 }
 
-
-
-
-
 void vector_review() {
     std::vector<int> green_vector {5, 4, 3, 2, 1, 0};
     

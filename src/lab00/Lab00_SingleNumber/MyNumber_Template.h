@@ -14,6 +14,7 @@ class MyNumber
     {
         // code begins
 
+        num = rhs;
         // code ends
     }
     

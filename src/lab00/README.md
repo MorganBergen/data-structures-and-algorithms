@@ -78,11 +78,13 @@ g++ -std=c++11 -g -Wall main.o -o lab1
 
 2.  running the testing program
 
+stream insertion operator? for zhs
+
 `./Lab1 Inputs/input_#.txt >results.txt`
 
 3.  comparing your results with expected output
 
-`python3 GradingScript.py result.txt output.txt`
+`python3 GradingScript.py result.txt Outputs/output_#.txt`
 
 if you see `yes`, the your program is correct
 if you see `no`, then your program is incorrect

@@ -4,7 +4,6 @@
 #include <algorithm>
 
 IntCell::IntCell(int initial_value) : stored_value{initial_value} {
-    //nothing
     std::cout << "constructor called!" << std::endl;
 }
 
@@ -15,3 +14,4 @@ int IntCell::read() {
 void IntCell::write(int x){
     stored_value = x;
 }
+

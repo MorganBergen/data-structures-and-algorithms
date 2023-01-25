@@ -169,8 +169,120 @@ int main() {
 ```
 
 ## reference
+**lvalues, rvalues, and references**
+
+- in addition to pointer types, c++ defines reference types.  
+- an lvalue is an expression that identifies a non-temporary object
+- an rvalue is an expression that identifies a temporary object or is a value not associated with an object
+- intuitively, if the function call computes an expression whose value does not exist prior to the call and 
+- does not exist once the call is finished unless it is compied to a variable, then it is an rvalue
+
+**for example**
+
+```cpp
+vector<string> arr(3);
+const int x = 2;
+int y;
+...
+int z = x + y;
+std::string str = "foo";
+std::vector<string> *ptr = &arr;
+```
+
+- `arr` is an lvalue, `x` is an lvalue, `y` is an lvalue, `z` is an lvalue, `str` is an lvalue, `ptr` is an lvalue
+- `3` is an rvalue, `2` is an rvalue, `"foo"` is an rvalue, `&arr` is an rvalue
+
+- notice the consequence that there are some cases in which the result of a function call or operation call can be an lvalue 
+- `*ptr`, `arr[x]`, and `cin >> x >> x` and others where it can be an rvalue, hence the language syntax allows a function call
+- or operator overload to specify this in the return type
 
 ## parameter passing
+
+
+- pass by value is the default method for passing parameters to a function
+- pass by reference formal parameter is declared as a reference type
+
+**call by reference**
+
+To make a formal parameter a call-by-reference parameter, append the ampersand sign & to its type name. The corresponding argument in a call to the function should then be a variable, not a constant or other expression. When the function is called, the corresponding variable argument (not its value) will be substituted for the formal parameter. Any change made to the formal parameter in the function body will be made to the argument variable when the function is called. The exact details of the substitution mechanisms are given in the text of this chapter.
+
+EXAMPLE (OF CALL-BY-REFERENCE PARAMETERS IN A FUNCTION DECLARATION):
+`void getData(int& firstIn, double& secondIn);`
+
+```cpp
+#include <iostream>
+
+// reads two ints from keyboard
+void getNumbers(int& input1, int& input2);
+
+// interchange the values of variable1 and variable2
+void swapValues(int& variable1, int&variable2);
+
+// shows the values of variable1 and variable2 in that order
+void showResults(int output1, int output2);
+
+int main() {
+
+    int firstnum = 0;
+    int secondnum = 0;
+
+    getNumbers(firstnum, secondnum);
+    swapValues(firstnum, secondnum);
+    showResults(firstnum, secondnum);
+
+    return(0);
+}
+
+void getNumbers(int& input1, int& input2) {
+
+    std::cout << "enter 2 integers: ";
+    std::cin >> input1 >> input2;
+    return;
+
+}
+
+void swapValues(int& variable1, int& variable2) {
+
+    int temp = variable1;
+    variable1 = variable2;
+    variable2 = temp;
+    return;
+
+}
+
+void showResults(int output1, int output2) {
+    std::cout << "in reverse order the numbers are: " << output1 << " " << output2 << std::endl;
+    return;
+}
+```
+
+- the values of the variables `firstnum` and `secondnum` are set by this function call.
+- after that, the follwing function call reverses the values in the two variables
+
+**call by reference in detail**
+
+The function is told to use the memory location of the variable firstNum in place of the formal parameter input1 and the memory location of the secondNum in place of the formal parameter input2. The effect is the same as if the function definition were rewritten to the following (which is not legal C++ code, but does have a clear meaning to us):
+
+```cpp
+void getNumbers( int& <the variable at memory location 0x16d00f204>, int& <the variable at memory location 0x16d00f200>) {
+    
+    std::cout << "Enter two integers: ";
+    std::cin >> <the variable at memory location 1010> 
+    std::cin >> <the variable at memory location 1012>;
+    return;
+}
+
+// similar to that of the correct code
+
+void getNumbers(int& input1, int& input2) {
+
+    std::cout << "enter 2 integers: ";
+    std::cin >> input1;
+    std::cin >> input2;
+    return;
+}
+
+```
 
 ## object
 
