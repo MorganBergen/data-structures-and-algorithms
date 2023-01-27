@@ -196,8 +196,9 @@ std::vector<string> *ptr = &arr;
 - `*ptr`, `arr[x]`, and `cin >> x >> x` and others where it can be an rvalue, hence the language syntax allows a function call
 - or operator overload to specify this in the return type
 
-## parameter passing
+**lvalue reference**
 
+## parameter passing
 
 - pass by value is the default method for passing parameters to a function
 - pass by reference formal parameter is declared as a reference type
@@ -285,7 +286,32 @@ void getNumbers(int& input1, int& input2) {
 ```
 ![call-by-ref](https://user-images.githubusercontent.com/65584733/214719370-2adf6945-8d3b-46bb-ad5f-415799de413b.png)
 
+**mixed parameter lists**
+
+`void goodstuff(int& par1, int par2, double& par3);`
+
+- the type specification for the first parameter is a reference type, the second is a value type, and the third is a reference type
+- it is perfectly legal to have a function with a mixed list of parameters, some of which are passed by value and some by reference
+
+**passing by reference to const**
+
+- the reference type can be a reference to a const object
+- the reference parameter can be used to access the value of the argument, but not to change it
+
+**call-by-rvalue-reference**
+
+- the central concept is that 
+
+**when to use call by reference**
+
+1.  call-by-value is appropriate for small objects that should not be altered by the function
+2.  call-by-constant-reference is appropriate for large objects that should not be altered by the function and are expensive to copy
+3.  call-by-reference is appropriate for all objects that may be altered by the function
+
+
 ## object
+
+- every data structure (abstract data type) will be implemented as an object
 
 ## the big five
 
@@ -296,5 +322,13 @@ void getNumbers(int& input1, int& input2) {
 ## complexity analysis
 
 ## summary
+
+**definitions**
+
+1.  parameters and arguments
+    - the **formal parameters** for a function are listed in the function declaration and are used in the body of the function definition.  A formal parameter (of any sort) is a kind of blank or place holder that is filled with something when the function is called.
+    - an **argument** is something that is used to fill in a formal parameter.  When you write down a function call, the arguments are listed in parenthese after the function name.  When the function call is executed, the arguments are "plugged in" for the formal parameters
+    - the terms **call-by-value** and **call-by-reference** refer to the mechanism that is used in the "plugged in" process.  In the **call-by-value** method, only the value of the argument is used.  In this call-by-value mechanism, the formal parameter is a local variable that is initialized to the value of the corresponding argument.  In the **call-by-reference** mechanism the argument is a variable and the entire variable is used. In the call-by-reference mechanism, the argument variable is substituted for the formal parameter so that any change that is made to the formal parameter is actually made to the argument variable.
+
 
 ## lldb debugger
