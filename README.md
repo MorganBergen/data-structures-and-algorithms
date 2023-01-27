@@ -1,7 +1,7 @@
 # data-structures-and-algorithms
-The repo abstract data structures and algorithmic design making use of these structures. Topics include     asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms
+The repo abstract data structures and algorithmic design making use of these structures. Topics include asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms
 
-<p><a href="https://en.wikipedia.org/wiki/File:Heckert_GNU_white.svg#/media/File:Heckert_GNU_white.svg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1200px-Heckert_GNU_white.svg.png" </a></p>
+<p><a href="https://en.wikipedia.org/wiki/File:Heckert_GNU_white.svg#/media/File:Heckert_GNU_white.svg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1200px-Heckert_GNU_white.svg.png" style="width:200px"</a></p>
 
 **contents**
 
