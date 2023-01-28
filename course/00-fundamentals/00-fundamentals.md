@@ -20,6 +20,7 @@ friday jan 20 2023
 13. [complexity analysis](#complexity-analysis)
 14. [lldb debugger](#lldb-debugger)
 15. [summary](#summary)
+16. [notes](#notes)
 
 ## acknowledgement
 
@@ -361,11 +362,36 @@ IntCell(IntCell&& rhs) : stored_value{rhs.stored_value} {
     rhs.stored_value = nullptr;
 }
 ```
-
-### 4.  copy assignment operator
+### 4. copy assignment `operator=`
 
 `IntCell& operator= (const IntCell& rhs)`
 the assignment operator is called when `=` is applied to two objects that have both been previously constructed.  `lhs = rhs` is intended to copy the state of `rhs` into `lhs`.  if `rhs` is an lvalue, this is done by using the copy assignment operator; if `rhs` is an rvalue (i.e. a temporary that is about to be destroyed anyway), this is done by using the move assignment operator.  by default, the copy assignment operator is implemented by applying the copy assignment operator to each data member in turn.
+
+the return type of `operator=` is a reference to the invoking object, so as to allow chained assignments `a = b = c`.  although it would seem that the return type should be a constant reference, so as to disallow nonsense such as `(a = b) = c`, that expression however is in fact allowed in c++ even for integer types.  therefore the reference return type (rather than constant reference return type) is customarily used byt is not strictly required by the language specification.  the return type is also not a pointer, because the assignment operator is not intended to return a pointer to the object being assigned.
+
+```cpp
+IntCell& operator= (const IntCell& rhs) {
+    if (this != &rhs) {
+        *stored_value = *rhs.stored_value;
+    }
+    return *this;
+}
+```
+
+## <p align="center"> or </p>
+
+
+```cpp
+IntCell& operator= (const IntCell& rhs) {
+    IntCell copy = rhs;
+    std::swap(*this, copy);
+    return *this;
+}
+```
+
+### 5. move assignment `operator=`
+
+UNFINISHED READ CHAPTER 1 PAGE 35
 
 ## template
 
@@ -376,3 +402,42 @@ the assignment operator is called when `=` is applied to two objects that have b
 ## summary
 
 ## lldb debugger
+
+## notes
+
+**when defaults do not work**
+
+the most common situation in which the default do not work occurs when a data member is a pointer type and the pointer is allocated by some object member function (such as a constructor).  say for instance we implement the `IntCell` by dynamically allocating an `int`.  
+
+```cpp
+class IntCell {
+    public 
+        explicit IntCell(int initial_value = 0) { stored_value = new int{initial_value}; }
+        int read() const { return *stored_value; }
+        void write(int x) { *stored_value = x; }
+
+    private:
+        int *stored_value;
+};
+```
+
+**problems**
+
+1.  the default copy assignment operator and copy constructor copy the pointer `stored_value`.  thus `a.stored_value`, `b.stored_value`, and `c.stored_value` all point to the same `int` value.  these copies are therefore shallow; the pointers rather than the pointees are copied.  
+
+2.  there will be a memory leak if the copy constructor is used to create a new object.  the new object will have its own `stored_value` pointer, but the original object will still have its own `stored_value` pointer.  the original object will therefore have a pointer to a `int` that is no longer accessible.  this is a memory leak.
+
+
+```
+❯ make
+g++ -std=c++11 -g -Wall -c main.cpp
+main.cpp:22:7: error: object of type 'IntCell' cannot be assigned because its copy assignment operator is implicitly deleted
+    c = b;
+      ^
+./IntCell.h:33:9: note: copy assignment operator is implicitly deleted because 'IntCell' has a user-declared move constructor
+        IntCell(IntCell&& rhs) : stored_value{rhs.stored_value} {
+        ^
+1 error generated.
+make: *** [main.o] Error 1
+```
+

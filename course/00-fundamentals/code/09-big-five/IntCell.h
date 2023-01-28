@@ -55,12 +55,12 @@ class IntCell {
         void write(int x) {
             stored_value = &x;
         }
-
+ 
         ~IntCell() {
             stored_value = nullptr;
             delete stored_value;
         }
-
+    
     private:
         int* stored_value;
 };

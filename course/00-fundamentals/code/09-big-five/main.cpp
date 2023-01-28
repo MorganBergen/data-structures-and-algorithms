@@ -17,10 +17,16 @@ int main() {
 
     IntCell a{num};
     IntCell b = a; 
-    // copy construct if a is an lvalue, meaning it is not a temporary object
+
+    IntCell c;
+    c = b;
+
+    a.write(9999);
 
     std::cout << "a: " << a.read() << std::endl;
     std::cout << "b: " << b.read() << std::endl;
+    std::cout << "c: " << c.read() << std::endl;
+
 
     return(0);
 }
