@@ -327,9 +327,9 @@ void getNumbers(int& input1, int& input2) {
 
 1.  [destructor](#1-destructor)
 2.  [copy constructor](#2-copy-constructor)
-3.  [move constructor](#3-move-constructor) still kinda confused, refer back later
-4.  copy assignment `operator=`
-5.  move assignment `operator=`
+3.  [move constructor](#3-move-constructor)
+4.  [copy assignment `operator=`](#4-copy-assignment-operator)
+5.  [move assignment `operator=`](#5-move-assignment-operator)
 
 ### 1. destructor
 
@@ -357,15 +357,15 @@ IntCell(const IntCell& rhs) {
 a move constructor is a special type of constructor that is used to move the resources of one object to another.  the move constructor is defined as `IntCell(IntCell&& rhs)`.  the `&&` syntax is used to indicate that this is a move constructor and the `rhs` parameter is the object whose resources will be moved to the object being constructed.  the move constructor initializes the `stored_value` member of the new object with the value of `stored_value` member of the object being moved `rhs`.  this is done with the statement `stored_value{rhs.stored_value}` and is analagous to `stored_value = rhs.stored_value`
 
 ```cpp
-
 IntCell(IntCell&& rhs) : stored_value{rhs.stored_value} {
-    
     rhs.stored_value = nullptr;
-
 }
 ```
 
 ### 4.  copy assignment operator
+
+`IntCell& operator= (const IntCell& rhs)`
+the assignment operator is called when `=` is applied to two objects that have both been previously constructed.  `lhs = rhs` is intended to copy the state of `rhs` into `lhs`.  if `rhs` is an lvalue, this is done by using the copy assignment operator; if `rhs` is an rvalue (i.e. a temporary that is about to be destroyed anyway), this is done by using the move assignment operator.  by default, the copy assignment operator is implemented by applying the copy assignment operator to each data member in turn.
 
 ## template
 
