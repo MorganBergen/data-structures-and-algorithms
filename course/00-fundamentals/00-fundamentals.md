@@ -308,6 +308,8 @@ void getNumbers(int& input1, int& input2) {
 2.  call-by-constant-reference is appropriate for large objects that should not be altered by the function and are expensive to copy
 3.  call-by-reference is appropriate for all objects that may be altered by the function
 
+**timing functions**
+
 
 ## object
 
