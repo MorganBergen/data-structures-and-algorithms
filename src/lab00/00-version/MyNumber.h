@@ -16,11 +16,8 @@ class MyNumber {
     public:
 
         explicit MyNumber(int rhs = 0) {
-            
-
 
         }
-
         
     private:
 

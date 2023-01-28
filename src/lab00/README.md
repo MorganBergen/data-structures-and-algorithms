@@ -16,7 +16,7 @@ deadline is Friday January 27th, 2023
 - [testing and grading](#testing-and-grading)
 - [submission](#submission)
 
-### `Lab00_SingleNumber-1.zip` starter code contents
+## `Lab00_SingleNumber-1.zip` starter code contents
 
 ```
 ❯ tree
@@ -58,14 +58,7 @@ deadline is Friday January 27th, 2023
 
 `g++ -std=c++11 MainTest.cpp -o Lab1`
 
-```make
-g++ -std=c++11 -g -Wall -c main.cpp
-g++ -std=c++11 -g -Wall main.o -o lab1
-```
-
 2.  running the testing program
-
-stream insertion operator? for zhs
 
 `./Lab1 Inputs/input_#.txt >results.txt`
 
