@@ -21,8 +21,7 @@ class MyNumber
     // copy constructor with a MyNumber instance
     MyNumber(const MyNumber<DataType> & rhs)	
     {
-        // code begins
-
+        // code begin
         // code ends
     }
     

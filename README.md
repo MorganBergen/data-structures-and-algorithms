@@ -3,11 +3,13 @@ The repo abstract data structures and algorithmic design making use of these str
 
 <p><a href="https://en.wikipedia.org/wiki/File:Heckert_GNU_white.svg#/media/File:Heckert_GNU_white.svg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1200px-Heckert_GNU_white.svg.png" style="width:200px"</a></p>
 
+
 **contents**
 
-[01 overview](./course/01-overview/README.md)
+- [01 overview](./course/01-overview/README.md)
 
-A first course in abstract data structures and algorithmic design making use of these structures. Topics include asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms. Special emphasis will be placed on the implementations of these structures and their performance tradeoffs. Both asymptotic complexity analysis and experimental profiling techniques will be introduced. Labs will be used to provide students with hands-on experience in the implementations of various abstract data types and to perform experimental performance analysis.
+
+- A first course in abstract data structures and algorithmic design making use of these structures. Topics include asymptotic analysis, trees, dictionaries, heaps, disjoint set structures; divide and conquer, greedy, and dynamic programming algorithms. Special emphasis will be placed on the implementations of these structures and their performance tradeoffs. Both asymptotic complexity analysis and experimental profiling techniques will be introduced. Labs will be used to provide students with hands-on experience in the implementations of various abstract data types and to perform experimental performance analysis.
 
 EECS 330: Data Structures and Algorithms Syllabus Spring 2023
 
@@ -43,7 +45,6 @@ Cuncong Zhong
 
 E-mail: cczhong@ku.edu  
 
- 
 
 Graduate Teaching Assistants:
 
@@ -55,7 +56,6 @@ Smriti Pranjal, Email: pranjalsmriti212@ku.edu
 
 Sirisha Thippabhotla, Email: sirisha.thippabhotla@ku.edu
 
- 
 
 Graders:
 
@@ -81,7 +81,6 @@ Major Course Materials:
 
 The primary course website is Canvas. You are responsible for all information we post on Canvas, including any possible changes to assignments after they are assigned.
 
- 
 
 Labs and Exams:
 

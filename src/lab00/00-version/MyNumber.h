@@ -10,16 +10,21 @@
 #include <algorithm>
 #include <iostream>
 
+template <typename DataType>
 class MyNumber {
 
     public:
 
-        explicit MyNumber(int rhs = 0);
-        // MyNumber(int p_number);
+        explicit MyNumber(int rhs = 0) {
+            
+
+
+        }
+
         
     private:
 
-        // int m_number;
+        int m_number;
 };
 
 #endif // __MYNUMBER_H__

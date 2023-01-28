@@ -1,23 +1,10 @@
 # lab 00 single number readme notes
-deadline is Friday January 27th, 2023
+### data structures and algorithms
 
 **submission**
 
 Turn in `MyNumber_[3073682].h`
-
-**to do list**
-
-1. scrape through the code and understand what you don't understand
-    CURRENTLY ON LINE 199
-
-2. write out function definitions
-3. test
-4. submit
-
-**what i dont understand**
-
-- `MyNumber<float> a {num};`
-
+deadline is Friday January 27th, 2023
 
 **contents**
 
@@ -100,7 +87,7 @@ if you see `no`, then your program is incorrect
 
 - constructor functions
    
-    // rhs is the right hand side of the assignment operator
+    `// rhs is the right hand side of the assignment operator`
     - `explicit MyNumber(DataType rhs = 0) // default constructor` 
     - `MyNumber(const MyNumber<DataType> & rhs) // copy constructor`
     - `MyNumber(MyNumber<DataType&& rhs) // move constructor`
@@ -227,7 +214,6 @@ class MyNumber {
 #include <string>
 
 /*
-
     default constructor:
     
     `(DataType rhs = 0)`
@@ -238,25 +224,14 @@ class MyNumber {
     `explicit` 
     is a keyword is used before the constructor function, it indicates that the 
     constructor should not be used for implicit type conversions and copy-initialization.
-    
-
 */
 
 MyNumber::Mynumber(DataType rhs = 0) {
 
 }
-
 ```
 
-In C++, constructors can be defined with an initialization list, which is a list of initializations for the data members of the class that is used to set their initial values. The initializer list is placed after the constructor's parameter list, separated by a colon (:) from the constructor's body.
+- In C++, constructors can be defined with an initialization list, which is a list of initializations for the data members of the class that is used to set their initial values. The initializer list is placed after the constructor's parameter list, separated by a colon (:) from the constructor's body.
 
-It's important to note that the initialization list is executed before the constructor's body, so any code that you put inside the constructor's body will be executed after the member variables have been initialized.
-
-
-
-
-
-
-
-
+- It's important to note that the initialization list is executed before the constructor's body, so any code that you put inside the constructor's body will be executed after the member variables have been initialized.
 

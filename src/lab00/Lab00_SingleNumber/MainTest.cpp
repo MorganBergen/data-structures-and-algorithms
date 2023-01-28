@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     f_input.open(argv[1]);	
     if (0 == f_input.is_open())	    
     {
-        cout << "Error for opening the test input!"<<endl;
+        std::cout << "Error for opening the test input!"<<endl;
         return 0;
     }
     else
@@ -43,3 +43,5 @@ int main(int argc, char* argv[])
 
     return 1;
 }
+
+
