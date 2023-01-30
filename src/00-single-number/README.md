@@ -8,15 +8,20 @@ deadline is Friday January 27th, 2023
 
 **contents**
 
-- [starter code contents](#Lab00_SingleNumber-1.zip-starter-code-contents)
-- [readme](#readme)
-- [objective](#objective)
-- [specification of data structures](#specification-of-data-structures)
-- [physical requirements](#physical-requirements)
-- [testing and grading](#testing-and-grading)
-- [submission](#submission)
+1.  [starter code contents](#starter-code-contents)
+2.  [readme](#readme)
+3.  [objective](#objective)
+4.  [specification of data structure](#specification-of-data-structure)
+5.  [physical requirements](#physical-requirements)
+6.  [physical requirements](#physical-requirements)
+7.  [testing and grading](#testing-and-grading)
+8.  [submission](#submission)
+9.  [`MainTest.cpp`](#maintestcpp)
+10. [`MyNumber_Template.h`](#mynumber_templateh)
 
-## `Lab00_SingleNumber-1.zip` starter code contents
+## starter code contents
+
+**`Lab00_SingleNumber-1.zip`**
 
 ```
 ❯ tree
@@ -52,7 +57,9 @@ deadline is Friday January 27th, 2023
 3 directories, 25 files
 ```
 
-**readme**
+## readme
+
+**`README.txt`**
 
 1.  compile MainTest to test data files
 
@@ -69,12 +76,13 @@ deadline is Friday January 27th, 2023
 if you see `yes`, the your program is correct
 if you see `no`, then your program is incorrect
 
-**objective** 
+## objective
+
 - get familiar with coding with c++
 - recap c++ fundamentals such as object, constructor, destructor, template, and overloading
 - get familiar with adt implementation with c++ and the lab setup for this course
 
-**specification of data structure**
+## specification of data structure
 
 - define your data structure as `template <typename DataType> class MyNumber`
 
@@ -99,7 +107,7 @@ if you see `no`, then your program is incorrect
     - `MyNumber & operator= (const MyNumber<DataType> &rhs // copy assignment`
     - `MyNumber & operator= (MyNumber<DataType> &&rhs) // move assignment`
 
-**physical requirements**
+## physical requirements
 
 1.  install [valgrind](https://valgrind.org) to ubuntu linux system `sudo apt install valgrind`
 
@@ -107,7 +115,7 @@ if you see `no`, then your program is incorrect
 
 3.  you should use `delete` to collect the allocated memory space upon the destruction of the object instance.
 
-**testing and grading**
+## testing and grading
 
 - we will test your implementation using the tester main function posted online
 - the posted input and output example should be used for a testing purpose, while we will use another set of inputs for grading
@@ -115,7 +123,8 @@ if you see `no`, then your program is incorrect
 - **your final score will be determined by the success percentage of your program when fed with many random inputs**
 - <p style="color:red">**if your program does not compile, you will get 0 points**</p>
 
-**submission**
+## submission
+
 submit your implementation as a single `.h` file named `MyNumber_m358b583.h`
 
 ## `MainTest.cpp`
@@ -201,6 +210,7 @@ class MyNumber {
     public:
         explicit MyNumber(DataType rhs = 0) 
 ```
+
 ```cpp
 #include "MyNumber.h"
 #include <iostream>
