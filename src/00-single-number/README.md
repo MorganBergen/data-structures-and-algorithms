@@ -208,7 +208,10 @@ template <typename DataType>
 
 class MyNumber {
     public:
-        explicit MyNumber(DataType rhs = 0) 
+        explicit MyNumber(DataType rhs = 0) {
+            num = nullptr;
+            num = new DataType{rhs};
+        }
 ```
 
 ```cpp
