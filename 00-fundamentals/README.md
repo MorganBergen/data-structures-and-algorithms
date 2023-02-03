@@ -3,6 +3,10 @@
 
 friday jan 20 2023
 
+utilizing gcc compiler
+
+![asset-11](https://user-images.githubusercontent.com/65584733/216661878-a38430f7-1c9b-4a52-8be2-e53ddf06e6e7.png)
+
 **contents**
 
 1.  [acknowledgement](#acknowledgement)
