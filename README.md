@@ -7,3 +7,8 @@ A first course in abstract data structures and algorithmic design making use of 
 [00-fundamentals](./00-fundamentals/README.md)
 
 [00-single-number](./src/00-single-number/README.md)
+
+[01-vector-fundamentals](./01-vectors/README.md)
+
+[01-vectors](./src/01-vectors/README.md)
+
