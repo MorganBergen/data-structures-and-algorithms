@@ -6,16 +6,48 @@
 2.  [specification of the adt](#specification-of-the-adt)
 3.  [requirements](#requirements)
 4.  [evaluation](#evaluation)
+5.  [final submission](#final-submission)
+6.  [vector implementation](#vector-implementation)
 
 ##  objective
 
-vector implementation with c++
+vector implementation with c++, refer to Data Structures and Algorithm Analysis in C++ by Mark Weiss, 4th Edition
 
 ## specification of the adt
 
 - implement a vector data structure with the basic interface and methods
 - implement an iterator class that supports the traverse of your vector data structure
 
+**`private` member variables**
+    
+1.  `size_t the_size;`
+2.  `size_t the_capacity;`
+3.  `DataType* data;`
+
+**`public` member variables**
+
+1.  `static const size_t SPARE_CAPACITY = 16;`
+
+**`public` member methods**
+
+1.  `explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} { data = new DataType[the_capacity]; }`
+
+## requirements
+
+1.  rename the object into `myvector`, instead of `vector` as indicated in the textbok
+2.  your object should contain a copy constructor that supports initialization from an stl vector object.  the constructor should have an interface of  `myvector(const std::vector<object>& rhs)`
+
+3.  implement an "append" method, which appends all data elements in the parameter (as rvalue) to the current object.  the return value should be the current object.  the function has an interface of `Myvector<object>& append(myvector<object> && rhs)`
+
+## evaluation
+
+we will test your implementation using the tester main function posted online.  the posted input and output examples should be used for a testing purpose, while we will ue another set of inputs for grading.  your code will be complied under ubuntu 20.04 lts using g++ version 9.3.0 (default) with c++11 standard.  your final score will be the determined by the success percentage of your program when fed with many random inputs.  note that if your code does not compile (together with our tester main function), you will recieve a 0.  
+
+## final submission
+
+submit your implementation as a single `.h` file, with file name `MyVector_m358b583.h` submission that do not comply with the naming specification will not be graded.  the deadline is sunday feb 19 2023 11:59 pm
+
+## vector implementation
 
 ```c++
 #ifndef __MYVECTOR_H_
@@ -37,7 +69,15 @@ class myvector {
         static const size_t SPARE_CAPACITY = 16;
         
         // default constructor
-        explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} {}
+        explicit myvector(size_t init_size = 0) : 
+        
+            the_size{init_size}, 
+
+            the_capacity{init_size + SPARE_CAPACITY} {
+            
+            data = new DataType[the_capacity];
+
+        }
         
         // copy constructor
         myvector(const myvector & rhs) : the_size{rhs.the_size}, the_capacity{rhs.the_capacity} {}
@@ -109,18 +149,6 @@ class myvector {
 
 #endif
 ```
-
-## requirements
-
-1.  rename the object into `myvector`, instead of `vector` as indicated in the textbok
-2.  your object should contain a copy constructor that supports initialization from an stl vector object.  the constructor should have an interface of
-
-`myvector(const std::vector<object>& rhs)`
-
-3.  implement an "append" method, which appends all data elements in the parameter (as rvalue) to the current object.  the return value should be the current object.  the function has an interface of
-
-`Myvector<object>& append(myvector<object> && rhs)`
-
 
 
 
