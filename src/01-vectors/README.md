@@ -150,14 +150,11 @@ class myvector {
 #endif
 ```
 
-<<<<<<< HEAD
-=======
 so indexable in constant time for a vector means thet being able to access an element in the vector by its index or position take $O(1)$ time, the `operator[]` method specifically named `const data_type & operator[] (size_t index)`, so in c++ the `operator[]` methods is used to access the element in a vector by it's index position, for example `myvector[3]` would access the element at index 3 in the `myvector` vector.
 
 the disadvantage is that insertion of new items and removal of existing items is expensive, unless the changes are made at the end of the vector.  we will go over adding and removing elements and it's time complexity later on.
 
 the `vector` class template is instantiated with the type of items that it stores.  this means that when a vector class template is instantiated with the type of items that it stores, it means that a specific version of the vector class is created for that specific type.  the code for the vector class template is written in a generic way so that it can work with any data type, but it is not actually compiled until a specific data type is provided.  for example if we want to create a vector of integers, we would instantiate the vector class template with teh `int` data type:  `myvector<int> red{}`, and a specific version of the vector class would be generated for `int`.  this specific version of the vector class would contain code that is optimized for the `int` data type, and it would only allow `int` values to be stored in the vector.
->>>>>>> 3457f6b (added new files for the 01 vectors)
 
 remember that instantiated refers to the process of creating a specific instance of a class, when a class is instantiated, memory is allocated for an object of that class and its constructor is called to initialize its data members.  this object is then used to perform operations defined in the class.
 
@@ -190,27 +187,6 @@ remember that instantiated refers to the process of creating a specific instance
 -  `int capacity() const`:  returns the internal capacity of the `vector`
 
 -  `void reserve(int new_capacity)`:  sets the new capacity.  fi a good estimate is available, it can be used to avoid expansion of the `vector`
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## specification of the adt
