@@ -40,4 +40,3 @@ class myvector {
 };
 
 #endif
->>>>>>> 3457f6b (added new files for the 01 vectors)
