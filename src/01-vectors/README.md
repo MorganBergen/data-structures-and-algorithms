@@ -1,36 +1,18 @@
-#  vector
+#  vectors
 
 **content**
 
 1.  [objective](#objective)
-2.  [specification of the adt](#specification-of-the-adt)
 3.  [requirements](#requirements)
 4.  [evaluation](#evaluation)
 5.  [final submission](#final-submission)
-6.  [vector implementation](#vector-implementation)
+6.  [about vectors](#about-vectors)
+6.  [specification of the adt](#specification-of-the-adt)
+7.  [vector implementation](#vector-implementation)
 
 ##  objective
 
 vector implementation with c++, refer to Data Structures and Algorithm Analysis in C++ by Mark Weiss, 4th Edition
-
-## specification of the adt
-
-- implement a vector data structure with the basic interface and methods
-- implement an iterator class that supports the traverse of your vector data structure
-
-**`private` member variables**
-    
-1.  `size_t the_size;`
-2.  `size_t the_capacity;`
-3.  `DataType* data;`
-
-**`public` member variables**
-
-1.  `static const size_t SPARE_CAPACITY = 16;`
-
-**`public` member methods**
-
-1.  `explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} { data = new DataType[the_capacity]; }`
 
 ## requirements
 
@@ -47,110 +29,11 @@ we will test your implementation using the tester main function posted online.  
 
 submit your implementation as a single `.h` file, with file name `MyVector_m358b583.h` submission that do not comply with the naming specification will not be graded.  the deadline is sunday feb 19 2023 11:59 pm
 
-## vector implementation
+##  about vectors
 
-```c++
-#ifndef __MYVECTOR_H_
-#define __MYVECTOR_H_
+a programmer-defined vector is a custom implementation of the vector data structure in c++. the standard library of c++ already provides a vector class, but a programmer can create their own implementation with custom functionalities and properties specific to their use case. this can be done by defining a class that contains an array and implementing methods to manipulate it, similar to the implementation of the standard vector class.
 
-#include <utility>
-#include <vector>
-
-template <typename data_type>
-class myvector {
-    
-    private:
-        size_t the_size;
-        size_t the_capacity;
-        DataType* data;
-    
-    public:
-        // initial capacity of the vector
-        static const size_t SPARE_CAPACITY = 16;
-        
-        // default constructor
-        explicit myvector(size_t init_size = 0) : 
-        
-            the_size{init_size}, 
-
-            the_capacity{init_size + SPARE_CAPACITY} {
-            
-            data = new DataType[the_capacity];
-
-        }
-        
-        // copy constructor
-        myvector(const myvector & rhs) : the_size{rhs.the_size}, the_capacity{rhs.the_capacity} {}
-    
-        // move constructor
-        myvector(myvector && rhs) : the_size{rhs.the_size}, the_capacity{rhs.the_capacity}, data{rhs.data} {}
-    
-        // copy constructor from stl vector implementation
-        myvector(const std::vector<data_type> & rhs) : the_size{rhs.size()}, the_capacity{rhs.size() + SPARE_CAPACITY} {}
-
-        // destructor
-        ~myvector() {}
-
-        // copy assignment
-        myvector & operator=(const myvector & rhs) {}
-
-        // move assignment
-        myvector & operator=(myvector && rhs) {}
-
-        // resize the vector by changing the size of the array
-        void resize(size_t new_capacity) {}
-
-        // data access operator without bound checking
-        data_type & operator[](size_t index) {}
-
-        // data access operator with bound checking
-        const data_type & operator[](size_t index) const {}
-
-        // check if vector is empty; return true if the vector is empty and false otherwise
-        bool empty() const {}
-
-        // return the size of the vector        
-        size_t size() const {}
-
-        // returrn the capacity of the vector
-        size_t capacity() const {}
-
-        // insert a data element to the end of the vector
-        void push_back(const data_type & x) {}
-        
-        // insert a data element to the end of the vector? 
-        void push_back(data_type && x) {}
-
-        // append a vector as indicated by the parameter to the current vector
-        myvector<data_type>& append(myvector<data_type> && rhs) {}
-
-        // remove the object at the end of the vector
-        void pop_back() {}
-
-        // return the last data element from the array
-        const data_type* back() const {}
-
-        // iterator implementation
-        typedef data_type* iterator;
-        
-        // iterator implementation
-        typedef const data_type* const_iterator;
-
-        // 
-        const_iterator begin() const {}
-
-        //
-        iterator end() {}
-
-        //
-        const_iterator end() const {}
-
-};
-
-#endif
-```
-
-so indexable in constant time for a vector means thet being able to access an element in the vector by its index or position take $O(1)$ time, the `operator[]` method specifically named `const data_type & operator[] (size_t index)`, so in c++ the `operator[]` methods is used to access the element in a vector by it's index position, for example `myvector[3]` would access the element at index 3 in the `myvector` vector.
+the advantage advantage of using a `vector` is that it's indexable in constant time.  indexable in constant time for a vector means thet being able to access an element in the vector by its index or position take $O(1)$ time, the `operator[]` method specifically named `const data_type & operator[] (size_t index)`, so in c++ the `operator[]` methods is used to access the element in a vector by it's index position, for example `myvector[3]` would access the element at index 3 in the `myvector` vector.
 
 the disadvantage is that insertion of new items and removal of existing items is expensive, unless the changes are made at the end of the vector.  we will go over adding and removing elements and it's time complexity later on.
 
@@ -188,8 +71,7 @@ remember that instantiated refers to the process of creating a specific instance
 
 -  `void reserve(int new_capacity)`:  sets the new capacity.  fi a good estimate is available, it can be used to avoid expansion of the `vector`
 
-
-## specification of the adt
+## specification of adt
 
 - implement a vector data structure with the basic interface and methods
 - implement an iterator class that supports the traverse of your vector data structure
@@ -222,57 +104,7 @@ remember that instantiated refers to the process of creating a specific instance
 
 -  it's important to note that the memory allocated using `new` must be manually deallocated using the `delete` operator when it is no longer needed, otherwise, it can lead to memory leaks in the program.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-----------------------------------------------------------------------------------------
-
-
-`data_type & operator[] (size_t index) { return data[index]; }`
+2.  `data_type & operator[] (size_t index) { return data[index]; }`
 
 example use case:  `green_vector[3]` would access the element at index 3 in the `green_vector` vector.
 
@@ -288,4 +120,105 @@ the `&` symbol indicates that the function returns a reference to the data type.
 myvector<int> green_vector = {1, 2, 3};
 v[1] = 5;
 ```
->>>>>>> 3457f6b (added new files for the 01 vectors)
+## vector implementation
+
+```c++
+#ifndef __MYVECTOR_H_
+#define __MYVECTOR_H_
+
+#include <utility>
+#include <vector>
+
+template <typename data_type>
+class myvector {
+
+    private:
+        size_t the_size;
+        size_t the_capacity;
+        DataType* data;
+
+    public:
+        // initial capacity of the vector
+        static const size_t SPARE_CAPACITY = 16;
+
+        // default constructor
+        explicit myvector(size_t init_size = 0) : 
+
+            the_size{init_size}, 
+
+            the_capacity{init_size + SPARE_CAPACITY} {
+
+                data = new DataType[the_capacity];
+
+            }
+
+        // copy constructor
+        myvector(const myvector & rhs) : the_size{rhs.the_size}, the_capacity{rhs.the_capacity} {}
+
+        // move constructor
+        myvector(myvector && rhs) : the_size{rhs.the_size}, the_capacity{rhs.the_capacity}, data{rhs.data} {}
+
+        // copy constructor from stl vector implementation
+        myvector(const std::vector<data_type> & rhs) : the_size{rhs.size()}, the_capacity{rhs.size() + SPARE_CAPACITY} {}
+
+        // destructor
+        ~myvector() {}
+
+        // copy assignment
+        myvector & operator=(const myvector & rhs) {}
+
+        // move assignment
+        myvector & operator=(myvector && rhs) {}
+
+        // resize the vector by changing the size of the array
+        void resize(size_t new_capacity) {}
+
+        // data access operator without bound checking
+        data_type & operator[](size_t index) {}
+
+        // data access operator with bound checking
+        const data_type & operator[](size_t index) const {}
+
+        // check if vector is empty; return true if the vector is empty and false otherwise
+        bool empty() const {}
+
+        // return the size of the vector        
+        size_t size() const {}
+
+        // returrn the capacity of the vector
+        size_t capacity() const {}
+
+        // insert a data element to the end of the vector
+        void push_back(const data_type & x) {}
+
+        // insert a data element to the end of the vector? 
+        void push_back(data_type && x) {}
+
+        // append a vector as indicated by the parameter to the current vector
+        myvector<data_type>& append(myvector<data_type> && rhs) {}
+
+        // remove the object at the end of the vector
+        void pop_back() {}
+
+        // return the last data element from the array
+        const data_type* back() const {}
+
+        // iterator implementation
+        typedef data_type* iterator;
+
+        // iterator implementation
+        typedef const data_type* const_iterator;
+
+        // 
+        const_iterator begin() const {}
+
+        //
+        iterator end() {}
+
+        //
+        const_iterator end() const {}
+
+};
+
+#endif
+```
