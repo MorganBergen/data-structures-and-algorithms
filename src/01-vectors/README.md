@@ -150,6 +150,50 @@ class myvector {
 #endif
 ```
 
+<<<<<<< HEAD
+=======
+so indexable in constant time for a vector means thet being able to access an element in the vector by its index or position take $O(1)$ time, the `operator[]` method specifically named `const data_type & operator[] (size_t index)`, so in c++ the `operator[]` methods is used to access the element in a vector by it's index position, for example `myvector[3]` would access the element at index 3 in the `myvector` vector.
+
+the disadvantage is that insertion of new items and removal of existing items is expensive, unless the changes are made at the end of the vector.  we will go over adding and removing elements and it's time complexity later on.
+
+the `vector` class template is instantiated with the type of items that it stores.  this means that when a vector class template is instantiated with the type of items that it stores, it means that a specific version of the vector class is created for that specific type.  the code for the vector class template is written in a generic way so that it can work with any data type, but it is not actually compiled until a specific data type is provided.  for example if we want to create a vector of integers, we would instantiate the vector class template with teh `int` data type:  `myvector<int> red{}`, and a specific version of the vector class would be generated for `int`.  this specific version of the vector class would contain code that is optimized for the `int` data type, and it would only allow `int` values to be stored in the vector.
+>>>>>>> 3457f6b (added new files for the 01 vectors)
+
+remember that instantiated refers to the process of creating a specific instance of a class, when a class is instantiated, memory is allocated for an object of that class and its constructor is called to initialize its data members.  this object is then used to perform operations defined in the class.
+
+1.  the first three methods are available for all stl containers.
+
+-  `int size() const`:  returns the number of elements in the container
+
+-  `void clear()`:  removes all elements from the container
+
+-  `bool empty() const`:  returns true if the container contains no elements, and false otherwise
+
+2.  `vector` supports adding and removing from the end of the list in constant time.  
+
+-  `void push_back(const Object & x`:  adds `x` to the end of the vector
+
+-  `void pop_back()`:  removes the object at the end of the vector
+
+3.  `vector` supports accessing the front item in the list in constant time.
+
+-  `const Object & back() const`:  returns the object at the end of the vector (a mutator that returns a reference is also provided)
+
+-  `const Object & front() const`:  returns the object at the front of the list (a mutator that returns a reference is also provided)
+
+4.  `vector` has two methods that allow for efficient indexing. and the other two methods allow the programmer to view and change the internal capacity
+
+-  `Object & operator[] (int index)`:  returns the object at index `index` in the `vector`, with no bounds-checking (an accessor that returns a constant reference is also provided).
+
+-  `Object & at(int index)`:  returns the object at index `index` in the `vector`, with bounds checking (an accessor that returns a constant reference is also provided) 
+
+-  `int capacity() const`:  returns the internal capacity of the `vector`
+
+-  `void reserve(int new_capacity)`:  sets the new capacity.  fi a good estimate is available, it can be used to avoid expansion of the `vector`
+
+
+<<<<<<< HEAD
+=======
 
 
 
@@ -157,3 +201,115 @@ class myvector {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+## specification of the adt
+
+- implement a vector data structure with the basic interface and methods
+- implement an iterator class that supports the traverse of your vector data structure
+
+-----------------------------------------------------------------------------------------------------
+
+**`private` member variables**
+
+1.  `size_t the_size;`
+2.  `size_t the_capacity;`
+3.  `DataType* data;`
+
+-----------------------------------------------------------------------------------------------------
+
+**`public` member variables**
+
+1.  `static const size_t SPARE_CAPACITY = 16;`
+
+-----------------------------------------------------------------------------------------------------
+
+**`public` member methods**
+
+1.  `explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} { data = new DataType[the_capacity]; }`
+
+- the `explicit` keywork in c++ is used to prevent implicit conversions of types.  in this context, it means that the `myvector` constructor can only be called explicitly with an argument, and implicity through type conversion.   the default constructor `myvector` class initializes the size and capacity of the vector to a given `the_size = 0` if there is no size specified. meaning if we construct an object like this `myvector<int> red_vector{};` or like this `myvector<int> red_vector;`. 
+
+- `the_size` and `the_capacity` are initialized, `the_capacty = init_size + SPARE_CAPACITY` and the data pointer will have allocated with the size of the capacity.  the constructor is defined with an initalization list which is a way of initializing member variables before the body of the constructor is executed.  in this case the initialization list sets the size and capacity member varibales to the given arguments, and allocates memory for the data pointer.
+
+- `data = new data_type[the_capacity];`  in the context of the `myvector` class, the `data` pointer is used to dynamically allocate memory for the vector.  the `new` keywork is used to request the memory allocation from the operating system at runtime.  `data_type[the_capacity]` is used to allocate an array of `data_type` objects with a size of `the_capacity`.  the `new` operator returns a pointer to the first element of the allocated memory block, which is then assigned to `data`.  this means that `data` now pointers to a block of memory that can hold `the_capacity` number of `data_type` objects.  the constructor is responsible for initializing the objects in the allocated memory block.
+
+-  it's important to note that the memory allocated using `new` must be manually deallocated using the `delete` operator when it is no longer needed, otherwise, it can lead to memory leaks in the program.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+----------------------------------------------------------------------------------------
+
+
+`data_type & operator[] (size_t index) { return data[index]; }`
+
+example use case:  `green_vector[3]` would access the element at index 3 in the `green_vector` vector.
+
+operator overloading is the process of giving new meaning to existing operators in c++.  when an operator is overloaded it gains the ability to operator on user-defined data types, in addition to its original functionality.
+
+in the case of `data_type & operator[] (size_t index)` the `[]` operator is being overloaded to allow for index-based access to elements of the `myvector` class.  so when ths operator is used on an object of the `myvector` class, it will `return` a reference to the element at the specified index in the `data` array.  the operator overloading process works by creating a function that has the same name as the operator being overloaded.
+
+operator overload for the `[]` operator, this method should return a reference to the element at the specified index position.  in programming the term "overloading" refers to the ability to define operators with the same name but different parameters or argument types.  this allows the same operator to be used with different data type or in different situations, depending on the arguments passed in.  the name "overloading" is used because the function or operator name is effectively "loaded" with different meanings, depending on the context in which it is used.
+
+the `&` symbol indicates that the function returns a reference to the data type.  this means that when we access an element in the vector using the `[]` operator, the function will return a reference to the actual element, NOT A COPY OF IT.  this is useful when we want to modify the element in place, as it allows us to avoid creating unneccessary copies of the data. 
+
+```
+myvector<int> green_vector = {1, 2, 3};
+v[1] = 5;
+```
+>>>>>>> 3457f6b (added new files for the 01 vectors)
