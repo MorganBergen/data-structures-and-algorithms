@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -9,7 +7,11 @@
 
 int main() {
 
-    myvector<int> red{10};
+    myvector<int> red{3};
+
+    // red[0] = 000;
+    // red[1] = 111;
+    // red[2] = 222;
 
     std::cout << "size:  " << red.size() << std::endl;
     std::cout << "capacity:  " << red.capacity() << std::endl;
@@ -25,6 +27,3 @@ int main() {
 
     return(0);
 }
-
-
->>>>>>> 3457f6b (added new files for the 01 vectors)

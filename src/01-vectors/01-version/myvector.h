@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #ifndef __MYVECTOR_H__
 #define __MYVECTOR_H__
 
@@ -19,6 +17,22 @@ class myvector {
             the_size{init_size},
             the_capacity{init_size + SPARE_CAPACITY} {
                 data = new data_type[the_capacity];
+
+                std::cout << "default constructor" << std::endl;
+        }
+
+        myvector(const myvector & rhs) :
+            the_size{rhs.the_size}, 
+            the_capacity{rhs.the_capacity},
+            data{nullptr} {
+
+                data = new data_type[the_capacity];
+
+                for (int i = 0; i < the_size; ++i) {
+                    data[i] = rhs.data[i]; 
+                }
+
+                std::cout << "copy constructor" << std::endl;
         }
 
 
