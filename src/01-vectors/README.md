@@ -9,6 +9,23 @@
 6.  [about vectors](#about-vectors)
 6.  [specification of the adt](#specification-of-the-adt)
 7.  [vector implementation](#vector-implementation)
+8.  [`private` member variables](###private-member-variables)
+
+-  [1.  `size_t the size`](####1-size_t-the-size)
+
+-  [2.  `size_t the capacity`](####2.-`size-t-the-capacity`)
+
+-  [3.  `DataType * data`](####3.-`DataType-*-data`)
+
+9.  [`public` member variables](###public-member-variables)
+
+-  [1.  `static const size_t SPARE_CAPACITY = 16`](####1.-`static-const-size_t-SPARE_CAPACITY-=-16`)
+
+10. [`private` member functions](###private-member-functions)
+
+-  [1.  `explicit myvector(size_t init_capacity = 0)`](####1.-explicit-myvector(size_t-init_capacity-=-0))
+
+-  [2.  `myvector (const myvector & rhs)`](####2.-myvector-(const-myvector-&-rhs))
 
 ##  objective
 
@@ -124,23 +141,33 @@ remember that instantiated refers to the process of creating a specific instance
 
 -----------------------------------------------------------------------------------------------------
 
-**`private` member variables**
+## `private` member variables
 
-1.  `size_t the_size;`
-2.  `size_t the_capacity;`
-3.  `DataType* data;`
-
------------------------------------------------------------------------------------------------------
-
-**`public` member variables**
-
-1.  `static const size_t SPARE_CAPACITY = 16;`
+### 1.  `size_t the_size;`
+### 2.  `size_t the_capacity;`
+### 3.  `DataType* data;`
 
 -----------------------------------------------------------------------------------------------------
 
-## **`public` member methods**
+## `public` member variables
 
-### 1.  `explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} { data = new DataType[the_capacity]; }`
+### 1.  `static const size_t SPARE_CAPACITY = 16;`
+
+-----------------------------------------------------------------------------------------------------
+
+## `public` member methods
+
+### 1.  `explicit myvector(size_t init_capacity = 0)`
+
+**default constructor**
+
+```cpp
+explicit myvector(size_t init_size = 0) : 
+    the_size{init_size}, 
+    the_capacity{init_size + SPARE_CAPACITY} { 
+        data = new DataType[the_capacity]; 
+}
+```
 
 - the `explicit` keywork in c++ is used to prevent implicit conversions of types.  in this context, it means that the `myvector` constructor can only be called explicitly with an argument, and implicity through type conversion.   the default constructor `myvector` class initializes the size and capacity of the vector to a given `the_size = 0` if there is no size specified. meaning if we construct an object like this `myvector<int> red_vector{};` or like this `myvector<int> red_vector;`. 
 
@@ -150,7 +177,9 @@ remember that instantiated refers to the process of creating a specific instance
 
 -  it's important to note that the memory allocated using `new` must be manually deallocated using the `delete` operator when it is no longer needed, otherwise, it can lead to memory leaks in the program.
 
-### 2.  `myvector (const myvector & rhs` copy constructor
+### 2.  `myvector (const myvector & rhs` 
+
+**copy constructor**
 
 -  the following is the implementation of a copy constructor for a template class myvector.  it allocates memory for the new vector and copies the data from the old vector into the new one
 
