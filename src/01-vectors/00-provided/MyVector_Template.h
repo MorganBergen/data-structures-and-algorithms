@@ -23,7 +23,7 @@ class MyVector
         theCapacity{initSize + SPARE_CAPACITY}
     {
         // code begins
-
+        data = new DataType[theCapacity];
         // code ends
     }
 
@@ -33,7 +33,11 @@ class MyVector
         theCapacity{rhs.theCapacity}
     {
         // code begins
-        
+        data = nullptr;
+        data = new DataType[theCapacity];
+        for (int i = 0; i < theSize; ++i) {
+            data[i] = rhs.data[i];
+        }
         // code ends
     }
 
@@ -44,7 +48,9 @@ class MyVector
         data{rhs.data}
     {
         // code begins
-        
+        rhs.data = nullptr;
+        rhs.theSize = 0;
+        rhs.theCapacity = 0;
         // code ends
     }
 
@@ -54,14 +60,18 @@ class MyVector
         theCapacity{rhs.size() + SPARE_CAPACITY}
     {
         // code begins
-        
+        data = nullptr;
+        data = new DataType[theCapacity];
+        for (int i = 0; i < theSize; ++i) {
+            data[i] = rhs[i];
+        }
         // code ends 
     }
 
     // destructor
     ~MyVector(){
         // code begins
-        
+        delete [] data; 
         // code ends
     };
 
@@ -69,7 +79,9 @@ class MyVector
     MyVector & operator= (const MyVector& rhs)
     {
         // code begins
-        
+        MyVector copy = rhs;
+        std::swap(*this, copy);
+        return (*this);
         // code ends
     }
 
@@ -77,7 +89,13 @@ class MyVector
     MyVector & operator= (MyVector && rhs)
     {
         // code begins
-        
+        std::swap(theSize, rhs.theSize);
+        std::swap(theCapacity, rhs.theCapacity);
+        std::swap(data, rhs.data);
+        rhs.data = nullptr;
+        rhs.theSize = 0;
+        rhs.theCapacity = 0;
+        return (*this);
         // code ends
     }
 
@@ -85,7 +103,10 @@ class MyVector
     void resize(size_t newSize)
     {
         // code begins
-        
+        if (newSize > theCapacity) {
+            reserve(newSize * 2);
+        }
+        theSize = newSize;
         // code ends
     }
 
@@ -93,7 +114,16 @@ class MyVector
     void reserve(size_t newCapacity)
     {
         // code begins
-        
+        if (newCapacity < theSize) {
+            return;
+        } 
+        DataType *newData = new DataType[newCapacity];
+        for (int i = 0; i < theSize; ++i) {
+            newData[i] = std::move(data[i]);
+        }
+        theCapacity = newCapacity;
+        std::swap(data, newData);
+        delete [] newData;
         // code ends       
     }
 
@@ -101,14 +131,14 @@ class MyVector
     DataType & operator[] (size_t index)
     {
         // code begins
-        
+        return data[index];
         // code ends
     }
 
     const DataType & operator[](size_t index) const
     {
         // code begins
-        
+        return data[index];
         // code ends
     }
 
@@ -116,7 +146,11 @@ class MyVector
     bool empty() const
     {
         // code begins
-        
+        if (theSize == 0) {
+            return true;
+        } else {
+            return false;
+        }
         // code ends
     }
 
@@ -124,7 +158,7 @@ class MyVector
     size_t size() const 
     {
         // code begins
-        
+        return theSize;
         // code ends
     }
 
@@ -132,7 +166,7 @@ class MyVector
     size_t capacity() const 
     {
         // code begins
-        
+        return theCapacity;
         // code ends
     }
 
@@ -140,22 +174,36 @@ class MyVector
     void push_back(const DataType & x)
     {
         // code begins
-        
+        if (theSize == theCapacity) {
+            reserve(2 * theCapacity + 1);
+        }
+        data[theSize++] = x;
         // code ends
     }
 
     void push_back(DataType && x)
     {
         // code begins
-        
+        if (theSize == theCapacity) {
+            reserve(2 * theCapacity + 1);
+        } 
+        data[theSize++] = std::move(x);
         // code ends
     }
 
-    // append a vector as indicated by the parameter to the current vector
+    // append a vector as indicated by the parameter to the current vector ????????????????????????
     MyVector<DataType>& append(MyVector<DataType> && rhs)
     {
         // code begins
-        
+        if (theSize + rhs.theSize > theCapacity) {
+            reserve(theSize + rhs.theSize);
+        }
+        for (int i = 0; i < rhs.theSize; ++i) {
+            data[theSize + i] = std::move(rhs.data[i]);
+        }
+        theSize += rhs.theSize;
+        rhs.theSize = 0;
+        return (*this);
         // code ends
     }
 
@@ -163,7 +211,7 @@ class MyVector
     void pop_back()
     {
         // code begins
-        
+        --theSize;
         // code ends
     }
 
@@ -171,7 +219,7 @@ class MyVector
     const DataType& back() const 
     {
         // code begins
-        
+        return data[theSize - 1];
         // code ends
     }
 
@@ -183,28 +231,28 @@ class MyVector
     iterator begin()
     {
         // code begins
-        
+        return &data[0];
         // code ends
     }
 
     const_iterator begin() const
     {
         // code begins
-        
+        return &data[0];
         // code ends
     }
 
     iterator end()
     {
         // code begins
-        
+        return &data[size()];
         // code ends
     }
 
     const_iterator end() const 
     {
         // code begins
-        
+        return &data[size()];
         // code ends
     }
 
