@@ -29,6 +29,52 @@ we will test your implementation using the tester main function posted online.  
 
 submit your implementation as a single `.h` file, with file name `MyVector_m358b583.h` submission that do not comply with the naming specification will not be graded.  the deadline is sunday feb 19 2023 11:59 pm
 
+verification process
+
+```
+g++ -std=c++11 MainTest.cpp -o Lab1
+
+./Lab1 input.txt >result.txt
+
+python3 GradingScript.py result.txt output.txt
+```
+
+script for all test cases
+
+```
+g++ -std=c++1 MainTest.cpp -o Lab2
+
+./Lab2 Inputs/input_0.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_0.txt
+
+./Lab2 Inputs/input_1.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_1.txt
+
+./Lab2 Inputs/input_2.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_2.txt
+
+./Lab2 Inputs/input_3.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_3.txt
+
+./Lab2 Inputs/input_4.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_4.txt
+
+./Lab2 Inputs/input_5.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_5.txt
+
+./Lab2 Inputs/input_6.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_6.txt  
+
+./Lab2 Inputs/input_7.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_7.txt  
+
+./Lab2 Inputs/input_8.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_8.txt
+
+./Lab2 Inputs/input_9.txt >result.txt
+python3 GradeScript.py result.txt Outputs/output_9.txt
+```
+
 ##  about vectors
 
 a programmer-defined vector is a custom implementation of the vector data structure in c++. the standard library of c++ already provides a vector class, but a programmer can create their own implementation with custom functionalities and properties specific to their use case. this can be done by defining a class that contains an array and implementing methods to manipulate it, similar to the implementation of the standard vector class.
@@ -92,9 +138,9 @@ remember that instantiated refers to the process of creating a specific instance
 
 -----------------------------------------------------------------------------------------------------
 
-**`public` member methods**
+## **`public` member methods**
 
-1.  `explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} { data = new DataType[the_capacity]; }`
+### 1.  `explicit myvector(size_t init_size = 0) : the_size{init_size}, the_capacity{init_size + SPARE_CAPACITY} { data = new DataType[the_capacity]; }`
 
 - the `explicit` keywork in c++ is used to prevent implicit conversions of types.  in this context, it means that the `myvector` constructor can only be called explicitly with an argument, and implicity through type conversion.   the default constructor `myvector` class initializes the size and capacity of the vector to a given `the_size = 0` if there is no size specified. meaning if we construct an object like this `myvector<int> red_vector{};` or like this `myvector<int> red_vector;`. 
 
@@ -104,7 +150,107 @@ remember that instantiated refers to the process of creating a specific instance
 
 -  it's important to note that the memory allocated using `new` must be manually deallocated using the `delete` operator when it is no longer needed, otherwise, it can lead to memory leaks in the program.
 
-2.  `data_type & operator[] (size_t index) { return data[index]; }`
+### 2.  `myvector (const myvector & rhs` copy constructor
+
+-  the following is the implementation of a copy constructor for a template class myvector.  it allocates memory for the new vector and copies the data from the old vector into the new one
+
+```
+myvector (const myvector & rhs) : 
+    the_size{rhs.the_size},
+    the_capacity{rhs.the_capacity},
+    data{nullptr} {
+
+        data = data_type[the_capacity];
+
+        for (int i = 0; i < the_size; ++i) {
+            data[i] = rhs.data[i];
+        }
+    }
+```
+
+**line by line explaination**
+
+-  overall this copy constructor creates a new `myvector` object that is a copy of the passed object rhs.  it initializes its member variables with the same values as `rhs`, allocates memory for its `data` member variable, and copies the elements of `rhs`'s `data` member variable to the new object's `data` member variables
+
+-  `myvector (const myvector & rhs)` this is a constructor definition, which takes a reference to another `myvector` object as its parameter, this is the initial signature of the copy constructor that will create a copy of the passed object `rhs`.  remember that a reference is an alias to an existing variable.  when you define a reference, you are essentially creating another name for an existing vairable.  so any changes made to the reference will also affect the original variable it is referencing.  `rhs` stands for "right hand side", it is called this way because it is convention in c++ to use this naming convention for function parameters that are used as input or sources of data.  in this case, `rhs` is a reference to an object being passed as an argument to the copy constructor.  recall that this `&` is the address of operator, so it is a pointer to another vairbale and returns the memory address where the variable is stored in memory.
+
+-  `: the_size{rhs.the_size},`  initializes the `the_size` member variable of the newly created object to the same value as the `the_size` member variable of the passed object `rhs`
+
+-  `the_capacity{rhs.the_capacity},`  initializes the `the_capacity` member variable of the newly created object to the same value as that of `the_capacity` member variable of the passed object `rhs`
+
+-  `data{nullptr} {`  this initializes `data` member variable of the newly created object to `nullptr`.  it's important to prevent undefined behavior, since the newly created object has no memory allocated to it yet.
+
+-  `data = data_type[the_capacity];`  this allocates memory on the heap for teh `data` member variable of the newly created object.  the size of the memory block is `the_capacity` which was copied from the `rhs` object.  the `new` operator returns a pointer to the first element of the allocated block, which is assigned to the `data` member variable.  we know that `the_capacity` of the newly created object is the same as `rhs`'s `capacity` because it was assigned within the initializer list.
+
+-  `for (int i = 0; i < the_size; ++i) {`  this is a loop that will iterate over each element in the `data` member variable of the newly created object, copying the corresponding element from the `data` member variable of the passed object `rhs` untill it reaches the end which is `the_size - 1`
+
+-  `data[i] = rhs.data[i]`  this copies the `i`th element of the `data` member variable of the passed object `rhs` to the `i`th element of the `data` member variable of the newly created object.
+
+**basics of copy constructors**
+
+-  a copy constructor is a special constructor that creates a new object by initializing it with an existing object of the same class.  the copy constructor is used to create a copy of an object when a new object is created and and initialized to an existing object.
+
+-  `classname (const classname & object)` 
+
+-  `myvector (const myvector & rhs)`
+
+-  `myvector` is `classname` which is the name of the class that the copy constructor is defined for
+
+-  `rhs` is `object` which is the name of the object that is being copied, `rhs` stands for `right hand side`
+
+-  when a copy constructor is called, a new object is created and initialized with the values of the existing object.  the copy constructor can be defined by the programmer or the compiler will generate a default copy constructor if one is not provided
+
+-  it is important to note that the copy constructor is only used to create a copy of an object, not to create a new object with the same values as the existing object.  in order to create a new object with the same values as the existing object a constructor or method would be used.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+#. `data_type & operator[] (size_t index) { return data[index]; }`
 
 example use case:  `green_vector[3]` would access the element at index 3 in the `green_vector` vector.
 
