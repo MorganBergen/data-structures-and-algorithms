@@ -15,6 +15,20 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 
 we will deal with a general list of the form $A_{0}, A_{1}, A_{2}, \cdots, A_{n - 1}$.  we say that the size of the list is $N$.  we will call the special list of size $0$ an **empty list**.  for any list except the empty list, we say that $A_{i}$ follows $A_{i - 1}, (i < N)$  the first element of the list is $A_{0}$ and the last element is $A_{N - 1}$.  we will not define the predecessor of $A_{0}$ or the successor of $A_{N - 1}$.  the **position** of element $A_{i}$ in a list is $i$.  throughout this readme, we will assume to siplify matters that the elemnts in the list are integers, but in general, arbitrarily complex elements are allowed (and easily handled by a class template).
 
-associated with these "definitions" is a set of operations that we would like to perform on the list adt.  
+associated with these "definitions" is a set of operations that we would like to perform on the list adt.  some popular operations are as follows, 
+
+-  `printList` prints the list to the screen
+-  `makeEmpty` makes the list empty
+-  `find` returns the position of the first occurence of an item
+-  `insert` inserts an item at a given position
+-  `remove` removes an item at a given position
+-  `findKth` returns the $k^{th}$ element of the list, specified as an argument
+
+if the list is `34, 12, 52, 16, 12` then,
+
+-  `find(52)` might return `2`
+-  `insert(x, 2)` might make the list into `34, 12, x, 52, 16, 12` if we insert into the position given
+-  `remove(52)` might turn that list into `34, 12, x, 16, 12`
+
 
 
