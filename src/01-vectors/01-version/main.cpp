@@ -7,6 +7,10 @@
 
 int main() {
 
+    double x = 1.0;
+
+    myvector<int> v1{static_cast<size_t>(x)};
+
     myvector<int> red{3};
 
     // red[0] = 000;

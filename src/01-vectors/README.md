@@ -144,6 +144,11 @@ remember that instantiated refers to the process of creating a specific instance
 ## `private` member variables
 
 ### 1.  `size_t the_size;`
+
+-  `size_t` is a data-type analagous to a unsigned integer or a long integer.  however the purpose of a `size_t` data type is to represent the size of a container or the index of an element in a container.
+
+-   `the_size` will represent the number of elements in the vector
+
 ### 2.  `size_t the_capacity;`
 ### 3.  `DataType* data;`
 

@@ -12,12 +12,13 @@ class myvector {
         data_type* data;
     public:
         static const size_t SPARE_CAPACITY = 16;
-
+        // explicit contructor
         explicit myvector(size_t init_size = 0) :
             the_size{init_size},
             the_capacity{init_size + SPARE_CAPACITY} {
                 data = new data_type[the_capacity];
-
+                std::cout << the_size << std::endl;
+                std::cout << the_capacity << std::endl;
                 std::cout << "default constructor" << std::endl;
         }
 
