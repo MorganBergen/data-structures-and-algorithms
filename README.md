@@ -12,3 +12,5 @@ A first course in abstract data structures and algorithmic design making use of 
 
 [01-vectors](./src/01-vectors/README.md)
 
+[02-linkedlist-fundamentals](./02-linked-list/README.md)
+
