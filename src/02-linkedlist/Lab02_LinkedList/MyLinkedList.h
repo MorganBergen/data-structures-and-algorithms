@@ -403,29 +403,23 @@ class MyLinkedList {
     // reverse the entire linked list
     void reverseList() {
         // code begins
-        Node *p = head;
-        do {
-            std::swap(p -> next, p -> prev);
-            p = p -> prev;
-        } while (p != head);
-
-        std::swap(head, tail);
+        Node *current = head;
+        MyLinkedList temp;
+        for (auto i = begin(); i != end(); ++i) {
+            temp.push_front(*i);
+        }
+        std::swap(head, temp.head);
+        std::swap(tail, temp.tail);
+        std::swap(theSize, temp.theSize);
         // code ends
     }
- 
+
     // append a linked list to the end of the current one
     MyLinkedList<DataType>& appendList(MyLinkedList<DataType>&& rlist) {
         // code begins
-        if (this != &rlist) {
-            tail -> prev -> next = rlist.head -> next;
-            rlist.head -> next -> prev = tail -> prev;
-            tail -> prev = rlist.tail -> prev;
-            rlist.tail -> prev -> next = tail;
-            theSize += rlist.theSize;
-
-            rlist.theSize = 0;
-            rlist.head -> next = rlist.tail;
-            rlist.tail -> prev = rlist.head;
+        iterator itr = rlist.begin();
+        for (iterator itr; itr != rlist.end(); itr++) {
+            push_back(itr.current -> data);
         }
         return (*this);
         // code ends
@@ -435,22 +429,13 @@ class MyLinkedList {
     // return false if the next data element does not exist; true otherwise
     bool swapAdjElements(iterator& itr) {
         // code begins
-        if (itr.current -> next == tail) {
-            return false;
-        } else {
-            Node *p = itr.current;
-            Node *q = p -> next;
-            p -> prev -> next = q;
-            q -> next -> prev = p;
-            p -> next = q -> next;
-            q -> prev = p -> prev;
-            p -> prev = q;
-            q -> next = p;
-            return true;
-        } 
+        iterator itr = rlist.begin();
+        if ((itr == end()) || (itr == --end())) 
+                return (false);
+        std::swap (itr.current -> data, itr.current -> next -> data);
+        return (true);
         // code ends
     }
-
 };
 
 #endif // __MYLIST_H__
