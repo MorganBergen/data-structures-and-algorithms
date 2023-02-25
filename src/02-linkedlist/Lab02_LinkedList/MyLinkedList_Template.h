@@ -5,12 +5,10 @@
 #include <iostream>
 
 template <typename DataType>
-class MyLinkedList
-{
+class MyLinkedList {
   private:
     
-    struct Node
-    {
+    struct Node {
         DataType  data;
         Node   *prev;
         Node   *next;
@@ -32,53 +30,48 @@ class MyLinkedList
     Node *head;         // pointer to the head node; does not hold real data
     Node *tail;         // pointer to the tail note; does not hold real data
 
-    void init( )
-    { 
+    void init( ) { 
         // code begins
-
+        theSize = 0;
+        head = new Node;
+        tail = new Node;
+        head -> next = tail;
+        tail -> prev = head;
         // code ends
-
         return;
     }
 
   public:
 
     // define the const_iterator class
-    class const_iterator
-    { 
+    class const_iterator { 
       protected:
         Node *current;
         // returns a mutable object
         // defined as proected as we don't expect it to be called directly by other classess
-        DataType& retrieve() const
-        { 
-            return current->data; 
+        DataType& retrieve() const { 
+            return current -> data; 
         }
         // constructor to be hidden from other classes; 
         // we don't expect direct construction of iterator form pointer
-        const_iterator(Node *p) : 
-        current{p} 
-        {}
+        const_iterator(Node *p) : current{p} { }
         
         friend class MyLinkedList<DataType>;
 
       public:
-        const_iterator() : 
-        current{nullptr} 
-        {}
+        const_iterator() : current{nullptr} { }
 
         // add const to the return type and make the return value by retrieve() non-mutable
         const DataType& operator* () const
         {
             // code begins
-
+            return const_iterator::operator*();
             // code ends
         }
         
         // move to the next data element
         // the prefix increment (e.g. ++ p) with 0 parameter
-        const_iterator& operator++ ()
-        {
+        const_iterator& operator++ () {
             // code begins
 
             // code ends
