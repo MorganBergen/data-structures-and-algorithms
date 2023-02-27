@@ -6,11 +6,63 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 
 **contents**
 
+0.  [primitive preview](#primitive-preview)
 1.  [the list adt](#the-list-adt)
 2.  [simple array implementation of lists](#simple-array-implementation-of-lists)
 3.  [simple linked lists](#simple-linked-lists)
 4.  [`vector` and `list` in the standard template library](#vector-and-list-in-the-standard-template-library)
+5.  [iterators](#iterators)
 
+## primitive preview 
+
+```c++
+#ifndef __LINKEDLIST_H__
+#define __LINKEDLIST_H__
+
+#include <iostream>
+#include <algorithm>
+
+template <typename DataType>
+
+class LinkedList {
+    private:
+        struct Node {
+            DataType data;
+            Node *prev;
+            Node *next;
+            int counter;
+
+            Node(const DataType &d = DataType{}, Node *p = nullptr, Node *n = nullptr) {
+                std::cout << "constructor" << std::endl;
+                data = d;
+                prev = p;
+                next = n;
+            }
+        };
+        int theSize;
+        Node *head;
+        Node *tail;
+
+        void init() {
+            theSize = 0;
+            head = new Node;
+            tail = new Node;
+            head -> next = tail;
+            tail -> prev = head;
+            return;
+        }
+
+    public:
+
+        LinkedList() {
+            std::cout << "constructor called" << std::endl;
+            init();
+        }
+
+};
+
+#endif // __LINKEDLIST_H__
+```
 
 ## the list adt
 
@@ -69,12 +121,41 @@ the obvious idea of maintaining a third link to the next-to-last node doesnt wor
 
 the c++ language includes, in its library an implementation of common data structures.  this part of the language is popularly known as the standard template library.  the list adt is one of the data structures implemented in the stl.  these data structures are called **collections** or **containers**.  there are two popular implementations of the list adt.  the `vector` provides a growable array implementation of the list adt.  the `list` provides a doubly linked list implementation of the list adt.  the advantage fo using the `lists` is that insertion of new items and removal of existing items is cheap, provided that the position of the changes is known.  this disadvantage is that the `list` is not easily indexable.  both `vector` and `list` are inefficient for searches.  throughout this readme, `list` refers to the doubly linked list in the stl, whereas list (typeset without the monospace font) refers to the more general list adt.
 
-`list` are class templates that are instantiated with the type of items that they store.  both have several methods in common. the first three methods shown are actually available for all the stl containers.  additionally `list` supports adding and removing from the end of the list in constant time and accessing the front item in the list in constant time.  
+`list` are class templates that are instantiated with the type of items that they store.  both have several methods in common. the first three methods shown are actually available for all the stl containers.  additionally `list` supports adding and removing from the end of the list in constant time and accessing the front item in the list in constant time.  in terms of `push_front` and `pop_front()` -  a doubly linked list allows efficient changes at the front.  
 
 -  **`int size() const`**  returns the number of elements in the container.
 -  **`void clear()`**  removes all elements from the container
 -  **`bool empty() const`** returns true if the container contains no elements, and false otherwise
 -  **`void push_back(const DataType & x)`**  adds `x` to the end of the list
--  **`pop_back()`** removes the object at the end of the list
+-  **`void pop_back()`** removes the object at the end of the list
 -  **`const DataType & back() const`**  returns the object at the end of the list without removing it, this is non-mutable.  
 -  **`DataType & back()`**  returns the object at end of the list without removing it, this is mutable.
+-  **`const DataType & front() const`**  returns the object at the front of the list without removing it, this is non-mutable.
+-  **`DataType & front()`**  returns the object at the front of the list without removing it, this is mutable.
+-  **`void push_front(const DataType & x)`**  adds `x` to the front of the list
+-  **`void pop_front()`**  removes the object at the front of the list
+
+## iterators
+
+some operations on lists, most critically those to insert and remove from the middle ofthe list, require the notion of a position.  in the standard template library, a position is represented by a nested type, `iterator`.  in particular, for a `list<std::string>`, the position is represented by the `list<std::string>::iterator`.  in describing these methods, we'll simply use `iterator` as a shorthand, but when writing code, we will use the actual nested class name.  initially there are three main issues to address, namely,
+
+1.  how one gets an iterator
+2.  what operations the iterators themselves can perform
+3.  which `list` adt methods require iterators as parameters
+
+### getting an iterator
+
+for the first issue, the stl lists (and all other stl containers) define a pair of methods:
+
+-  `iterator begin()`  returns an appropriate iterator representing the first item in the container
+-  `iterator end()`  returns an appropriate iterator representing the end marker in the container (i.e. the position after the last item in the container)
+
+the `end` method seems a little unusual because it returns an iterator that is "out-of-bounds"  to see the idea consider the following code typically used to print the items in a `vector v` prior to the introduction of range-based `for` loops in c++11
+
+```c++
+for (int i = 0; i != v.size(); ++i) {
+    std::cout << v[i] << std::endl;
+}
+```
+
+
