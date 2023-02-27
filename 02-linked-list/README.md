@@ -9,6 +9,7 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 1.  [the list adt](#the-list-adt)
 2.  [simple array implementation of lists](#simple-array-implementation-of-lists)
 3.  [simple linked lists](#simple-linked-lists)
+4.  [`vector` and `list` in the standard template library](#vector-and-list-in-the-standard-template-library)
 
 
 ## the list adt
@@ -64,8 +65,12 @@ the special case of adding at the end (i.e. making a new item the last item) can
 
 the obvious idea of maintaining a third link to the next-to-last node doesnt work, because it would need to be updated during a remove.  instead we have every node maintain a link to to its previous node in the list.  this is shown in the next figure and is known as a **doubly linked list**.
 
+## `vector` and `list` in the standard template library
 
+the c++ language includes, in its library an implementation of common data structures.  this part of the language is popularly known as the standard template library.  the list adt is one of the data structures implemented in the stl.  these data structures are called **collections** or **containers**.  there are two popular implementations of the list adt.  the `vector` provides a growable array implementation of the list adt.  the `list` provides a doubly linked list implementation of the list adt.  the advantage fo using the `lists` is that insertion of new items and removal of existing items is cheap, provided that the position of the changes is known.  this disadvantage is that the `list` is not easily indexable.  both `vector` and `list` are inefficient for searches.  throughout this readme, `list` refers to the doubly linked list in the stl, whereas list (typeset without the monospace font) refers to the more general list adt.
 
+`list` are class templates that are instantiated with the type of items that they store.  both have several methods in common. the first three methods shown are actually available for all the stl containers.
 
-
-
+-  **`int size() const`**  returns the number of elements in the container.
+-  **`void clear()`**  removes all elements from the container
+-  **`bool empty() const`** returns true if the container contains no elements, and false otherwise

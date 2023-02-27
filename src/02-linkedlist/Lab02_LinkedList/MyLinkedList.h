@@ -27,8 +27,8 @@ class MyLinkedList {
     };
 
     int theSize;        // the number of elements that the linked list is currently holding
-    Node *head = nullptr;         // pointer to the head node; does not hold real data
-    Node *tail = nullptr;         // pointer to the tail note; does not hold real data
+    Node *head;         // pointer to the head node; does not hold real data
+    Node *tail;         // pointer to the tail note; does not hold real data
 
     void init( ) { 
         // code begins
@@ -62,10 +62,9 @@ class MyLinkedList {
         const_iterator() : current{nullptr} { }
 
         // add const to the return type and make the return value by retrieve() non-mutable
-        const DataType& operator* () const
-        {
+        const DataType& operator* () const {
             // code begins
-            return const_iterator::operator*();
+            return retrieve();
             // code ends
         }
         
@@ -120,7 +119,6 @@ class MyLinkedList {
             return !(*this == rhs);
             // code ends
         }
-      
     };
 
     // define the iterator class; inherit from class const_iterator
@@ -152,7 +150,7 @@ class MyLinkedList {
         iterator & operator++ () {
             // code begins
             this -> current = this -> current -> next;
-            return (*this);
+            return *this;
             // code ends
         }
 
@@ -167,14 +165,14 @@ class MyLinkedList {
         iterator operator-- () {
             // code begins
             this -> current = this -> current -> prev;
-            return (*this);
+            return *this;
             // code ends
         }
         
         iterator operator-- (int) {
             // code begins
             iterator old = *this;
-            ++(*this);
+            --(*this);
             return (old);
             // code ends
         }
@@ -216,8 +214,8 @@ class MyLinkedList {
     ~MyLinkedList() {
         // code begins
         clear();
-        delete (head);
-        delete (tail);
+        delete head;
+        delete tail;
         // code ends
     }
 
@@ -244,25 +242,25 @@ class MyLinkedList {
     // iterator interface
     iterator begin() { 
         // code begins
-        return iterator(head -> next);
+        return {head -> next};
         // code ends 
     }
 
     const_iterator begin() const { 
         // code begins
-        return const_iterator(head -> next);
+        return {head -> next};
         // code ends 
     }
   
     iterator end() { 
         // code begins
-        return iterator(tail);
+        return {tail};
         // code ends 
     }
 
     const_iterator end() const { 
         // code begins
-        return const_iterator(tail);
+        return {tail};
         // code ends 
     }
   
@@ -321,8 +319,8 @@ class MyLinkedList {
     iterator insert(iterator itr, const DataType& x) {
         // code begins
         Node *p = itr.current;
-        ++theSize;
-        return iterator(p -> prev = p -> prev -> next = new Node{x, p -> prev, p});
+        theSize++;
+        return {p->prev = p->prev->next = new Node{x, p->prev, p}};
         // code ends
     }
 
@@ -330,8 +328,8 @@ class MyLinkedList {
     iterator insert(iterator itr, DataType&& x) {
         // code begins
         Node *p = itr.current;
-        ++theSize;
-        return iterator(p -> pre = p -> prev -> next = new Node{std::move(x), p -> prev, p});
+        theSize++;
+        return {p->prev = p->prev->next = new Node{std::move(x), p->prev, p}};
         // code ends 
     }
 
@@ -339,11 +337,11 @@ class MyLinkedList {
     iterator erase(iterator itr) {
         // code begins
         Node *p = itr.current;
-        iterator retVal(p -> next);
+        iterator retVal{p -> next};
         p -> prev -> next = p -> next;
         p -> next -> prev = p -> prev;
         delete p;
-        --theSize;
+        theSize--;
 
         return retVal;
         // code ends
@@ -351,12 +349,11 @@ class MyLinkedList {
 
     // delete the data elements from iterator "from" (inclusive) to iterator "to" (exclusive)
     // return the iterator "to"
-    iterator erase( iterator from, iterator to ) { 
+    iterator erase(iterator from, iterator to) { 
         // code begins
-        for (iterator itr = from; itr != to;) {
+        for (iterator itr = from; itr != to;)
             itr = erase(itr);
-        }
-        return (to);
+        return to;
         // code ends
     }
 
@@ -417,8 +414,7 @@ class MyLinkedList {
     // append a linked list to the end of the current one
     MyLinkedList<DataType>& appendList(MyLinkedList<DataType>&& rlist) {
         // code begins
-        iterator itr = rlist.begin();
-        for (iterator itr; itr != rlist.end(); itr++) {
+        for (iterator itr = rlist.begin(); itr != rlist.end(); itr++) {
             push_back(itr.current -> data);
         }
         return (*this);
@@ -429,11 +425,10 @@ class MyLinkedList {
     // return false if the next data element does not exist; true otherwise
     bool swapAdjElements(iterator& itr) {
         // code begins
-        iterator itr = rlist.begin();
-        if ((itr == end()) || (itr == --end())) 
-                return (false);
+        if ((itr == end()) || (itr == --end()))
+            return (false);
         std::swap (itr.current -> data, itr.current -> next -> data);
-        return (true);
+            return (true);
         // code ends
     }
 };

@@ -62,10 +62,9 @@ class MyLinkedList {
         const_iterator() : current{nullptr} { }
 
         // add const to the return type and make the return value by retrieve() non-mutable
-        const DataType& operator* () const
-        {
+        const DataType& operator* () const {
             // code begins
-            return const_iterator::operator*();
+            return retrieve();
             // code ends
         }
         
@@ -73,111 +72,108 @@ class MyLinkedList {
         // the prefix increment (e.g. ++ p) with 0 parameter
         const_iterator& operator++ () {
             // code begins
-
+            current = current -> next;
+            return (*this);
             // code ends
         }
 
         // move to the next data element
         // the suffix increment (e.g. p ++) with 1 int parameter
-        const_iterator operator++ ( int )
-        {
+        const_iterator operator++ ( int ) {
             // code begins
-
+            const_iterator old = *this;
+            ++(*this);
+            return (old);
             // code ends
         }
 
         // move to the previous data element
         // the prefix decrement (e.g. -- p) with 0 parameter
-        const_iterator& operator-- ()
-        {
+        const_iterator& operator-- () {
             // code begins
-
+            current = current -> prev;
+            return (*this);
             // code ends
         }
 
         // move to the previous data element
         // the suffix decrement (e.g. p --) with 1 int parameter
-        const_iterator operator-- (int)
-        {
+        const_iterator operator-- (int) {
             // code begins
-
+            const_iterator old = *this;
+            --(*this);
+            return (old);
             // code ends
         }
 
         // check whether two iterators point to the same data element
-        bool operator== (const const_iterator& rhs) const
-        {
+        bool operator== (const const_iterator& rhs) const {
             // code begins
-
+            return current == rhs.current;
             // code ends 
         }
         
         // check whether two iterators point to the same data element
-        bool operator!= (const const_iterator & rhs) const
-        {
+        bool operator!= (const const_iterator & rhs) const {
             // code begins
-
+            return !(*this == rhs);
             // code ends
         }
-      
     };
 
     // define the iterator class; inherit from class const_iterator
-    class iterator : public const_iterator
-    {
+    class iterator : public const_iterator {
       protected:
         iterator(Node *p) : 
-        const_iterator{p}
-        {}
+        const_iterator{p} { }
         
         friend class MyLinkedList<DataType>;
       
       public:
         // default constructor
-        iterator()
-        {}
+        iterator() { }
 
         // the return type is mutable
-        DataType& operator* ()
-        { 
+        DataType& operator* () { 
             // code begins
-
+            return const_iterator::retrieve();
             // code ends 
         }
         
         // keep the return type as non-mutable
-        const DataType& operator* () const
-        { 
+        const DataType& operator* () const { 
             // code begins
-
+            return const_iterator::operator*();
             // code ends
         }
 
-        iterator & operator++ ()
-        {
+        iterator & operator++ () {
             // code begins
-
+            this -> current = this -> current -> next;
+            return *this;
             // code ends
         }
 
-        iterator operator++ (int)
-        {
+        iterator operator++ (int) {
             // code begins
-
+            iterator old = *this;
+            ++(*this);
+            return (old);
             // code ends
         }
 
-        iterator operator-- ()
-        {
+        iterator operator-- () {
             // code begins
-
+            this -> current = this -> current -> prev;
+            return *this;
             // code ends
         }
         
-        iterator operator-- (int)
-        {
+        iterator operator-- (int) {
             // code begins
-
+            iterator old = *this;
+            --(*this);
+            return (old);
             // code ends
         }
 
@@ -188,16 +184,17 @@ class MyLinkedList {
   public:
 
     // default constructor
-    MyLinkedList()
-    { 
+    MyLinkedList() { 
         init(); 
     }
   
     // copy constructor
-    MyLinkedList(const MyLinkedList& rhs)
-    { 
+    MyLinkedList(const MyLinkedList& rhs) { 
         // code begins
-
+        init();
+        for (auto & x : rhs) {
+            push_back(x);
+        }
         // code ends
     }
 
@@ -205,226 +202,235 @@ class MyLinkedList {
     MyLinkedList (MyLinkedList&& rhs) :
     theSize(rhs.theSize),
     head(rhs.head),
-    tail(rhs.tail)
-    { 
+    tail(rhs.tail) { 
         // code begins
-
+        rhs.theSize = 0;
+        rhs.head = nullptr;
+        rhs.tail = nullptr;
         // code ends
     }
 
     // destructor
-    ~MyLinkedList()
-    {
+    ~MyLinkedList() {
         // code begins
-
+        clear();
+        delete head;
+        delete tail;
         // code ends
     }
 
     // copy assignment
-    MyLinkedList & operator= (const MyLinkedList& rhs)
-    { 
+    MyLinkedList & operator= (const MyLinkedList& rhs) { 
         // code begins
-
+        MyLinkedList copy = rhs;
+        std::swap (*this, copy);
+        return (*this);
         // code ends
     }
   
     // move assignment
-    MyLinkedList & operator= (MyLinkedList && rhs)
-    { 
+    MyLinkedList & operator= (MyLinkedList && rhs) { 
         // code begins
+        std::swap(theSize, rhs.theSize);
+        std::swap(head, rhs.head);
+        std::swap(tail, rhs.tail);
 
+        return (*this);
         // code ends
     }
 
     // iterator interface
-    iterator begin()
-    { 
+    iterator begin() { 
         // code begins
-
+        return {head -> next};
         // code ends 
     }
 
-    const_iterator begin() const
-    { 
+    const_iterator begin() const { 
         // code begins
-
+        return {head -> next};
         // code ends 
     }
   
-    iterator end()
-    { 
+    iterator end() { 
         // code begins
-
+        return {tail};
         // code ends 
     }
 
-    const_iterator end() const
-    { 
+    const_iterator end() const { 
         // code begins
-
+        return {tail};
         // code ends 
     }
   
     // gets the size of the linked list
-    int size() const
-    {
+    int size() const {
         // code begins
-
+        return theSize;
         // code ends
     }
 
     // checks if the linked list is empty; return True if empty, false otherwise
-    bool empty( ) const
-    { 
+    bool empty( ) const { 
         // code begins
-
+        return (size() == 0);
         // code ends 
     }
 
     // deletes all nodes excepts the head and tail
-    void clear( )
-    {
+    void clear( ) {
         // code begins
-
+        while (!empty()) {
+            pop_front();
+        }
         // code ends
     }
 
     // return the first data element as mutable
-    DataType& front()
-    { 
+    DataType& front() { 
         // code begins
-
+        return *begin();
         // code ends 
     }
 
     // return the first data element as non-mutable
-    const DataType& front() const
-    { 
+    const DataType& front() const { 
         // code begins
-
+        return *begin();
         // code ends
     }
 
     // return the last data element as mutable
-    DataType& back()
-    { 
+    DataType& back() { 
         // code begins
-
+        return *--end();
         // code ends 
     }
 
     // return the last data element as non-mutable
-    const DataType& back() const
-    { 
+    const DataType& back() const { 
         // code begins
-
+        return *--end();
         // code ends 
     }
 
     // insert x before itr; return iterator pointing to the newly inserted data element
-    iterator insert(iterator itr, const DataType& x)
-    {
+    iterator insert(iterator itr, const DataType& x) {
         // code begins
-
+        Node *p = itr.current;
+        theSize++;
+        return {p->prev = p->prev->next = new Node{x, p->prev, p}};
         // code ends
     }
 
     // insert x before itr; return iterator pointing to the newly inserted data element
-    iterator insert(iterator itr, DataType&& x)
-    {
+    iterator insert(iterator itr, DataType&& x) {
         // code begins
-
+        Node *p = itr.current;
+        theSize++;
+        return {p->prev = p->prev->next = new Node{std::move(x), p->prev, p}};
         // code ends 
     }
 
     // delete the data element pointed by itr; return the iterator pointing to the data element next to the one being deleted
-    iterator erase(iterator itr)
-    {
+    iterator erase(iterator itr) {
         // code begins
+        Node *p = itr.current;
+        iterator retVal{p -> next};
+        p -> prev -> next = p -> next;
+        p -> next -> prev = p -> prev;
+        delete p;
+        theSize--;
 
+        return retVal;
         // code ends
     }
 
     // delete the data elements from iterator "from" (inclusive) to iterator "to" (exclusive)
     // return the iterator "to"
-    iterator erase( iterator from, iterator to )
-    { 
+    iterator erase(iterator from, iterator to) { 
         // code begins
-
+        for (iterator itr = from; itr != to;)
+            itr = erase(itr);
+        return to;
         // code ends
     }
 
     // insert data element x to the very begining of the linked list
-    void push_front(const DataType& x)
-    { 
+    void push_front(const DataType& x) { 
         // code begins
-
+        insert(begin(), x);
         // code ends
     }
   
-    void push_front(DataType&& x)
-    { 
+    void push_front(DataType&& x) { 
         // code begins
-
+        insert(begin(), std::move(x));
         // code ends 
     }
     
     // insert data element x to the very end of the linked list
-    void push_back(const DataType& x)
-    {
+    void push_back(const DataType& x) {
         // code begins
-
+        insert(end(), x);
         // code ends
     }
     
-    void push_back(DataType&& x)
-    { 
+    void push_back(DataType&& x) { 
         // code begins
-
+        insert(end(), std::move(x));
         // code ends
     }
     
     // delete the very first data element
-    void pop_front()
-    {
+    void pop_front() {
         // code begins
-
+        erase(begin());
         // code ends
     }
     
     // delete the very last data element
-    void pop_back( )
-    { 
+    void pop_back( ) { 
         // code begins
-
+        erase(--end());
         // code ends
     }
     
     // reverse the entire linked list
-    void reverseList()
-    {
+    void reverseList() {
         // code begins
-
+        Node *current = head;
+        MyLinkedList temp;
+        for (auto i = begin(); i != end(); ++i) {
+            temp.push_front(*i);
+        }
+        std::swap(head, temp.head);
+        std::swap(tail, temp.tail);
+        std::swap(theSize, temp.theSize);
         // code ends
     }
- 
-    // append a linked list to the end of the current one
-    MyLinkedList<DataType>& appendList(MyLinkedList<DataType>&& rlist) 
-    {
-        // code begins
 
+    // append a linked list to the end of the current one
+    MyLinkedList<DataType>& appendList(MyLinkedList<DataType>&& rlist) {
+        // code begins
+        for (iterator itr = rlist.begin(); itr != rlist.end(); itr++) {
+            push_back(itr.current -> data);
+        }
+        return (*this);
         // code ends
     }
 
     // swap the data element pointed by itr with its next data element
     // return false if the next data element does not exist; true otherwise
-    bool swapAdjElements(iterator& itr)
-    {
+    bool swapAdjElements(iterator& itr) {
         // code begins
-
+        if ((itr == end()) || (itr == --end()))
+            return (false);
+        std::swap (itr.current -> data, itr.current -> next -> data);
+            return (true);
         // code ends
     }
-
 };
 
 #endif // __MYLIST_H__
