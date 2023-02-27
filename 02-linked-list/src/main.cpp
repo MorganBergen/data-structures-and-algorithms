@@ -1,6 +1,11 @@
 #include <iostream>
+#include <string>
+
+#include "LinkedList.h"
 
 int main() {
-    std::cout << "test" << std::endl;
+    
+    LinkedList<std::string> green;
+
     return(0);
 }
