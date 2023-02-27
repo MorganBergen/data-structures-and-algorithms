@@ -69,8 +69,12 @@ the obvious idea of maintaining a third link to the next-to-last node doesnt wor
 
 the c++ language includes, in its library an implementation of common data structures.  this part of the language is popularly known as the standard template library.  the list adt is one of the data structures implemented in the stl.  these data structures are called **collections** or **containers**.  there are two popular implementations of the list adt.  the `vector` provides a growable array implementation of the list adt.  the `list` provides a doubly linked list implementation of the list adt.  the advantage fo using the `lists` is that insertion of new items and removal of existing items is cheap, provided that the position of the changes is known.  this disadvantage is that the `list` is not easily indexable.  both `vector` and `list` are inefficient for searches.  throughout this readme, `list` refers to the doubly linked list in the stl, whereas list (typeset without the monospace font) refers to the more general list adt.
 
-`list` are class templates that are instantiated with the type of items that they store.  both have several methods in common. the first three methods shown are actually available for all the stl containers.
+`list` are class templates that are instantiated with the type of items that they store.  both have several methods in common. the first three methods shown are actually available for all the stl containers.  additionally `list` supports adding and removing from the end of the list in constant time and accessing the front item in the list in constant time.  
 
 -  **`int size() const`**  returns the number of elements in the container.
 -  **`void clear()`**  removes all elements from the container
 -  **`bool empty() const`** returns true if the container contains no elements, and false otherwise
+-  **`void push_back(const DataType & x)`**  adds `x` to the end of the list
+-  **`pop_back()`** removes the object at the end of the list
+-  **`const DataType & back() const`**  returns the object at the end of the list without removing it, this is non-mutable.  
+-  **`DataType & back()`**  returns the object at end of the list without removing it, this is mutable.
