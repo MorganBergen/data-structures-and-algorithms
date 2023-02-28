@@ -53,7 +53,6 @@ class LinkedList {
         }
 
     public:
-
         LinkedList() {
             std::cout << "constructor called" << std::endl;
             init();
@@ -63,6 +62,25 @@ class LinkedList {
 
 #endif // __LINKEDLIST_H__
 ```
+
+**private member variables**
+
+-  `Node` is a nested class, which means that it is a class that is defined within another class.  it is a private member of the `LinkedList` class, which means that it can only be accessed by the `LinkedList` class.  it is a struct, which means that all of its members are public by default.  
+    -  it has three members:  `data`, `prev`, and `next`.  
+    -  `data` is a `DataType` object, which is a template parameter.  
+    -  `prev` and `next` are pointers to `Node` objects.  
+    -  `counter` is an integer that is used to keep track of the number of times a node has been accessed.  
+    -  it is used in the `access` method, which is used to determine which node should be removed from the list when the list is full.  
+    -  the `Node` constructor takes three parameters:  `d`, `p`, and `n`.  `d` is a `DataType` object, which is a template parameter.  `p` and `n` are pointers to `Node` objects.  the constructor initializes the `data` member to `d`, the `prev` member to `p`, and the `next` member to `n`.  
+    -  the `Node` constructor is called by the `LinkedList` constructor, 
+-  `theSize` is an integer that is used to keep track of the number of nodes in the list.  it is initialized to 0 in the `init` method, which is called by the `LinkedList` constructor.
+-  `head` is a pointer to a `Node` object.  it is initialized to a new `Node` object in the `init` method, which is called by the `LinkedList` constructor.
+-  `tail` is a pointer to a `Node` object.  it is initialized to a new `Node` object in the `init` method, which is called by the `LinkedList` constructor.
+
+**private member functions**
+
+-  `init` is a private member function that is used to initialize the `theSize`, `head`, and `tail` member variables.  it is called by the `LinkedList` constructor.
+-  `Node` is a nested class, which means that it is a class that is defi    ned within another class.  it is a private member of the `LinkedList` class, which means
 
 ## the list adt
 
@@ -157,5 +175,21 @@ for (int i = 0; i != v.size(); ++i) {
     std::cout << v[i] << std::endl;
 }
 ```
+
+if we were to rewrite this code using iterators, we would see a natural correspondence with the `begin` and `end` methods
+
+```c++
+for (vector<int>::iterator itr = v.begin(); itr != v.end; itr.????) {
+    std::cout << itr.???? << std::endl;
+}
+```
+
+in the loop termination test, both `i != v.size()` and `itr != v.end()` are intended to test if the loop counter has become out-of-bounds.  the code fragment also brings us to the second issue, which is that the iteratopr must have methods associated with it (these unknwon methods are represented by `????`.
+
+### iterator methods
+
+
+
+
 
 

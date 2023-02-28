@@ -14,7 +14,7 @@ class LinkedList {
             Node *next;
             int counter;
 
-            Node(const DataType &d = DataType{}, Node *p = nullptr, Node *n = nullptr) {
+            Node(const DataType &d = DataType(), Node *p = nullptr, Node *n = nullptr) {
                 std::cout << "constructor" << std::endl;
                 data = d;
                 prev = p;
