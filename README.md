@@ -16,6 +16,6 @@ A first course in abstract data structures and algorithmic design making use of 
 
 [01-vectors](./src/01-vectors/)
 
-[02-linkedlist](./src/02-linkedlist/
+[02-linkedlist](./src/02-linkedlist/)
 
 [03-stacks-and-queues](./src/03-stack-and-queue/)
