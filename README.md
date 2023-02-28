@@ -4,13 +4,18 @@ A first course in abstract data structures and algorithmic design making use of 
 
 **contents**
 
-[00-fundamentals](./00-fundamentals/README.md)
+[00-fundamentals](./00-fundamentals/)
 
-[00-single-number](./src/00-single-number/README.md)
+[01-vector-fundamentals](./01-vectors/)
 
-[01-vector-fundamentals](./01-vectors/README.md)
+[02-linkedlist-fundamentals](./02-linked-list/)
 
-[01-vectors](./src/01-vectors/README.md)
+**source code**
 
-[02-linkedlist-fundamentals](./02-linked-list/README.md)
+[00-single-number](./src/00-single-number/)
 
+[01-vectors](./src/01-vectors/)
+
+[02-linkedlist](./src/02-linkedlist/
+
+[03-stacks-and-queues](./src/03-stack-and-queue/)
