@@ -12,10 +12,16 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 3.  [simple linked lists](#simple-linked-lists)
 4.  [`vector` and `list` in the standard template library](#vector-and-list-in-the-standard-template-library)
 5.  [iterators](#iterators)
+6.  [getting an iterator](#getting-an-iterator)
+7.  [iterator methods](#iterator-methods)
+8.  [container operations that require iterators](#container-operations-that-require-iterators)
+9.  [example using `erase` on a list](#example-using-erase-on-a-list)
+10. [`const_iterators`](#const-iterators)
+11. [implementation of `list`](#implementation-of-list)
 
 ## primitive preview 
 
-```c++
+```
 #ifndef __LINKEDLIST_H__
 #define __LINKEDLIST_H__
 
@@ -57,11 +63,38 @@ class LinkedList {
             std::cout << "constructor called" << std::endl;
             init();
         }
-
 };
 
 #endif // __LINKEDLIST_H__
 ```
+
+-  `Node(const DataType &d = DataType("100"), Node *p = nullptr, Node *n = nullptr)`
+-  `const DataType &d = DataType("100");`
+
+### template instantiation
+
+-  `DataType()` 
+
+`DataType()` is a default constructor call, when a type `DataType` is specified as a template parameter, it means that any valud data type can be used to instantiate the template.
+
+the `template <typename DataType>` line at the beginning of the definition of the `linkedList` class indicates that `DataType` is a type parameter for the `LinkedList` class, allowing it to work with different types of data.
+
+if we create a `LinkedList` object using `LinkedList<int> myList` then `int` is substituted for `DataType` throughout the class definition.  this allows us to use `DataType` as a type throughout the class definition without knowing ahead of time what `DataType` will be.
+
+when we call `head = new Node;` in the `init` function...
+
+```cpp
+void init() {
+    theSize = 0;
+    head = new Node;
+    tail = new Node;
+    head -> next = tail;
+    tail -> prev = head;
+}
+```
+
+the `DataType` constructor is called to initialize the `data` member of the `Node` object.  since we havent specified the type of `DataType` it will be determined at compile time.  when you use the `linkedList` class with a particular data type, say for instance in main.cpp `LinkedList<int> green;` then `head -> data` will be initalized with the default constructor for `int`.  if we instead instantiate `LinkedList<double> myList`, the `head -> data` will be initialized with the default constructor for `double`.
+
 
 **private member variables**
 
@@ -81,6 +114,7 @@ class LinkedList {
 
 -  `init` is a private member function that is used to initialize the `theSize`, `head`, and `tail` member variables.  it is called by the `LinkedList` constructor.
 -  `Node` is a nested class, which means that it is a class that is defi    ned within another class.  it is a private member of the `LinkedList` class, which means
+
 
 ## the list adt
 
@@ -155,6 +189,7 @@ the c++ language includes, in its library an implementation of common data struc
 
 ## iterators
 
+
 some operations on lists, most critically those to insert and remove from the middle ofthe list, require the notion of a position.  in the standard template library, a position is represented by a nested type, `iterator`.  in particular, for a `list<std::string>`, the position is represented by the `list<std::string>::iterator`.  in describing these methods, we'll simply use `iterator` as a shorthand, but when writing code, we will use the actual nested class name.  initially there are three main issues to address, namely,
 
 1.  how one gets an iterator
@@ -187,6 +222,52 @@ for (vector<int>::iterator itr = v.begin(); itr != v.end; itr.????) {
 in the loop termination test, both `i != v.size()` and `itr != v.end()` are intended to test if the loop counter has become out-of-bounds.  the code fragment also brings us to the second issue, which is that the iteratopr must have methods associated with it (these unknwon methods are represented by `????`.
 
 ### iterator methods
+
+based on the code fragment above it's obvious that iterators can be compared with `!=` and `==`, and likely have copy constructors and `operators=` defined.  thus iterators have methods and many of the methods use operator overloading.  besides copying the most commonly used operations on iterators include the following
+
+-  `itr++` and `++itr`,  advances the iterator `itr` to the next location.  both the prefix and postfix forms are allowable.
+
+-  `*itr` returns a reference to the object stored at iterator `itr` location.  the reference returned may or may not be modifiable (we discess these details shortly)
+
+-  `itr1 == itr2` returns true if iterators `itr1` and `itr2` refer to the same location and false otherwise
+
+-  `itr1 != itr2` returns true if iterators `itr1` anf `itr2` refer to a different location and false otherwise.
+
+with these operators, the code to print would be as follows
+
+```cpp
+for (linkedlist<int>::iterator itr = redList.begin(); itr != redList.end(); ++itr) {
+    std::cout << *itr << std::endl;
+}
+```
+
+the use of operator overloading allows one to access the current item, then advance to the next item using `*itr++`.  thus an alterantive to the fragment above is...
+
+```cpp
+linkedlist<int>::iterator = itr = redList.begin();
+while (itr != redList.end()) {
+    std::cout << *itr++ << std::endl;
+}
+```
+
+... to be continued
+
+## implementation of `list`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
