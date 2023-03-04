@@ -21,7 +21,7 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 
 ## primitive preview 
 
-```
+```cpp
 #ifndef __LINKEDLIST_H__
 #define __LINKEDLIST_H__
 
