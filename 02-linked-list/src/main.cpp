@@ -7,5 +7,4 @@ int main() {
     
     LinkedList<std::string> green;
 
-    return(0);
-}
+    return(0); }
