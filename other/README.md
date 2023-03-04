@@ -18,7 +18,12 @@ the scope of the midterm includes all materials covered by the posted slides, cl
 1.  programming a general overview
 2.  algorithm analysis
 3.  lists, stacks, and queues
-4.  module 0 the fundamentals
+
+-  [vectors](../01-vectors)
+-  [lists](../02-linked-list)
+-  [stacks](../03-stacks)
+
+4.  [module 0 the fundamentals](../00-fundamentals)
 5.  module 1 vector and list
 6.  module 2 queue and stack
 
