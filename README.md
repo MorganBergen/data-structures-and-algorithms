@@ -19,3 +19,7 @@ A first course in abstract data structures and algorithmic design making use of 
 [02-linkedlist](./src/02-linkedlist/)
 
 [03-stacks-and-queues](./src/03-stack-and-queue/)
+
+**assessment**
+
+[midterm](./other/)
