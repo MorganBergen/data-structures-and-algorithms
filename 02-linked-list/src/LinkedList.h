@@ -5,7 +5,6 @@
 #include <algorithm>
 
 template <typename DataType>
-
 class LinkedList {
     private:
         struct Node {
@@ -14,12 +13,12 @@ class LinkedList {
             Node *next;
             int counter;
 
-            Node(const DataType &d = DataType(), Node *p = nullptr, Node *n = nullptr) {
-                std::cout << "constructor" << std::endl;
-                data = d;
-                prev = p;
-                next = n;
-            }
+            Node(const DataType &d = DataType(), Node *p = nullptr, Node *n = nullptr) :
+                data{d},
+                prev{p},
+                next{n}
+                { }
+            
         };
         int theSize;
         Node *head;
@@ -35,11 +34,21 @@ class LinkedList {
         }
 
     public:
-    
+
+        class const_iterator {
+
+            protected:
+                Node *current;
+
+            public:
+
+        };
+
+    public:
         LinkedList() {
-            std::cout << "constructor called" << std::endl;
             init();
         }
+            
 
 };
 
