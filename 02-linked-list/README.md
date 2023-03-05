@@ -4,6 +4,20 @@ an **abstract data type** is a set of objects together with a set of operations.
 
 the c++ class allows for the implementation of adts, with appropriate hiding of implementation details. thus, any other part of the progrm that needs to perform an operation on the adt can also do so by calling the appropriate method. if for some reason implementation details need to be changed, it should be easy to do so by merely changing the routines that perform the adt operations. this change, in a perfect world, would be completely transparent to the rest of the program. there is no rule in telling us which operations must be supported for each adt; this is a design decision. error handling and tie breaking (where appropriate) are also generally up to the program designer. the three data structures that we will study in this chapter are primary examples of the adts. we will see how each can be implemented in several ways, when they are done correctly, the program that use them will will not necessarily need to know which implementation was used.
 
+## toggle 
+
+<details>
+<summary>see what the html looks like to implement this</summary>
+
+```html
+<details>
+<summary>string of toggle text</summary>
+</details>
+```
+
+</details>
+
+
 **contents**
 
 0.  [primitive preview](#primitive-preview)
@@ -195,7 +209,6 @@ some operations on lists, most critically those to insert and remove from the mi
 
 ### getting an iterator 
 
-
 for the first issue, the stl lists (and all other stl containers) define a pair of methods:
 
 -   `iterator begin()` returns an appropriate iterator representing the first item in the container
@@ -252,9 +265,12 @@ while (itr != redList.end()) {
 
 for the last issue, the tree most popular methods that require iterators are those that add or remove from the list at a specified position
 
-... to be continued
+1.  `iterator insert(iterator itr, const T &x);`  adds `x` into the list, prior to the position given by the iterator `itr`.  this is a constant-time operation for `list`
 
-## implementation of `list` {#implementation-of-list}
+2.  `iterator erase(iterator itr);`  removes the object at the position given by the iterator.
+3.  `iterator erase(iterator from, iterator to)`
+
+## implementation of `list`
 
 in this section we will provide an implementation of a usable `list` class template. the `list` class will be implemented as a doubly linkedlist and that we will need to maintain pointers to both ends of the list. doing so allows us to maintain constant time cost per operation, so long as the operation occurs at a known position. the known position can be at either end or at a position specified by an iterator.
 
@@ -377,16 +393,27 @@ class LinkedList {
 #endif 
 ```
 
+1.  `class LinkedList` is a templated class that implements a doubly linked list data structure
 
+2.  `private` section contains `theSize` of the list, `Node *head` a pointer to the head of the list, and `Node *tail` a pointer to the tail of the list.
 
+3.  `struct Node` is a private nested class that contains the data `T data`, a pointer to the next node `Node *next`, and a pointer to the previous node `Node *prev`
 
+4.  `init` is a private methods that initailizes the list, it's constructor `LinkedList()` calls it.
 
+5.  `public` section contains 
 
+-  the default constructor `LinkedList()`
+-  copy constructor `LinkedList(LinkedList &rhs);`
+-  move constructor `LinkedList(LinkedList &&rhs)`
+-  destructor `~LinkedList()`
+-  copy assignment operator `LinkedList &operator = (const Linked List &rhs);`
+-  move assignment operator `LinkedList &operator = (LinkedList &&rhs);`
+-  nested classes `const_iterator`, and `iterator`
 
+6.  `class const_iterator` is a public nested class that is used to iterate through the list/  it keeps a pointer to the `Node` objects which represents the current position in the linkedlist.  the `const_iterator` class provides methods to access and modify the data stored in the linkedlist.
 
-
-
-
+7.  the `const_iterator() : current{nullptr}` constructor creates a new `const_iterator` object that points to `nullptr`
 
 
 
