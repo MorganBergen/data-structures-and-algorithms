@@ -254,6 +254,33 @@ while (itr != redList.end()) {
 
 ## implementation of `list`
 
+in this section we will provide an implementation of a usable `list` class template.  the `list` class will be implemented as a doubly linkedlist and that we will need to maintain pointers to both ends of the list.  doing so allows us to maintain constant time cost per operation, so long as the operation occurs at a known position.  the known position can be at either end or at a position specified by an iterator.
+
+1.  `list`
+
+contains links to both ends of the list, the size of the list, and a host of methods
+
+2.  `Node`
+
+the node class which is likely to be a private nest class, a node contains the data an dpointers to the previous and next nodes, along with appropriate constructors.
+
+3.  `const_iterators` class which abstracts the notion of a position, and is a public nest class.  the `const_iterator` stores a pointer to the current node, and provides implementation of the basic iterator operations, all in the form of overloaded operators such as `=`, `==`, `!=`, `++`
+
+4.  `iterator`
+
+class which abstracts the notion of a position, and is a public nested class.  the `iterator` has the same functionality as `const_iterator` except that `operator*` returns a reference to the item being viewed, rather than a constant reference to the item itself.  an important technical issue is that an `iterator` can be used in any routine that requires a `const_iterator`, but not vice versa.  in other words, `iterator` is a `const_iterator`.
+
+because the iterator classes store a pointer to the current node, and the end marker is a valid position, it makes sense to create an extra node at the end of the list to represent the endmarker.  further we can create an extra node at the front of the list, logically representing a the beginning marker.  these extra nodes are sometimes known as **sentinel nodes**, specifically the node at the front is sometimes known as a **header node**, and the node at the end is sometimes called the **tail node**.
+
+the advantage of using these extra nodes is that they greately simplify the coding by removing a host of special cases.  for instance, if we dont use a header node, then removing the first node becomes a special case.  because we must reset the list's link to the first node during the remove and because the remove algorithm in general needs to access the node proior to the node being removed (and without a header node, the first node does not have a node prior to it).  
+
+we can see that at the beginning of the declaration of the private nested `Node` class rather than using `class` keyword we use `struct`, in c++ the `struct` is a relic from the c programming language.  a `struct` in c++ is essentially a `class` in which the members default to public.  reccall that in a class the members default to private.  clearly the keyword `struct` is not needed, but you will often see it and it is commonly used by programmers to signify a type that contains mostly data that are accessed directly, rather than through methods.  in our case, making the members public in the `node` class will not be a problem since the `node` class itself is private and inaccessible outside of the `list` class.
+
+
+
+
+
+
 
 
 
