@@ -5,6 +5,8 @@
 
 int main() {
     
-    LinkedList<std::string> green;
+    // LinkedList<std::string> green;
+
+    LinkedList<int> green;
 
     return(0); }
