@@ -1,8 +1,8 @@
-# linkedlist
+# LinkedList
 
 an **abstract data type** is a set of objects together with a set of operations. abstract data types are mathematical abstractions; no where in an adt's definition is there any mention of *how* the set of operations is implemented. objects such as lists, sets, and graphs, along with their operations, can be viewed as adts, just as integers, reals, and booleans are data types. integers, reals, and booleans have operations associated with them, and so do adts. for the set adt, we might have such operations as *add*, *remove*, *size*, and *contains*. alternatively, we might only want the two operations *union* and *find*, which would define a different adt on the set.
 
-the c++ class allows for the implementation of adts, with appropriate hiding of implementation details. thus, any other part of the progrm that needs to perform an operation on the adt can also do so by calling the appropriate method. if for some reason implementation details need to be changed, it should be easy to do so by merely changing the routines that perform the adt operations. this change, in a perfect world, would be completely transparent to the rest of the program. there is no rule in telling us which operations must be supported for each adt; this is a design decision. error handling and tie breaking (where appropriate) are also generally up to the program designer. the three data structures that we will study in this chapter are primary examples of the adts. we will see how each can be implemented in several ways, when they are done correctly, the program that use them will will not necessarily need to know which implementation was used.
+the c++ class allows for the implementation of adts, with appropriate hiding of implementation details. thus, any other part of the program that needs to perform an operation on the adt can also do so by calling the appropriate method. if for some reason implementation details need to be changed, it should be easy to do so by merely changing the routines that perform the adt operations. this change, in a perfect world, would be completely transparent to the rest of the program. there is no rule in telling us which operations must be supported for each adt; this is a design decision. error handling and tie breaking (where appropriate) are also generally up to the program designer. the three data structures that we will study in this chapter are primary examples of the adts. we will see how each can be implemented in several ways, when they are done correctly, the program that use them will will not necessarily need to know which implementation was used.
 
 ## toggle 
 
@@ -33,7 +33,7 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 10. [`const_iterators`](#const-iterators)
 11. [implementation of `list`](#implementation-of-list)
 
-## primitive preview {#primitive-preview}
+## primitive preview
 
 ``` cpp
 #ifndef __LINKEDLIST_H__
@@ -128,7 +128,7 @@ the `DataType` constructor is called to initialize the `data` member of the `Nod
 -   `init` is a private member function that is used to initialize the `theSize`, `head`, and `tail` member variables. it is called by the `LinkedList` constructor.
 -   `Node` is a nested class, which means that it is a class that is defi ned within another class. it is a private member of the `LinkedList` class, which means
 
-## the list adt {#the-list-adt}
+## the list adt
 
 we will deal with a general list of the form $A_{0}, A_{1}, A_{2}, \cdots, A_{n - 1}$. we say that the size of the list is $N$. we will call the special list of size $0$ an **empty list**. for any list except the empty list, we say that $A_{i}$ follows $A_{i - 1}, (i < N)$ the first element of the list is $A_{0}$ and the last element is $A_{N - 1}$. we will not define the predecessor of $A_{0}$ or the successor of $A_{N - 1}$. the **position** of element $A_{i}$ in a list is $i$. throughout this readme, we will assume to simplify matters that the elemnts in the list are integers, but in general, arbitrarily complex elements are allowed (and easily handled by a class template).
 
@@ -149,7 +149,7 @@ if the list is `34, 12, 52, 16, 12` then,
 
 of course, the interpretation of what is appropriate for a function is entirely up to the programmer, as is the handling of special cases (for example, what does `find(1)` return above? we could also add operations such as `next` and `previous`, which would take a position as argument and return the position of the successor and predecessor, respectively.
 
-## simple array implementation of lists {#simple-array-implementation-of-lists}
+## simple array implementation of lists
 
 all these instructions can be implemented just by using an array. although arrays are created with a fixed capacity, the `vector` call, which internally stores an array, allows the array to drow by doubling its capacity when needed. this solves the most serious problem with using an array - namely, that historically to use can array an estiate of the maximum size of the list was required. this estimate is no longer needed.
 
@@ -157,7 +157,7 @@ an array implementation allows `printList` to be carried out in linear time, and
 
 there are many situations where the list is built up by insertions at the high end, and then only array access (i.e. `findKth` operations) occur. in such a casse, the array is a suitable implementation. however, if insertions and deletions occur throughout the list and, in particular, at the front of the list, then the array is not a good option. the next section deals with the alternative: the *linked list*.
 
-## simple linked lists {#simple-linked-lists}
+## simple linked lists
 
 in order to avoid the linear cost of insertion and deletion, we need to ensure that the list is not stored contiguously, since otherwise entire parts of the list will need to be moved, the figure below shows a general idea of a `linkedList`.
 
@@ -393,6 +393,8 @@ class LinkedList {
 #endif 
 ```
 
+##  classes of `LinkedList` 
+
 1.  `class LinkedList` is a templated class that implements a doubly linked list data structure
 
 2.  `private` section contains `theSize` of the list, `Node *head` a pointer to the head of the list, and `Node *tail` a pointer to the tail of the list.
@@ -414,6 +416,87 @@ class LinkedList {
 6.  `class const_iterator` is a public nested class that is used to iterate through the list/  it keeps a pointer to the `Node` objects which represents the current position in the linkedlist.  the `const_iterator` class provides methods to access and modify the data stored in the linkedlist.
 
 7.  the `const_iterator() : current{nullptr}` constructor creates a new `const_iterator` object that points to `nullptr`
+
+## `const_iterator` class
+
+```cpp
+// ...
+    public:
+        class const_iterator {
+            protected:
+                Node *current;
+                T& retrieve () const;
+                const_iterator(Node *p) : current{p} {}
+                friend class LinkedList<T>;
+            public:
+                const_iterator() : current{nullptr};
+                const T &operator * () const;
+                const_iterator &operator ++ ();
+                const_iterator operator ++ ();
+                const_iterator &operator -- ();
+                const_iterator operator -- (int);
+                bool operator == (const const_iterator &rhs) const;
+                bool operator != (const consT-iterator &rhs) const; 
+        };
+```
+```cpp
+/...
+    public:
+        class const_iterator {
+            protected:
+                Node *current;
+                
+                T& retrieve () const {
+                    return (current -> data);
+                }
+
+                const_iterator(Node *p) : current{p} {}
+                
+                friend class LinkedList<T>;
+            public:
+                const_iterator() : current{nullptr};
+                const T &operator * () const;
+                const_iterator &operator ++ ();
+                const_iterator operator ++ ();
+                const_iterator &operator -- ();
+                const_iterator operator -- (int);
+                bool operator == (const const_iterator &rhs) const;
+                bool operator != (const consT-iterator &rhs) const; 
+        };
+/...
+```
+
+the `const_iterator` class is a nested class within the `LinkedList` class, it is used to provide a read only interface to the elements of the `LinkedList`.  `const_iterator` is used when you want to iterate over the `LinkedList` without modifying its elements.  it's similar to the regular `iterator` class, but it prevents you from modifying the elements it points to.  this is useful in situations where you want to ensure that the linkedlist remains unchange while it's being iterated over.
+
+<details>
+<summary>1.  <code>const_iterator</code> summary</summary>
+<code>const_iterator`</code> is an embedded class of the linkedlist class, it is an iterator that can be used to traverse through the linkedlist in a read-only manner.
+</details>
+
+<details>
+<summary>2.  <code>retrieve()</code> summary</summary>
+<code>retrieve</code> returns a reference to the data stored in the node that the iterator is currently pointing to.  `T&` represents a reference to the object of type `T`. the `&` symbol denotes a reference type, which means that the value returned by `retrieve()` is not a copy but a reference to the object stored in the `current -> data` member variable.  so the value actually being returned is being stored in memory and is not a copy.  
+
+the reference is returned is using the `&` symbol in the function signature, and this allows the calling function to directly modify the value stored in the linked list.  this means that if the calling function modifies the value returned by <code>retrieve()</code>, the value stored in the linkedlist will also be modified.
+
+**refresher on references**
+a reference is an alias, or alterantive name for an existing variable.  it is essentially a way to access and modify the original variable through a different name.  when a reference is created, it must be initialized to refer to an existing object.  once initialized, the reference behaves like the object itself.  any changes made to the reference are actually made to the original object, and any operations performe on the reference are actually performed on the original object.
+
+one key difference between a reference and a pointer is that a reference cannot be null and must always refer to an existing object, while a pointer can be null and can point to any object of its assigned type.  additionally, once a reference is initialized, it cannot be re-assigned to refer to a different object, while a pointer can be reassigned to point to a different object.
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
