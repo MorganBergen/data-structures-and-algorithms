@@ -173,13 +173,15 @@ int main() {
 ```
 
 ## reference
-**lvalues, rvalues, and references**
+
+**lvalues, rvalues, and lvalue and rvalue references**
+
+### lvalues and rvalues
 
 - in addition to pointer types, c++ defines reference types.  
 - an lvalue is an expression that identifies a non-temporary object
 - an rvalue is an expression that identifies a temporary object or is a value not associated with an object
-- intuitively, if the function call computes an expression whose value does not exist prior to the call and 
-- does not exist once the call is finished unless it is compied to a variable, then it is an rvalue
+- intuitively, if the function call computes an expression whose value does not exist prior to the call and does not exist once the call is finished, then it is an rvalue, because it never gets complied into a variable and therefore is not stored in memory.
 
 **for example**
 
@@ -193,14 +195,26 @@ std::string str = "foo";
 std::vector<string> *ptr = &arr;
 ```
 
-- `arr` is an lvalue, `x` is an lvalue, `y` is an lvalue, `z` is an lvalue, `str` is an lvalue, `ptr` is an lvalue
-- `3` is an rvalue, `2` is an rvalue, `"foo"` is an rvalue, `&arr` is an rvalue
+- `arr` is an lvalue
+- `x` is an lvalue
+- `y` is an lvalue
+- `z` is an lvalue
+- `str` is an lvalue
+- `ptr` is an lvalue
+- `3` is an rvalue
+- `2` is an rvalue
+- `foo` is an rvalue
+- `&arr` is an rvalue
 
 - notice the consequence that there are some cases in which the result of a function call or operation call can be an lvalue 
 - `*ptr`, `arr[x]`, and `cin >> x >> x` and others where it can be an rvalue, hence the language syntax allows a function call
 - or operator overload to specify this in the return type
 
-**lvalue reference**
+### lvalue references `&y`, rvalue references `&&z`
+
+1.  **lvalue reference**  an lvalue reference is a refernce to an object that can be on the left hand side of an assignment operator.  an l value reference is a reference that can only bind to another lvalue, which is an object that has a name and can be accessed in memory.  an lvalue reference is denoted using the `&` address of operator.
+
+2.  **rvalue** reference is 
 
 ## parameter passing
 
