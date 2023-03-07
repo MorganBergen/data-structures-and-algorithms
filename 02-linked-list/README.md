@@ -134,7 +134,11 @@ Node(const DataType &&d, Node *p, Node *n) :
 ```
 this ia a move constructor it takes an rvalue reference to a `DataType` object `d` and moves it into the data member `data` using `std::move`.  the move constructor is used when creating a new `Node` object from an existing one, but transferring ownership of the data from the existing object to the new one.  this can be more efficient than copying the data itself.
 
-`Node` in general is a `struct` that holds a piece of data of type `DataType` as well as pointers to the previous and next nodes in the list.  the constructor takes an rvalue reference to a `DataType` object `DataType &&d` as well as two other nodes `Node *p = nullptr` and `Node *n = nullptr`.  `std::move` is being used to cast `d` to an r-value reference
+`Node` in general is a `struct` that holds a piece of data of type `DataType` as well as pointers to the previous and next nodes in the list.  the constructor takes an rvalue reference to a `DataType` object `DataType &&d` as well as two other nodes `Node *p = nullptr` and `Node *n = nullptr`.
+
+`std::move` is being used to cast `d` to an rvalue reference, which essentially "moves" the data rather than copying and assigning it.  this is a way to optimize the code and avoid unnecessary copying of the data.  the `std::move` function is part of the c++ standard library adn is used to convert an lvalue (an object that has a name and is stored in memory) to an rvalue (a temporary object that can be moved or destroyed).
+
+this `Node` move constructor is delcared with an rvalue reference parameter for `d`, because it is expected that `d` will be a temporary object (an rvalue) that will be moved into the `Node` object, specifically it's member variable `data`.  this can help to avoid unnecessary copying of the `DataType()` object and improve the performance of the program.  the `prev` and `next` pointers are declared as regular pointers because they are not expected to be temporary object.  they are simply pointer to other nodes in the linked list.  the `Node` move constructor initializes these pointer to `nullptr` by default if no arguments are provided.
 
 
 ## the list adt
@@ -608,40 +612,85 @@ bool operator == (const const_iterator &rhs) const {
 }
 ```
 
+12.  `bool operator != (const const_iterator &rhs) const;`
 
+```cpp
+bool operator != (const const_iterator &rhs) const {
+    return !(*this == rhs);
+}
+```
 
+## `iterator` class
 
+```cpp
+class iterator : public const_iterator {
+    protected:
+        iterator(Node *p) : const_iterator{p} { }
+        friend class LinkedList<T>;
+    public:
+        iterator() { }
+        T& operator * ();
+        const T& operator * () const;
+        iterator& operator ++ ();
+        iterator operator ++ (int);
+        iterator& operator -- ();
+        iterator operator -- (int);
+};
+```
 
+### `iterator` implementation
 
+```cpp
+class iterator : public const_iterator {
+    private:
+        iterator(Node *p) : const_iterator{p} { }
+        friend class LinkedList<T>
+    public:
+        iterator() { }
+        T& operator * () {
+            return (const_iterator::retrieve());
+        }
+        const T& operator * () {
+            return (const_iterator::operator * ());
+        }
+        iterator& operator ++ (){
+            this -> current = this -> current -> next;
+            return (*this)
+        }
+        iterator operator ++ (int) {
+            iterator old = *this;
+            ++(*this);
+            return (old);
+        }
+        iterator& operator -- () {
+            this -> current = this -> current -> prev;
+            return(*this);
+        }
+        iterator operator -- (int)
+            iterator old = *this;
+            --(*this);
+            return (old);
+        }
+};
+```
 
+### `iterator` components
+<br>
 
+1.  `iterator : public const_iterator`
+2.  `iterator(Node *p) : const_iterator{p} {}`
+3.  `friend class LinkedList<T>`
+4.  `iterator()`
+5.  `T& operator * ()`
 
+    ```cpp
+    T& operator * () {
+        return (const_iterator::retrieve());
+    }
+    ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    -  this is a operator overloaded member method of the iterator class, it returns a reference to the element pointed by the current iterator.  
+    -  for a reminder the `::` is the scope resolution operator, it's used to access the function that is not a member of a class, but defined in the scope of the class.  
+    - `const_iterator::retrieve()` is calling the retrieve method, which is used to retrieve the value pointed by the current iterator.  the function `retrieve()` is marked as `const` because it does not modify the iterator or the container.
+    -  any method that has `DataType function() const` after the `()` means that the function is not allowed to modify the state of the object on which it is called.  it's a way of telling the compiler that this function is read-only and it won't change anything in the object itself.
 
