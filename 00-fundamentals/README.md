@@ -1,11 +1,10 @@
-# 00 the fundamentals
-## data structures and algorithms
+# the fundamentals
 
-friday jan 20 2023
+[home](../https://github.com/MorganBergen/data-structures-and-algorithms.git)
+
+<img src="https://user-images.githubusercontent.com/65584733/216661878-a38430f7-1c9b-4a52-8be2-e53ddf06e6e7.png" width="300px" align="right">
 
 utilizing gcc compiler
-
-![asset-11](https://user-images.githubusercontent.com/65584733/216661878-a38430f7-1c9b-4a52-8be2-e53ddf06e6e7.png)
 
 **contents**
 
