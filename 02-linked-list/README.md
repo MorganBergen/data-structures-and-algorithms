@@ -8,13 +8,11 @@ the c++ class allows for the implementation of adts, with appropriate hiding of 
 
 <details>
 <summary>see what the html looks like to implement this</summary>
-
 ```html
 <details>
 <summary>string of toggle text</summary>
 </details>
 ```
-
 </details>
 
 
@@ -440,7 +438,7 @@ class LinkedList {
         };
 ```
 ```cpp
-/...
+//...
     public:
         class const_iterator {
             protected:
@@ -449,33 +447,52 @@ class LinkedList {
                 T& retrieve () const {
                     return (current -> data);
                 }
-
-                const_iterator(Node *p) : current{p} {}
-                
+                const_iterator(Node *p) : current{p} { }
                 friend class LinkedList<T>;
             public:
-                const_iterator() : current{nullptr};
-                const T &operator * () const;
-                const_iterator &operator ++ ();
-                const_iterator operator ++ ();
-                const_iterator &operator -- ();
-                const_iterator operator -- (int);
-                bool operator == (const const_iterator &rhs) const;
-                bool operator != (const consT-iterator &rhs) const; 
+                const_iterator() : current{nullptr} { }
+                const T& operator * () const {
+                    return (retrieve());
+                }
+                const_iterator& operator ++ () {
+                    current = current -> next;
+                    return (*this);
+                }
+                const_iterator& operator ++ (int) {
+                    const_iterator old = *this;
+                    ++(*this);
+                    return(old);
+                }
+                const_iterator& operator -- () {
+                    current = current -> prev;
+                    return (*this);
+                }
+                const_iterator operator -- (int) {
+                    const_iterator old = *this;
+                    --(*this);
+                    return (*this);
+                }
+                bool operator == (const const_iterator &rhs) const {
+                    return (current == current.rhs);
+                }
+                bool operator != (const consT-iterator &rhs) const {
+                    return (!(*this == rhs));
+                }
         };
-/...
+//...
 ```
 
 the `const_iterator` class is a nested class within the `LinkedList` class, it is used to provide a read only interface to the elements of the `LinkedList`.  `const_iterator` is used when you want to iterate over the `LinkedList` without modifying its elements.  it's similar to the regular `iterator` class, but it prevents you from modifying the elements it points to.  this is useful in situations where you want to ensure that the linkedlist remains unchange while it's being iterated over.
 
+### `class const_iterator { protected:` member variables & methods
 <details>
 <summary>1.  <code>const_iterator</code> summary</summary>
-<code>const_iterator`</code> is an embedded class of the linkedlist class, it is an iterator that can be used to traverse through the linkedlist in a read-only manner.
+<code>const_iterator</code> is an embedded class of the linkedlist class, it is an iterator that can be used to traverse through the linkedlist in a read-only manner.
 </details>
 
 <details>
 <summary>2.  <code>retrieve()</code> summary</summary>
-<code>retrieve</code> returns a reference to the data stored in the node that the iterator is currently pointing to.  `T&` represents a reference to the object of type `T`. the `&` symbol denotes a reference type, which means that the value returned by `retrieve()` is not a copy but a reference to the object stored in the `current -> data` member variable.  so the value actually being returned is being stored in memory and is not a copy.  
+<code>retrieve</code> returns a reference to the data stored in the node that the iterator is currently pointing to.  <code>T&</code> represents a reference to the object of type <code>T</code>. the <code>&</code> symbol denotes a reference type, which means that the value returned by <code>retrieve()</code> is not a copy but a reference to the object stored in the <code>current -> data</code> member variable.  so the value actually being returned is being stored in memory and is not a copy.  
 
 the reference is returned is using the `&` symbol in the function signature, and this allows the calling function to directly modify the value stored in the linked list.  this means that if the calling function modifies the value returned by <code>retrieve()</code>, the value stored in the linkedlist will also be modified.
 
@@ -483,8 +500,122 @@ the reference is returned is using the `&` symbol in the function signature, and
 a reference is an alias, or alterantive name for an existing variable.  it is essentially a way to access and modify the original variable through a different name.  when a reference is created, it must be initialized to refer to an existing object.  once initialized, the reference behaves like the object itself.  any changes made to the reference are actually made to the original object, and any operations performe on the reference are actually performed on the original object.
 
 one key difference between a reference and a pointer is that a reference cannot be null and must always refer to an existing object, while a pointer can be null and can point to any object of its assigned type.  additionally, once a reference is initialized, it cannot be re-assigned to refer to a different object, while a pointer can be reassigned to point to a different object.
-
 </details>
+
+<details>
+<summary>3.  <code>const_iterator(Node `*`p) : current{p} { }</code></summary>
+the parameterized constructor for the subclass <code>const_iterator</code> takes a pointer to a <code>Node</code> object as a parameter and initializes the <code>current</code> member variable with it.
+the <code>const_iterator</code> is a type of iterator used to iterate over a collection of objects while enforcing const correctness.  it ensures that the collection is not modified during iteration.  this is achieved by defining a separate type of iterator that can be used only to read the collection and not modify it.
+
+the reason why <code>const_iterator</code> exists is to allow iterating over a collection in a read-only manner.  when a collection is marked <code>const</code> it's member functions cannot modify the collection.  in this case <code>const_iterator</code> allows us to iterate over the collection without accidentally modifying it.
+</details>
+
+<details>
+<summary>4.  <code>friend class LinkedList < T >;</code></summary>
+the line <code>friend class LinkedList < T >;</code> within the <code>const_iterator</code> class declares <code>LinkedList</code> class as a friend of the <code>const_iterator</code> class.  this allows <code>LinkedList</code> to access the private and protected members of the <code>const_iterator</code> class.
+
+the <code>friend</code> keyword is used to declare a non-member function or class that is allowed access to private and protected members of a class.  in this case <code>LinkedList</code> is a friend of the <code>const_iteratro</code> class, which means it can access the private and protected members of the <code>const_iterator</code> class.  this is useful when we have two classes that need to work closely together and need access to each other's private members
+</details>
+
+<details>
+<summary>5.  <code>const_iterator() : current{nullptr} { }</code></summary>
+this constructor initializes the <code>current</code> pointer to <code>nullptr</code>, in c++ a point that is set to <code>nullptr</code> means that it does not point to any valid memory location.  the purpose of this constructor is to create a default <code>const_iterator</code> object that doesnt point to any valid memory location.  this is useful when initializing an object before assigning a valid memory location to its <code>current</code> pointer.  
+
+the constructor is declared with an empty parameter list <code>()</code> because it doesnt take any arguments.  this constructor body initializes the <code>current</code> pointer using the member initializer list syntax <code>{}</code>, which initializes the <code>current</code> to <code>nullptr</code>.
+
+overall this constructor provides a way to initialize a <code>const_iterator</code> object with a null pointer which can be used as a starting point for later assignment of valid memory location. 
+</details>
+
+<br><br><br>
+
+6. `const T& operator * () const;` 
+
+```cpp
+const T& operator * () const {
+    return (retrieve());
+}
+```
+
+is a dereference operator overloaded for a class template.  it returns a reference to the value stored at the current position of the iterator.  in simpler terms when a object of the class template (in this case `const_iteror` is dereferenced using the `*` operator, this overloaded operator will be called, and it will return the value stored at the current position of the iterator.
+
+for example if you have a list of integers and you create a `const_iterator` to iterate over the list, you can access the value of the element pointed to by the `const_iterator` using the `*` operator.  the `*` operator is used to retrieve the value stored at the current position of the `const_iterator`, in this case the output would be "first element of the list is 1".
+
+```cpp
+LinkedList<int> mylist{1, 2, 3, 4};
+LinkedList<int>::const_iterator itr = myList.begin();
+std::cout << "first element of the list is " << *itr << std::endl;
+```
+
+7.  `const_iterator& operator ++ ();`  prefix operator overloader
+
+operator overloading is a feature of c++ that allows operators such as `++` to be overloaded or redefined for use with user-defined data types or objects.  this means that you can create a custom definition of what should happen when an operator is used on an object of a certain class.
+
+we are overloading the pre-increment operator `++x` for the `const_iterator` class.  the `const_iterator` class is likely used to iterate through a linked list or other container classes.  the name of the function is `operator ++`  it's a member of `const_iterator` and can be accessed publically.  the `&` in the function declaration means that this function returns a reference to a `const_iterator` object which allows us to chain multiple increment operations together like `++x; ++y; ++z;` the empty parameter list means that the function obviously wont take any arguments.  `current = current -> next` increments the iterator to the next element in the linked list by setting the `current` pointer to the address of the `next` node on the list.  finally the `retrun(*this);`  returns a reference to the `const_iterator` object itself, which allows us to chain multiple increment operations together.  the `*this` notation refers to the current object that the function is being called upon.  in this case it is the same as returning a reference to `current` member variable of the `const_iterator` object.
+
+8.  `const_iterator operator ++ (int);` postfix operator overloader
+
+```cpp
+const_iterator operator ++ (int) {
+    const_iterator old = *this;
+    ++(*this);
+    return (old);
+}
+```
+
+the function signature has `(int)` as an argument, which is a dummy parameter used to distinguish it from the preincrement operator, this in contrast ensures that the operands `++` must come after the object.  we first create a copy of the current `const_iterator` object which is `*this` and it stores it in a new `const_iterator` object called `old`, this is done so that the old (pre-increment) value can be returned later on.
+
+the `++(*this);` increments the current `const_iterator` object `*this` using the preincrement operator, which moves the iterator forward to the next element, we have prefix already declared so it will move `current = current -> next`, the `return(old)` preincrement value of the `const_iterator` object that was stored in `old` allows for the post increment operation to be performed which returns the old value while still moving the iterator forward to the next node.
+
+9.  `const_iterator& operator -- ()` prefix decrement operator overloader
+
+```cpp
+const_iterator& operator -- () {
+    current = current -> prev;
+    return(*this);
+}
+```
+
+this operator decrements the `current` pointer to point to the previous node and returns the updated `const_iterator` object.  the `const_iterator&` specifies that the return type of the function is a reference (which is an alias to the existing variable) and accesses its current memory location, refering to the original object in memory so any changes will effect that object itself.
+
+`current = current -> prev` decrements the `current` pointer to point to the previous node in the `LinkedList`, `return(*this)` will return the `const_iterator` object itself, which is now pointing to the previous node.
+
+10.  `const_iterator operator -- (int)` postfix decrement operator overloader
+
+```cpp
+const_iterator operator -- (int) {
+    const_iterator old = *this;
+    --(*this);
+    return(old);
+}
+```
+
+11.  `bool operator == (const const_iterator &rhs) const;`
+
+```cpp
+bool operator == (const const_iterator &rhs) const {
+    return (current == rhs.current);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
