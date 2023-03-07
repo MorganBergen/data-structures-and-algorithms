@@ -77,6 +77,8 @@ int main(int argc, char* argv[])
                 cout<<*itr<<" ";
             }
             cout<<endl;
+
+            // Test the 
             for (MyLinkedList<string>::iterator itr = ml_3.end(); itr != ml_3.begin();itr--)
             {
                 cout<<*itr<<" ";
