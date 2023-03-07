@@ -72,3 +72,16 @@ for (auto i : v) {
 4.  what are the advantages in using rvalue reference in c++ 
 
 5.  implement the `reserve()` 
+
+I just printed out the vector and linked list class templates and then filled them out in entirety from memory. And then I also practiced writing the printLots function and the union/intersect question that prof said were good examples of algorithm questions for the midterm 
+
+`printLots`, `union/intersect` question
+memorize `vector` and `linkedlist`
+
+
+
+
+
+
+
+
