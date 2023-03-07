@@ -50,12 +50,11 @@ class LinkedList {
             Node *next;
             int counter;
 
-            Node(const DataType &d = DataType{}, Node *p = nullptr, Node *n = nullptr) {
-                std::cout << "constructor" << std::endl;
-                data = d;
-                prev = p;
-                next = n;
-            }
+            Node(const DataType &d = DataType{}, Node *p = nullptr, Node *n = nullptr) :
+                data{d}, prev{p}, next{n} { }
+
+            Node(const DataType &&d, Node *p = nullprt, Node *n = nullptr) :
+                data{std::move(d)}, prev{p}, next{n} { }
         };
         int theSize;
         Node *head;
@@ -124,7 +123,19 @@ the `DataType` constructor is called to initialize the `data` member of the `Nod
 **private member functions**
 
 -   `init` is a private member function that is used to initialize the `theSize`, `head`, and `tail` member variables. it is called by the `LinkedList` constructor.
--   `Node` is a nested class, which means that it is a class that is defi ned within another class. it is a private member of the `LinkedList` class, which means
+-   `Node` is a nested class, which means that it is a class that is defi ned within another class. it is a private member of the `LinkedList` class.
+
+1.  `Node(const DataType &&d, Node *p, Node *n);` move constructor
+
+```cpp
+Node(const DataType &&d, Node *p, Node *n) :
+    data{std::move(d)}, prev{p}, next{n};
+}
+```
+this ia a move constructor it takes an rvalue reference to a `DataType` object `d` and moves it into the data member `data` using `std::move`.  the move constructor is used when creating a new `Node` object from an existing one, but transferring ownership of the data from the existing object to the new one.  this can be more efficient than copying the data itself.
+
+`Node` in general is a `struct` that holds a piece of data of type `DataType` as well as pointers to the previous and next nodes in the list.  the constructor takes an rvalue reference to a `DataType` object `DataType &&d` as well as two other nodes `Node *p = nullptr` and `Node *n = nullptr`.  `std::move` is being used to cast `d` to an r-value reference
+
 
 ## the list adt
 
@@ -473,7 +484,7 @@ class LinkedList {
                     return (*this);
                 }
                 bool operator == (const const_iterator &rhs) const {
-                    return (current == current.rhs);
+                    return (current == rhs.current);
                 }
                 bool operator != (const consT-iterator &rhs) const {
                     return (!(*this == rhs));
