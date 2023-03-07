@@ -774,25 +774,64 @@ iterator& operator ++ () {
 
     -  `old` is kept as the previous node, then we move that node `--(*this)` and return the previously pointed to `Node` the reason for this is because say `int x = 10;` `std::cout << x-- << '\n';` will return `10` even though the value of the variable `x` is actually `10` this is becasue we accessed the value before the operation of decrementation was performed. 
 
+### iterator interface
 
+```cpp
+iterator begin();
+const_iterator begin() const;
+iterator end();
+const_iterator end() const;
+int size() const;
+bool empty() const;
+void clear();
+T& front();
+const T& front() const;
+T& back();
+const T& back() const;
+iterator insert(iterator itr, const T& x);
+iterator insert(iterator itr, T&& x)
+iterator erase(iterator itr);
+iterator erase(iterator from, iterator to);
+```
 
+### iterator implementation
 
+```cpp
+iterator begin()
+```
 
+### linkedlist methods
 
+### big five
 
+### uml diagram for 
 
-
-
-
-
-
-
-
-
-
-
-
-
+```
++------------------------------------------+
+|       LinkedList<DataType>               |
++------------------------------------------+
+| - theSize: int                           |
+| - head: Node*                            |
+| - tail: Node*                            |
+| - init(): void                           |
++------------------------------------------+
+| + const_iterator                         |
+| + iterator                               |
++------------------------------------------+
+| + LinkedList()                           |
+| + LinkedList(rhs: const LinkedList&)     |
+| + LinkedList(rhs: LinkedList&&)          |
+| + ~LinkedList()                          |
+| + operator=(rhs: const LinkedList&)      |
+| + operator=(rhs: LinkedList&&)           |
+| + begin(): iterator                      |
+| + begin() const: const_iterator          |
+| + end(): iterator                        |
+| + end() const: const_iterator            |
++------------------------------------------+
+| - Node                                   |
++------------------------------------------+
+```
 
 
 
