@@ -4,16 +4,16 @@
 #include <iostream>
 #include <algorithm>
 
-template <typename DataType>
+template <typename T>
 class LinkedList {
     private:
         struct Node {
-            DataType data;
+            T data;
             Node *prev;
             Node *next;
             int counter;
 
-            Node(const DataType &d = DataType(), Node *p = nullptr, Node *n = nullptr) :
+            Node(const T &d = T(), Node *p = nullptr, Node *n = nullptr) :
                 data{d},
                 prev{p},
                 next{n}
@@ -36,20 +36,75 @@ class LinkedList {
     public:
 
         class const_iterator {
-
             protected:
                 Node *current;
+                T& retrieve() const {
+                    return (current -> data);
+                }
+                const_iterator(Node *p) : current{p} {}
+                friend class LinkedList<T>;
 
             public:
+                const_iterator() : current{nullptr} {}
+                
+                const T& operator * () const {
+                    return(retrieve());
+                }
+                
+                const_iterator& operator ++ () {
+                    current = current -> next;
+                    return (*this);
+                }
 
+                const_iterator operator ++ (int) {
+                    const_iterator old = *this;
+                    ++(*this);
+                    return (old);
+                }
+                
+                const_iterator& operator -- () {
+                    const_iterator old = *this;
+                    --(*this);
+                    return(old);
+                }
+
+                bool operator == (const const_iterator &rhs) const {
+                    return (current == rhs.current);
+                }
+
+                bool operator != (const const_iterator &rhs) const {
+                    return !(*this == rhs);
+                }
         };
 
     public:
         LinkedList() {
             init();
         }
-         
 
 };
 
-#endif // __LINKEDLIST_H__
+#endif 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
