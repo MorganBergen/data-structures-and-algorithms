@@ -693,4 +693,114 @@ class iterator : public const_iterator {
     -  for a reminder the `::` is the scope resolution operator, it's used to access the function that is not a member of a class, but defined in the scope of the class.  
     - `const_iterator::retrieve()` is calling the retrieve method, which is used to retrieve the value pointed by the current iterator.  the function `retrieve()` is marked as `const` because it does not modify the iterator or the container.
     -  any method that has `DataType function() const` after the `()` means that the function is not allowed to modify the state of the object on which it is called.  it's a way of telling the compiler that this function is read-only and it won't change anything in the object itself.
+    -  if the return type of this function is mutable, it means that the function can modify the data associated with the function call.  in this case, the function `operator *()` return a reference to a non-constant value of type `T` through the returned reference.  the constness of `retrieve()` only guarantees that the value of `T` itself will not be modified through that reference.
+
+5.  `const T& operator *() const`
+
+    ```cpp
+    const T& operator *() const {
+        return (const_iterator::operator*);
+    }
+    ```
+
+    -  `const` member functyion `operator*()` which returns a constant reference to an object of type `t`.
+    -  the function also has the `const` keyword after the closing parenthesis which specifies that the function is a `const` member function and it does not modify the data members of the class.
+    -  in the function body we have the `return` statement which returns the result of the calling `operator*` function of the `const_iterator` class.  since the `const_iterator` class has a `const` member function `operator*` which returns a constant reference to an object of type `T`, calling it will return a constant reference to the object it points to.    
+    -  the reason why we call the `operator*` function of the `const_iterator` class is that we are using the implementation of `operator*` of `const_iterator` in this function.  this is becasue `const_iterator` is a friend class of the class where this function is defined and it has access to the private members of the class.  specifically the `Node *current` member which is what we want to have access to in order to access it's data element.
+
+6.  `iterator& operator ++ ()`
+
+    ```cpp
+    iterator& operator ++ () {
+        this -> current = this -> current -> next;
+        return (*this);
+    }
+    ```
+
+    -  in the given code `operator ++` is an overloaded function that returns an iterator object reference.
+    -  the `this` pointer which is the object itself refers to the object on which this function is called.
+    -  `this -> current` refers to the current `Node` object being pointed to by the iterator
+    -  the `current` is a private member of the `const_iterator`, but since `iterator` is **derived** from `const_iterator` it can access the private members of `const_iterator` through inheritance.  therefore, `iterator` has access to `current` and can modify it through the `operator ++ ()` function.
+    -  `this -> current -> next` refers to the next node in the linked list
+
+**difference between `const_iterator` and `iterator`**
+
+```cpp
+const_iterator& operator ++ () {
+    current = current -> next;
+    return(*this); 
+}
+
+iterator& operator ++ () {
+    this -> current = this -> current -> next;
+    return(*this);
+}
+```
+
+- the difference between `current = current -> next` and `this -> current = this -> current -> next` is due to the fact that `iterator` is a child of `const_iterator` and therefore although it has access to `current` it isnt `current` so we need to access it through `this -> current`
+
+-  it has access to `current` member of `const_iterator` so we need to use the `this` pointer to specify that were accessing the `current` member of the `const_iterator`
+
+7.  `iterator operator ++ (int)`
+
+    ```cpp
+    iterator operator ++ (int) {
+        iterator old = *this;
+        ++(*this);
+        return(old);
+    }
+    ```
+
+8.  `iterator& operator -- ()`
+
+    ```cpp
+    iterator& operator -- () {
+        this -> current = this -> current -> prev;
+        return(*this);
+    }
+    ```
+    - `this -> current` must be access because `iterator` is a child of `const_iterator` and again therefore isnt actually `current` but rather is the child of the `const_iterator` object whose member is `current`
+    -  `this -> current = this -> current -> prev` behaves where the `prev` is pointed at from the `current`
+
+9.  `iterator operator -- (int)` 
+
+    ```cpp
+    iterator operator -- (int) {
+        iterator old = *this;
+        --(*this);
+        return(old);
+    }
+    ```
+
+    -  `old` is kept as the previous node, then we move that node `--(*this)` and return the previously pointed to `Node` the reason for this is because say `int x = 10;` `std::cout << x-- << '\n';` will return `10` even though the value of the variable `x` is actually `10` this is becasue we accessed the value before the operation of decrementation was performed. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
