@@ -77,6 +77,7 @@ class LinkedList {
                 }
         };
 
+
     public:
         LinkedList() {
             init();
