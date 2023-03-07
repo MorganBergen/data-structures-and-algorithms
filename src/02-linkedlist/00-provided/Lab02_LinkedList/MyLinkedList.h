@@ -124,8 +124,7 @@ class MyLinkedList {
     // define the iterator class; inherit from class const_iterator
     class iterator : public const_iterator {
       protected:
-        iterator(Node *p) : 
-        const_iterator{p} { }
+        iterator(Node *p) : const_iterator{p} { }
         
         friend class MyLinkedList<DataType>;
       
@@ -147,7 +146,7 @@ class MyLinkedList {
             // code ends
         }
 
-        iterator & operator++ () {
+        iterator& operator++ () {
             // code begins
             this -> current = this -> current -> next;
             return *this;
@@ -162,7 +161,7 @@ class MyLinkedList {
             // code ends
         }
 
-        iterator operator-- () {
+        iterator& operator-- () {
             // code begins
             this -> current = this -> current -> prev;
             return *this;
