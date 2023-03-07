@@ -340,7 +340,7 @@ void getNumbers(int& input1, int& input2) {
 `~IntCell() { stored_value = nullptr; delete stored_value; }`
 the destructor is a special member function that is called when an object is destroyed.  The destructor is called automatically when the object goes out of scope or is explicitly destroyed by a call to the `delete` operator.  typically, the only responsibility of the destructor is to free up any resources that were acquired during the use of the object.  this includes calling `delete` for any corresponding `news`, closing any files that were open, and so on.  the default simply applies the destructor on each data member.
 
-### 2.  copy constructor
+### 2. copy constructor
 
 `IntCell B = C;`
 when an object is assigned to another object using the assignment operator (=), the compiler will automatically use an implicit copy constructor behind the scenes in order to create a new object that is a copy of the original object. This copy constructor is known as the **implicit copy constructor**. If the object being assigned is a reference to another object, the implicit copy constructor will still be used to create a copy of the object being referenced. This copy will be a shallow copy, which means that any pointers or references in the original object will also be copied, rather than the objects they point to. This can lead to issues with memory management if the copied object is modified and the original object is still being used.
@@ -356,7 +356,7 @@ IntCell(const IntCell& rhs) {
 }
 ```
 
-### 3.  move constructor
+### 3. move constructor
 
 a move constructor is a special type of constructor that is used to move the resources of one object to another.  the move constructor is defined as `IntCell(IntCell&& rhs)`.  the `&&` syntax is used to indicate that this is a move constructor and the `rhs` parameter is the object whose resources will be moved to the object being constructed.  the move constructor initializes the `stored_value` member of the new object with the value of `stored_value` member of the object being moved `rhs`.  this is done with the statement `stored_value{rhs.stored_value}` and is analagous to `stored_value = rhs.stored_value`
 
