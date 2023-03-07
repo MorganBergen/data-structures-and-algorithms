@@ -43,12 +43,11 @@ class MyLinkedList {
 
   public:
 
-    // define the const_iterator class
     class const_iterator { 
       protected:
         Node *current;
         // returns a mutable object
-        // defined as proected as we don't expect it to be called directly by other classess
+        // defined as protected as we don't expect it to be called directly by other classes
         DataType& retrieve() const { 
             return current -> data; 
         }
@@ -279,7 +278,7 @@ class MyLinkedList {
     }
 
     // deletes all nodes excepts the head and tail
-    void clear( ) {
+    void clear() {
         // code begins
         while (!empty()) {
             pop_front();
