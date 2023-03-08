@@ -7,18 +7,8 @@ int main() {
     
     LinkedList<int> first;
 
-    int x = 10;
+    LinkedList<int>::const_iterator here;
 
-    std::cout << x << std::endl;
-    std::cout << x++ << std::endl;
-    std::cout << x << std::endl;
-    
-    x = 10;
-
-    std::cout << x << std::endl;
-    std::cout << ++x << std::endl;
-    std::cout << x << std::endl;
-    
     /*
      * test push front function
      * green.push_front(data);

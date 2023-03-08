@@ -7,7 +7,7 @@
 template <typename T>
 class LinkedList {
     private:
-        struct Node {
+        struct Node { 
             T data;
             Node *prev;
             Node *next;
@@ -15,6 +15,12 @@ class LinkedList {
 
             Node(const T &d = T(), Node *p = nullptr, Node *n = nullptr) :
                 data{d},
+                prev{p},
+                next{n}
+                { }
+
+            Node(T&& d, Node *p = nullptr, Node *n = nullptr) :
+                data{std::move(d)}, 
                 prev{p},
                 next{n}
                 { }
@@ -50,30 +56,57 @@ class LinkedList {
                 const T& operator * () const {
                     return(retrieve());
                 }
-                
                 const_iterator& operator ++ () {
                     current = current -> next;
                     return (*this);
                 }
-
                 const_iterator operator ++ (int) {
                     const_iterator old = *this;
                     ++(*this);
                     return (old);
                 }
-                
                 const_iterator& operator -- () {
                     const_iterator old = *this;
                     --(*this);
                     return(old);
                 }
-
                 bool operator == (const const_iterator &rhs) const {
                     return (current == rhs.current);
                 }
-
                 bool operator != (const const_iterator &rhs) const {
                     return !(*this == rhs);
+                }
+        };
+
+        class iterator : public const_iterator {
+            protected:
+                iterator(Node *p) : const_iterator{p} { }
+                friend class LinkedList<T>;
+            private:
+                iterator() { }                 
+                T& operator * () {
+                    return (const_iterator::retrieve());
+                }
+                const T& operator * () const {
+                    return (const_iterator::operator*);
+                }
+                iterator& operator ++ () {
+                    this -> current = this -> current -> next;
+                    return (*this);
+                }
+                iterator operator ++ (int) {
+                    iterator old = *this;
+                    ++(*this);
+                    return (old);
+                }
+                iterator& operator -- () {
+                    this -> current = this -> current -> next;
+                    return (*this);
+                }
+                iterator operator -- (int) {
+                    iterator old = *this;
+                    --(*this);
+                    return(old);
                 }
         };
 
@@ -82,10 +115,40 @@ class LinkedList {
         LinkedList() {
             init();
         }
-
+        LinkedList(const LinkedList &rhs) {
+            init();
+            for (auto & x : rhs) {
+                push_back(x);
+            }
+        }
+        // move constructor
+        // destructor
+        // copy assignment operator
+        // move assignment operator
+        
 };
 
+
 #endif 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
