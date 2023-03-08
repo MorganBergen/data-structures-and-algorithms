@@ -512,13 +512,9 @@ class LinkedList {
 };
 
 #endif
-```
 
 
-
-
-
-##  questions given
+##  questions given first exam
 
 1.  give a brief description of the big-five in the context of classes in c++
 2.  what is the worst-case time complexity of inserting into an unsorted array?
@@ -529,6 +525,14 @@ class LinkedList {
 
 4.  what are the advantages in using rvalue reference in c++ 
 5.  implement the `reserve()` 
+
+## questions given second exam
+
+let x: action "mary's lamb recieves fur care at petsmart"
+let y: constraint "sunny outside"
+let z: constraint "petsmart is open"
+
+$$X is true iff (Y \cap Z) is true$$
 
 
 
