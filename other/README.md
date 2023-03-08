@@ -343,18 +343,18 @@ class LinkedList {
         };
 
     public:
-    
+        // default constructor 
         LinkedList() {
             init();    
         }
-
+        // copy constructor
         LinkedList(const LinkedList &rhs) {
             init();
             for (auto &x : rhs) {
                 push_back(x);
             }
         }
-
+        // move constructor
         LinkedList(LinkedList &&rhs) :
             theSize(rhs.theSize),
             head(rhs.head),
@@ -363,16 +363,24 @@ class LinkedList {
                 rhs.head = nullptr;
                 rhs.tail = nullptr;
         }
-
+        // destructor
         ~LinkedList() {
             clear();
             delete head;
             delete tail;
         }
-
+        // copy assignment operator
         LinkedList& operator = (const LinkedList &rhs) {
             LinkedList copy = rhs;
             std::swap (*this, copy);
+            return (*this);
+        }
+
+        // move assignment operator
+        LinkedList& operator = (LinkedList &&rhs) {
+            std::swap(theSize, rhs.theSize);
+            std::swap(head, rhs.head);
+            std::swap(tail, rhs.tail);
             return (*this);
         }
 
