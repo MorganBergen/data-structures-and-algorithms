@@ -49,50 +49,50 @@ the scope of the midterm includes all materials covered by the posted slides, cl
      */
     ```
 
-### `intersect`
+### `intersect` 
 
 2.  given two sorted arrays `L1` and `L1` write a procedure to compute `L1` $\cap$ `L2` using only the basic array operations
 
-    ```cpp
-    int i = 0;
-    int j = 0;
+```cpp
+int i = 0;
+int j = 0;
     
-    while (i < l1.size() && j < L2.size()) {
-        if (l1[i] == l2[j]) {
-            std::cout << l1[i];
-            ++i;
-            ++j;
-        } else if (l1[i] < l2[j] {
-            print l1[i];
-            ++i;
-        } else {
-            ++j
-        }
+while (i < l1.size() && j < L2.size()) {
+    if (l1[i] == l2[j]) {
+        std::cout << l1[i];
+        ++i;
+        ++j;
+    } else if (l1[i] < l2[j] {
+        print l1[i];
+        ++i;
+    } else {
+        ++j
     }
-    ```
+}
+```
 
 ### `union`
 
 3.  given two sorted arrays `L1` and `L2`, write a procedure to compute `L1` $\cup$ `L2` using only the basic array operations
 
-    ```cpp
-    int i = 0;
-    int j = 0;
+```cpp
+int i = 0;
+int j = 0;
 
-    while (i < l1.size() && j < l2.size()) {
-        if (l1[i] == l2[j]) {
-            std::cout << l1[i];
-            ++i;
-            ++j;
-        } else if (l1[i] < l2[j]) {
-            std::cout << l1[i];
-            ++i;
-        } else {
-            std::cout << l2[j];
-            ++j;
-        }
+while (i < l1.size() && j < l2.size()) {
+    if (l1[i] == l2[j]) {
+        std::cout << l1[i];
+        ++i;
+        ++j;
+    } else if (l1[i] < l2[j]) {
+        std::cout << l1[i];
+        ++i;
+    } else {
+        std::cout << l2[j];
+        ++j;
     }
-    ```
+}
+```
 
 ### `vector`
 
