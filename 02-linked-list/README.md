@@ -132,13 +132,15 @@ Node(const DataType &&d, Node *p, Node *n) :
     data{std::move(d)}, prev{p}, next{n};
 }
 ```
-this ia a move constructor it takes an rvalue reference to a `DataType` object `d` and moves it into the data member `data` using `std::move`.  the move constructor is used when creating a new `Node` object from an existing one, but transferring ownership of the data from the existing object to the new one.  this can be more efficient than copying the data itself.
+this is a move constructor it takes an rvalue reference to a `DataType` object `d` and moves it into the data member `data` using `std::move`.  the move constructor is used when creating a new `Node` object from an existing one, but transferring ownership of the data from the existing object to the new one.  this can be more efficient than copying the data itself.
 
 `Node` in general is a `struct` that holds a piece of data of type `DataType` as well as pointers to the previous and next nodes in the list.  the constructor takes an rvalue reference to a `DataType` object `DataType &&d` as well as two other nodes `Node *p = nullptr` and `Node *n = nullptr`.
 
 `std::move` is being used to cast `d` to an rvalue reference, which essentially "moves" the data rather than copying and assigning it.  this is a way to optimize the code and avoid unnecessary copying of the data.  the `std::move` function is part of the c++ standard library adn is used to convert an lvalue (an object that has a name and is stored in memory) to an rvalue (a temporary object that can be moved or destroyed).
 
 this `Node` move constructor is delcared with an rvalue reference parameter for `d`, because it is expected that `d` will be a temporary object (an rvalue) that will be moved into the `Node` object, specifically it's member variable `data`.  this can help to avoid unnecessary copying of the `DataType()` object and improve the performance of the program.  the `prev` and `next` pointers are declared as regular pointers because they are not expected to be temporary object.  they are simply pointer to other nodes in the linked list.  the `Node` move constructor initializes these pointer to `nullptr` by default if no arguments are provided.
+
+the way you can form this construction is by calling the follwing...
 
 
 ## the list adt
@@ -797,12 +799,32 @@ iterator erase(iterator from, iterator to);
 ### iterator implementation
 
 ```cpp
-iterator begin()
+iterator insert(iterator itr, const T& x) {
+    Node *p = itr.current;
+
+```
+
+### big five
+
+1.  `LinkedList()`
+2.  `LinkedList(const LinkedList& rhs)`
+3.  `LinkedList& operator = (const LinkedList& rhs)`
+4.  `LinkedList(LinkedList&& rhs)`
+5.  `LinkedList& operator = (LinkedList&& rhs)`
+
+### `LinkedList()`
+
+```cpp
+LinkedList() : theSize(0), head(new Node), tail(new Node) {
+    head -> next = tail;
+    tail -> prev = head;
+}
 ```
 
 ### linkedlist methods
 
-### big five
+
+
 
 ### uml diagram for 
 

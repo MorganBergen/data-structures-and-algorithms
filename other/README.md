@@ -512,7 +512,7 @@ class LinkedList {
 };
 
 #endif
-
+```
 
 ##  questions given first exam
 
@@ -528,23 +528,24 @@ class LinkedList {
 
 ## questions given second exam
 
-let x: action "mary's lamb recieves fur care at petsmart"
-let y: constraint "sunny outside"
-let z: constraint "petsmart is open"
+-  $P$ sunnary day
+-  $Q$ petsmart is open
+-  $R$ mary will go
 
-$$X is true iff (Y \cap Z) is true$$
+$(P \cap Q)$ -> $R$
 
+1.  explain the advantage of implementing iterator class for the vector and linkedlist data structures
+you can unify the accessor or mutator methods
 
+2.  given a linked list P and a vector L  
 
+-  p is a singly-linked and l is sorted:  $O(|P| + |L|)$
 
+-  p is a singly-linked and l is unsorted
 
+-  p is doubly-linked and l is sorted
 
-
-
-
-
-
-
+-  p is doubly-linked and l is unsorted
 
 
 

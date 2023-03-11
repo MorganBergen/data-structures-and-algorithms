@@ -1,0 +1,5 @@
+(lldb) target create "./a"
+Current executable set to '/Users/owner/Documents/2023spring/eecs330/data-structures-and-algorithms/src/03-stack-and-queue/00-provided/Lab03_StackAndQueue/a' (arm64).
+(lldb) settings set -- target.run-args  "Inputs/input_0.txt"
+^C
+
