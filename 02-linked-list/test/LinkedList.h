@@ -175,11 +175,9 @@ class MyLinkedList {
 
     // copy assignment
     MyLinkedList & operator= (const MyLinkedList& rhs) { 
-        
         MyLinkedList copy = rhs;
         std::swap (*this, copy);
         return (*this);
-        
     }
   
     // move assignment
@@ -195,96 +193,70 @@ class MyLinkedList {
 
     // iterator interface
     iterator begin() { 
-        
         return {head -> next};
-         
     }
 
     const_iterator begin() const { 
-        
         return {head -> next};
-         
     }
   
     iterator end() { 
-        
         return {tail};
-         
     }
 
     const_iterator end() const { 
-        
         return {tail};
-         
     }
   
     // gets the size of the linked list
     int size() const {
-        
         return theSize;
-        
     }
 
     // checks if the linked list is empty; return True if empty, false otherwise
     bool empty( ) const { 
-        
         return (size() == 0);
-         
     }
 
     // deletes all nodes excepts the head and tail
     void clear() {
-        
         while (!empty()) {
             pop_front();
         }
-        
     }
 
     // return the first data element as mutable
     DataType& front() { 
-        
         return *begin();
-         
     }
 
     // return the first data element as non-mutable
     const DataType& front() const { 
-        
         return *begin();
-        
     }
 
     // return the last data element as mutable
     DataType& back() { 
-        
         return *--end();
-         
     }
 
     // return the last data element as non-mutable
     const DataType& back() const { 
-        
         return *--end();
-         
     }
 
     // insert x before itr; returniterator pointing to the newly inserted data element
     iterator insert(iterator itr, const DataType& x) {
-        
         Node *p = itr.current;
         theSize++;
         return {p->prev = p->prev->next = new Node{x, p->prev, p}};
-        
     }
 
     // insert x before itr; return iterator pointing to the newly inserted data element
     iterator insert(iterator itr, DataType&& x) {
-        
         Node *p = itr.current;
         theSize++;
         return {p->prev = p->prev->next = new Node{std::move(x), p->prev, p}};
-         
     }
 
     // delete the data element pointed by itr; return the iterator pointing to the data element next to the one being deleted

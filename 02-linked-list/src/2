@@ -158,17 +158,11 @@ class LinkedList {
         }
 
         T& front() {
-           return (*begin());
+            return *begin();
         }
 
-        const T& front() const {
-            return (*begin());
-        }
 
-        T& back() {
-            return (*--end());
-        }
-
+        
 };
 
 

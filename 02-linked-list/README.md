@@ -799,10 +799,66 @@ iterator erase(iterator from, iterator to);
 ### iterator implementation
 
 ```cpp
+iterator begin() {
+    return {head -> next};
+}
+const_iterator begin() const {
+    return {head -> next};
+}
+iterator end() {
+    return {tail};
+}
+const_iterator end() const {
+    return {tail};
+}
+int size() const {
+    return (theSize);
+}
+bool empty() const {
+    return (theSize == 0);
+}
+void clear() {
+    while(empty() != true) {
+        pop_front();
+    }
+}
+T& front() {
+    return (*begin());
+}
+const T& front() const {
+    return (*begin);
+}
+T& back() {
+    return (*--end());
+}
+const T& back() const {
+    return (*--end());
+}
+
+// iterator interface
+
 iterator insert(iterator itr, const T& x) {
     Node *p = itr.current;
+    theSize++;
+    Node *middle = new Node{x, p -> prev, p};
+    p -> prev -> next = middle;
+    p -> prev = middle;
+    return {p -> prev};
+}
 
 ```
+
+why do we return `{` **something** `}` instead of `(` **something** `)`?
+
+the reason as to why the return keyword is followed by curly braces for its return value is because the `{ }` is used to construct an object by invoking the constructor of the object. the `{ }` notation is used to ensure that the object is properly constrcuted and initialized before being return. 
+
+on the other hand, the `( )` notatiobn is used to invoke a function or a constructor with arguments.  if the return type is a simple type like an `int`, `float`, `char`, or `double` then `()` notation can be used to return the value.  however for more complex objects like classes or strucrtures, it's recommended to use the `{}` notation to ensure proper initialization and to avoid any undefined behavior.
+
+`iterator end() { return {tail} };`
+
+`T& back() return (*--end());`
+
+the reason why we use `*--end()` instead of `*end()` in `back()` function is that `end()` returns an iterator to the node after the last element, which is the tail node in this case.
 
 ### big five
 
