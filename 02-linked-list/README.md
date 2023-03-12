@@ -845,7 +845,6 @@ iterator insert(iterator itr, const T& x) {
     p -> prev = middle;
     return {p -> prev};
 }
-
 ```
 
 why do we return `{` **something** `}` instead of `(` **something** `)`?

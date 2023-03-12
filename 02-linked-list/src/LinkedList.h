@@ -169,6 +169,16 @@ class LinkedList {
             return (*--end());
         }
 
+        iterator insert(iterator itr, const T& x) {
+            Node *p = itr.current;
+            theSize++;
+            Node middle = new Node{x, p -> prev, p};
+            p -> prev -> next = middle;
+            p -> prev = middle;
+            return {p -> prev};
+        }
+
+
 };
 
 

@@ -7,12 +7,12 @@
 template <typename DataType>
 class MyVector {
   protected:
-      size_t theSize;                         // the number of data elements the vector is currently holding
-      size_t theCapacity;                     // maximum data elements the vector can hold
-      DataType *data;                         // address of the data storage
 
   public:
 
+    size_t theSize;                         // the number of data elements the vector is currently holding
+    size_t theCapacity;                     // maximum data elements the vector can hold
+    DataType *data;                         // address of the data storage
 
     static const size_t SPARE_CAPACITY = 16;   // initial capacity of the vector
 

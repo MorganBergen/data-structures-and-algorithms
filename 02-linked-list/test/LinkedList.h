@@ -5,24 +5,24 @@
 #include <iostream>
 
 template <typename DataType>
-class MyLinkedList {
+class LinkedList {
   private:
     struct Node { 
         DataType  data;
         Node   *prev;
         Node   *next;
         
-        Node(const DataType &d = DataType{ }, Node *p = nullptr, Node *n = nullptr) : 
-        data{d}, 
-        prev{p}, 
-        next{n} 
-        { }
+        Node(const DataType &d = DataType{ }, Node *p = nullptr, Node *n = nullptr) {
+            data = d;
+            prev = p;
+            next = n;
+        }
 
         Node(DataType&& d, Node* p = nullptr, Node* n = nullptr) : 
         data{std::move(d)}, 
         prev{p}, 
         next{n}
-        { }
+        { ; }
     };
 
     int theSize;        // the number of elements that the linked list is currently holding
@@ -47,7 +47,7 @@ class MyLinkedList {
         }
         const_iterator(Node *p) : current{p} { }
         
-        friend class MyLinkedList<DataType>;
+        friend class LinkedList<DataType>;
 
       public:
         const_iterator() : current{nullptr} { }
@@ -245,12 +245,23 @@ class MyLinkedList {
         return *--end();
     }
 
-    // insert x before itr; returniterator pointing to the newly inserted data element
+    /* insert x before itr; returniterator pointing to the newly inserted data element
     iterator insert(iterator itr, const DataType& x) {
         Node *p = itr.current;
         theSize++;
         return {p->prev = p->prev->next = new Node{x, p->prev, p}};
     }
+    */
+
+    iterator insert(iterator itr, const DataType& x) {
+        Node *p = itr.current;
+        theSize++;
+        Node middle = new Node{x, p -> prev, p};
+        p -> prev -> next = middle;
+        p -> prev = middle;
+        return {p -> prev};
+    }
+
 
     // insert x before itr; return iterator pointing to the newly inserted data element
     iterator insert(iterator itr, DataType&& x) {
