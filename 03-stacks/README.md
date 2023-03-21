@@ -19,4 +19,3 @@ algorithm 1:  an empty stack s
 -  if we see an operator, pop all operators in s that have the same or a higher precedence then ad it and push the current operator to s.  exception:  if we see "(" we push it to s.  if we see ")" we pop all operators in s until "(" inclusive
 -  when all tokens are processed pop all elements in s
 
-**example**
