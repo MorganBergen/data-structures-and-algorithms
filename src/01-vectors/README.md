@@ -236,55 +236,7 @@ myvector (const myvector & rhs) :
 
 -  it is important to note that the copy constructor is only used to create a copy of an object, not to create a new object with the same values as the existing object.  in order to create a new object with the same values as the existing object a constructor or method would be used.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-#. `data_type & operator[] (size_t index) { return data[index]; }`
+## `data_type & operator[] (size_t index) { return data[index]; }`
 
 example use case:  `green_vector[3]` would access the element at index 3 in the `green_vector` vector.
 
@@ -300,6 +252,7 @@ the `&` symbol indicates that the function returns a reference to the data type.
 myvector<int> green_vector = {1, 2, 3};
 v[1] = 5;
 ```
+
 ## vector implementation
 
 ```c++
@@ -389,15 +342,11 @@ class myvector {
         // iterator implementation
         typedef const data_type* const_iterator;
 
-        // 
         const_iterator begin() const {}
 
-        //
         iterator end() {}
 
-        //
         const_iterator end() const {}
-
 };
 
 #endif
