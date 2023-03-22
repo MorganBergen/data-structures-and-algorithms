@@ -12,14 +12,11 @@ class myvector {
         data_type* data;
     public:
         static const size_t SPARE_CAPACITY = 16;
-        // explicit contructor
+
         explicit myvector(size_t init_size = 0) :
             the_size{init_size},
             the_capacity{init_size + SPARE_CAPACITY} {
                 data = new data_type[the_capacity];
-                std::cout << the_size << std::endl;
-                std::cout << the_capacity << std::endl;
-                std::cout << "default constructor" << std::endl;
         }
 
         myvector(const myvector & rhs) :
@@ -32,26 +29,15 @@ class myvector {
                 for (int i = 0; i < the_size; ++i) {
                     data[i] = rhs.data[i]; 
                 }
-
-                std::cout << "copy constructor" << std::endl;
         }
 
+        bool empty() const { return (the_size); }
 
-        bool empty() const {
-            if (the_size == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        size_t size() const { return (the_size); }
 
-        size_t size() const {
-            return (the_size);
-        }
+        size_t capacity() const { return (the_capacity); }
 
-        size_t capacity() const {
-            return (the_capacity);
-        }
+
 };
 
 #endif
