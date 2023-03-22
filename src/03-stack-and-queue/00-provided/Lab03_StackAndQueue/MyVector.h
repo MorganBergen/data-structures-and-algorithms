@@ -6,6 +6,7 @@
 
 template <typename DataType>
 class MyVector {
+
   protected:
       size_t theSize;                         // the number of data elements the vector is currently holding
       size_t theCapacity;                     // maximum data elements the vector can hold
