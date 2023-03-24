@@ -11,18 +11,15 @@ class MyInfixCalculator{
 
   public:
     
-    MyInfixCalculator()
-    {
+    MyInfixCalculator() {
 
     }
 
-    ~MyInfixCalculator()
-    {
+    ~MyInfixCalculator() {
      
     }
 
-    double calculate(const std::string& s)
-    {
+    double calculate(const std::string& s) {
         // code begins
         return(55.5);
         // code ends
@@ -33,10 +30,8 @@ class MyInfixCalculator{
     // returns operator precedance; the smaller the number the higher precedence
     // returns -1 if the operator is invalid
     // does not consider parenthesis
-    int operatorPrec(const char c) const
-    {
-        switch(c)
-        {
+    int operatorPrec(const char c) const {
+        switch(c) {
             case '*':
                 return 2;
             case '/':
@@ -51,10 +46,8 @@ class MyInfixCalculator{
     }
 
     // checks if a character corresponds to a valid parenthesis
-    bool isValidParenthesis(const char c) const
-    {
-        switch(c)
-        {
+    bool isValidParenthesis(const char c) const {
+        switch(c) {
             case '(':
                 return true;
             case ')':
@@ -65,20 +58,17 @@ class MyInfixCalculator{
     }
 
     // checks if a character corresponds to a valid digit
-    bool isDigit(const char c) const
-    {
+    bool isDigit(const char c) const {
         if(c >= '0' && c <= '9')
             return true;
         return false;
     }
 
     // computes binary operation given the two operands and the operator in their string form
-    double computeBinaryOperation(const std::string& ornd1, const std::string& ornd2, const std::string& opt) const
-    {
+    double computeBinaryOperation(const std::string& ornd1, const std::string& ornd2, const std::string& opt) const {
         double o1 = std::stod(ornd1);
         double o2 = std::stod(ornd2);
-        switch(opt[0])
-        {
+        switch(opt[0]) {
             case '+':
                 return o1 + o2;
             case '-':
@@ -95,16 +85,14 @@ class MyInfixCalculator{
 
 
     // tokenizes an infix string s into a set of tokens (operands or operators)
-    void tokenize(const std::string& s, MyVector<std::string>& tokens)
-    {
+    void tokenize(const std::string& s, MyVector<std::string>& tokens) {
         // code begins
 
         // code ends
     }
 
     // converts a set of infix tokens to a set of postfix tokens
-    void infixToPostfix(MyVector<std::string>& infix_tokens, MyVector<std::string>& postfix_tokens)
-    {
+    void infixToPostfix(MyVector<std::string>& infix_tokens, MyVector<std::string>& postfix_tokens) {
         // code begins
 
         // code ends
