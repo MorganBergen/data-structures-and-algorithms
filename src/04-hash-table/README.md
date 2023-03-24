@@ -45,12 +45,15 @@ the following shows the directory tree
 ```
 ❯ tree
 .
-├── MainTest.cpp            # 1st entry #include MyInfixCalc.h
-├── MyInfixCalculator.h
+├── MainTest.cpp            # 1st entry #include MyInfixCalc.h, driving execution of prog
+│                           # 
+│  
+│  
+├── MyInfixCalculator.h     #    
 ├── MyStack.h
 ├── MyVector.h
 ├── README.txt
-├── Inputs
+├── Inputs                  # test case directory
 │   ├── input_0.txt
 │   ├── ...
 │   └── input_9.txt
@@ -58,7 +61,7 @@ the following shows the directory tree
 │   ├── output_0.txt
 │   ├── ...
 │   └── output_9.txt
-└── GradingScript.py
+└── GradingScript.py        # grading script testing the corrected based on input output diff
 
 3 directories, 27 files
 ```
@@ -74,10 +77,36 @@ the following shows the directory tree
 
 #include "MyInfixCalculator.h"
 
+int main(int argc, char* argv[]) {
+    
+    if (argc != 2) {
+        std::cerr << "please provide test instance";
+        return(0);
+    }
 
+    std::ifstream infile;
+    infile.open(argv[1]);
+    
+    if (infile.is_open()) {
+        std::string str;
+        std::getline(inFile, str);
+        MyInfixCalculator infix_calculator(str);
+        double a = infix_calculator.calculate(str);
+        std::cout.percision(3);
+        std::cout << std::fixed << a << std::endl;
+    } else {
+        std::cout << "the instance.txt file cannot be opened";
+    }
 
+    infile.close();
+}
 ```
 
+1.  `std::string str;` `std::getline(infile, str);`
+
+will contain the screen read in from the input file, therefore `str` == (219.528--350.755/((218.266-26.514)--465.256)-312.548+93.975+258.314+-91.66) and will be of type string.
+
+2.  `MyInfixCalculator infix_calculator;` 
 
 
 
