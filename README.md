@@ -20,6 +20,8 @@ A first course in abstract data structures and algorithmic design making use of 
 
 [03-stacks-and-queues](./src/03-stack-and-queue/)
 
+[04-infix-calc](./src/04-hash-table/)
+
 **assessment**
 
 [midterm](./other/)
