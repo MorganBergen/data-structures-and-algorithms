@@ -101,12 +101,35 @@ int main(int argc, char* argv[]) {
     infile.close();
 }
 ```
+-  `#include <iostream>`    include the iostream header for input/output operations
+-  `#include <iomanip>`     include the iomanipulation deahder for manipulating the format of i/o stream
+-  `#include <vector>`      include the vector header for the standard vector container
+-  `#include <fstream>`     include the fstream header for file i/o operations
+-  `#include <string>`      include the string header for the standard string class
 
-1.  `std::string str;` `std::getline(infile, str);`
+-  `#include "MyInfixCalculator.h`
+
+include the custom `MyInfixCalculator` header file
+
+-  `int main(int argc, char* argv[])`
+
+contains the command line arguments, which first `argc` is the argument count, the `argv[]` is the argument variable.
+
+-  `if (argc != 2) { ... return(0) };`
+
+check if the correct number of command line arguments are provided, otherwise print an error message and return.  the argument will be the test input file, the explain input file will be the following
+
+```txt
+(219.528--350.755/((218.266-26.514)--465.256)-312.548+93.975+258.314+-91.66)
+```
+
+-  `std::ifstream inFile;`  declare a fstream object called infile which will be the means of getting the contents of the file.
+
+-  `std::string str;` `std::getline(infile, str);`
 
 will contain the screen read in from the input file, therefore `str` == (219.528--350.755/((218.266-26.514)--465.256)-312.548+93.975+258.314+-91.66) and will be of type string.
 
-2.  `MyInfixCalculator infix_calculator;` 
+-  `MyInfixCalculator infix_calculator;` 
 
 
 
