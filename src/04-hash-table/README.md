@@ -125,13 +125,69 @@ check if the correct number of command line arguments are provided, otherwise pr
 
 -  `std::ifstream inFile;`  declare a fstream object called infile which will be the means of getting the contents of the file.
 
+-  `inFile.open(argv[1]);`  open th efile provided as a command-line argument allowing for us to grab it's contents.
+
 -  `std::string str;` `std::getline(infile, str);`
 
 will contain the screen read in from the input file, therefore `str` == (219.528--350.755/((218.266-26.514)--465.256)-312.548+93.975+258.314+-91.66) and will be of type string.
 
 -  `MyInfixCalculator infix_calculator;` 
 
+create an instance of the `MyInfixCalculator` called `infix_calculator` this object will be the driver.
 
+
+
+
+```cpp
+#define __MYINFIXCALCULATOR_H__
+#include <algorithm>
+#include <string>
+#include "MyStack.h"
+#include "MyVector.h"
+
+class MyInfixCalculator {
+    public:
+        MyInfixCalculator() { }
+        ~MyInfixCalculator() { }
+        double calculate(const std::string& s) { }
+    private:
+        int operatorPrec(const char c) const {
+            switch(c) {
+                case '*':
+                    return(2);
+                case '/':
+                    return(2);
+                case '+':
+                    return(3);
+                case '-':
+                    return(3);
+                default:
+                    return(-1);
+            }
+        }
+
+        bool isValidParenthesis(const char c) const {
+            switch(c) {
+                case '(':
+                    return(true);
+                case ')':
+                    return(true);
+                default:
+                    return(false);
+            }
+        }
+
+        bool isDigit(const char c) const {
+            if (c >= '0' && c <= '9') {
+                return(true);
+            } 
+            return (false);
+        }
+
+        double computeBinaryOperation(const std::string& orand1, const std::string& ornd2, const std::string& opt) const {
+            double o1 = std::stod(ornd1);
+
+```
 
 
 
