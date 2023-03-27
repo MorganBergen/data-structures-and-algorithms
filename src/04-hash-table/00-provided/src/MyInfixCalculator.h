@@ -20,7 +20,8 @@ class MyInfixCalculator{
     }
 
     double calculate(const std::string& s) {
-        // code begins
+        // code begins 
+        // the following code shouldnt be there
         return(55.5);
         // code ends
     }
