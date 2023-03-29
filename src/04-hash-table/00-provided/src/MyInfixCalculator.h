@@ -18,9 +18,11 @@ class MyInfixCalculator {
     }
 
     double calculate(const std::string& s) {
-        MyVector<std::string> toks{3};
-        tokenize(s, toks);
-        return(0.0);
+        MyVector<std::string> infix_tokens;
+        tokenize(s, infix_tokens);
+        MyVector<std::string> postfix_tokens;
+        infixToPostfix(infix_tokens, postfix_tokens);
+        return calPostfix(postfix_tokens);
     }
 
   private:
@@ -84,27 +86,70 @@ class MyInfixCalculator {
 
     // tokenizes an infix string s into a set of tokens (operands or operators)
     void tokenize(const std::string& s, MyVector<std::string>& tokens) {
-        for (size_t i = 0; i <= s.length(); i++) {
-            if (isValidParenthesis(s[i])) {
-                std::cout << s[i];
-            } else if (isDigit(s[i])) {
-                std::cout << s[i];
-            } else if (operatorPrec(s[i] == 2) || operatorPrec(s[i] == 3)) {
-                std::cout << s[i];
+        std::string token;
+        for (char c : s) {
+            if (c == ' ') {
+                continue;
+            } else if (operatorPrec(c) != -1 || isValidParenthesis(c)) {
+                if (!token.empty()) {
+                    tokens.push_back(token);
+                    token.clear();
+                }
+                tokens.push_back(std::string(1, c));
             } else {
-                std::cout << "?";
+                token += c;
             }
+        }
+        if (!token.empty()) {
+            tokens.push_back(token);
         }
     }
 
     // converts a set of infix tokens to a set of postfix tokens
     void infixToPostfix(MyVector<std::string>& infix_tokens, MyVector<std::string>& postfix_tokens) {
-        // undefined
+        MyStack<std::string> opStack;
+        for (const std::string& token : infix_tokens) {
+            if (operatorPrec(token[0]) != -1) {
+                while (!opStack.empty() && operatorPrec(opStack.top()[0]) <= operatorPrec(token[0])) {
+                    postfix_tokens.push_back(opStack.top());
+                    opStack.pop();
+                }
+                opStack.push(token);
+            } else if (isValidParenthesis(token[0])) {
+                if (token[0] == '(') {
+                    opStack.push(token);
+                } else {
+                    while (!opStack.empty() && opStack.top() != "(") {
+                        postfix_tokens.push_back(opStack.top());
+                        opStack.pop();
+                    }
+                    opStack.pop(); // Remove the '('
+                }
+            } else {
+                postfix_tokens.push_back(token);
+            }
+        }
+        while (!opStack.empty()) {
+            postfix_tokens.push_back(opStack.top());
+            opStack.pop();
+        }
     }
 
     // calculates the final result from postfix tokens
     double calPostfix(const MyVector<std::string>& postfix_tokens) const {
-        return(0.0);
+        MyStack<double> valStack;
+        for (const std::string& token : postfix_tokens) {
+            if (operatorPrec(token[0]) != -1) {
+                double val2 = valStack.top();
+                valStack.pop();
+                double val1 = valStack.top();
+                valStack.pop();
+                valStack.push(computeBinaryOperation(std::to_string(val1), std::to_string(val2), token));
+            } else {
+                valStack.push(std::stod(token));
+            }
+        }
+        return valStack.top();
     }
 };
 
