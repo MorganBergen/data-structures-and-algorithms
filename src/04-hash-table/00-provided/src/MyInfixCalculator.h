@@ -7,23 +7,20 @@
 #include "MyStack.h"
 #include "MyVector.h"
 
-class MyInfixCalculator{
+class MyInfixCalculator {
 
   public:
     
     MyInfixCalculator() {
-
     }
 
     ~MyInfixCalculator() {
-     
     }
 
     double calculate(const std::string& s) {
-        // code begins 
-        // the following code shouldnt be there
-        return(55.5);
-        // code ends
+        MyVector<std::string> toks{3};
+        tokenize(s, toks);
+        return(0.0);
     }
 
   private:
@@ -33,7 +30,7 @@ class MyInfixCalculator{
     // does not consider parenthesis
     int operatorPrec(const char c) const {
         switch(c) {
-            case '*':
+            case '*': 
                 return 2;
             case '/':
                 return 2;
@@ -87,24 +84,27 @@ class MyInfixCalculator{
 
     // tokenizes an infix string s into a set of tokens (operands or operators)
     void tokenize(const std::string& s, MyVector<std::string>& tokens) {
-        // code begins
-
-        // code ends
+        for (size_t i = 0; i <= s.length(); i++) {
+            if (isValidParenthesis(s[i])) {
+                std::cout << s[i];
+            } else if (isDigit(s[i])) {
+                std::cout << s[i];
+            } else if (operatorPrec(s[i] == 2) || operatorPrec(s[i] == 3)) {
+                std::cout << s[i];
+            } else {
+                std::cout << "?";
+            }
+        }
     }
 
     // converts a set of infix tokens to a set of postfix tokens
     void infixToPostfix(MyVector<std::string>& infix_tokens, MyVector<std::string>& postfix_tokens) {
-        // code begins
-
-        // code ends
+        // undefined
     }
 
     // calculates the final result from postfix tokens
-    double calPostfix(const MyVector<std::string>& postfix_tokens) const
-    {
-        // code begins
-        return (55.5);
-        // code ends
+    double calPostfix(const MyVector<std::string>& postfix_tokens) const {
+        return(0.0);
     }
 };
 
