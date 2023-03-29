@@ -22,6 +22,8 @@ int main(int argc, char* argv[]) {
     if (inFile.is_open()) {
         std::string str;
         std::getline(inFile, str);
+
+        // instantiate infix_calculator
         MyInfixCalculator infix_calculator;
         double a = infix_calculator.calculate(str);
         std::cout.precision(3);
