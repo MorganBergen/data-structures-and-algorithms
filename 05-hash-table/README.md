@@ -1,29 +1,42 @@
-# hash table
+#  hashing 
 
-**content**
+###  contents
 
--  [notes](#notes)
 -  [intro](#intro)
+-  [general idea](#general-idea)
 -  [hash function](#hash-function)
+-  [separate chaining](#separate-chaining)
+-  [hash tables without linked lists](#hash-tables-without-linked-lists)
+-  [linear probing](#linear-probing)
+-  [quadratic probing](#quadratic-probing)
+-  [double hashing](#double-hashing)
+-  [rehashing](#rehashing)
+-  [hash tables in standard library](#hash-tables-in-standard-library)
+-  [hash tables with worst-case o(1) access](#hash-tables-with-worst-case-o1-access)
+-  [perfect hashing](#perfect-hashing)
+-  [cuckoo hashing](#cuckoo-hashing)
+-  [hopscotch hashing](#hopscotch-hashing)
+-  [universal hashing](#universal-hashing)
+-  [extendible hashing](#extendible-hashing)
+-  [summary](#summary)
 
-## notes
+##  intro
 
-### intro
+the implementation of hash tables is frequently called hashing.  hashing is a technique used for performing insertions, deletions, and finds in constant average time.  tree operations that require any ordering information among the elements are not supported efficiently.  thus, operations such as `findMin`, `findMax`, and the printing of the entire table in sorted order in linear time are not supported.  the central data structure is the **hash table** which will examine the following
 
-hash tables are adts that support fast $O(1)$ time search of an item and retrieves its related information.  for example we have registered all your favorite video games, we will be using a data structure to address the following need given the name of the student.
+-  several methods of implementing the hash table
+-  compare these methods analytically
+-  show numerous applications of hashing
+-  compare hash tables with binary search trees
 
+##  general idea
 
+the ideal hash table data sturecture is merely an array of some fixed size containing the items.  a search is performed on some part of the item called a key.  for instance an item could consist of a string that serves as the key and additional data members (for instance, a name that is part of a large emplyee structure.  we will refer to the table size as tableSize, with the understanding that this is part of a hash data structure and not merely some variable floating around globally.  the common convention is to have the table run from `0` to `tableSize - 1`.
 
-the general idea hash table data structure is merely an array of some fixed size containing the items.  in general a search is performed on some part as its data member of the item.  this is called the key.  for instance an item could consist of a string that services as the key and additional data members.
+each key is mapped into some number in the range `0` to `tableSize - 1` and placed in the appropriate cell.  the mapping is called a **hash function**, which ideally should be simple to compute and should ensure that any two distinct keys get different cells.  since there are a finite number of cells and a virtually inexhaustible supply of key, this is clearly impossible and thus we seek a hash function that distributes the keys evenly among the cells.  
 
-1.  **key**  in the context of a hash table the item we use to perform rhe search called **key**.  we asume all keys are _unique_.
-2.  **value**  the information we are searching for is called **key**.  duplicated values are allowed.
-3.  **key-value pair** each has table record is in fact a **key-value pair**
-4.  **fix-sized array**  the records are stored in a **fix-sized array**.  that is, the number of key-value pairs we can store in  each has table is fixed.
-5.  **load factor**  it is often of interest t measure how full the hash table is.  if a size M has table contains N elements, where N ≤ M, we say that the load factor of the hash table is N/M.
+the following figure is typical of a perfect situation.  in this example `john` hashes to `3`, `phil` hashes to `4`, `dave` hashes to `6`, and `mary` hashes to `7`.  the only remaining problems deal with choosing a function, and deciding what to do when two keys hash to the same value (this is known as **collision**) and deciding on the table size.
 
-### hash function
+##  hash function
 
--  instead of directly searching for the key, the has table adt introduces a function, called **hash function** to map each key to the position of its corresponding record in the hash table
--  computing the hash function should only take $O(1)$ time, given a fix-sized key size.  in this case the entire retrieval process will take $O(1)$ time.
 
