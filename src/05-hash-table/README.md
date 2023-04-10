@@ -16,6 +16,10 @@
 ##  specifications
 
 -  the hash table should implement the separate chaining approach to handle collisions
+
+1.  what is separate chaining
+2.  what is a collision
+
 -  the hash table should be implemented using the `MyVector` class, and the secondary chain for each bucket should be implemented using the `MyLinkedList` class.
 -  the hash table should accept either `std::string` or `long long` as the key data type, and it should support any value data type
 -  the hash table should be able to dynamically adjust its table size using table doubling and halving
