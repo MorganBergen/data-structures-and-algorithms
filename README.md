@@ -4,11 +4,13 @@ A first course in abstract data structures and algorithmic design making use of 
 
 **contents**
 
-[00-fundamentals](./00-fundamentals/)
+1.  [fundamentals](./00-fundamentals/)
 
-[01-vector-fundamentals](./01-vectors/)
+2.  [vector-fundamentals](./01-vectors/)
 
-[02-linkedlist-fundamentals](./02-linked-list/)
+3.  [linkedlist-fundamentals](./02-linked-list/)
+
+4.  [hash tables](./05-hash-table)
 
 **source code**
 
