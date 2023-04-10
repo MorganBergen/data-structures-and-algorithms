@@ -2,7 +2,13 @@
 #include <string>
 #include <vector>
 
-int hash (const std::string &key, int tablesize);
+unsigned int hash(const std::string &key, int tablesize) {
+    unsigned int hashval = 0;
+    for (char ch : key) {
+        hashval = 37 * hashval + ch;
+    }
+    return(hashval % tablesize);
+}
 
 int main() {
 
@@ -10,6 +16,8 @@ int main() {
     std::vector<int> values = {0000, 1111, 2222, 3333, 4444, 5555, 6666};
     int tablesize = 7;
 
+    std::cout << "HASH FUNCTION 1" << std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
     for (int i = 0; i < 7; i++) {
         int location = hash(keys[i], tablesize);
         std::cout << std::endl;
@@ -18,13 +26,6 @@ int main() {
                   << location << std::endl;
         std::cout << "tablesize = " << tablesize << std::endl;
     } 
-    return(0);
+
 }
 
-int hash (const std::string &key, int tablesize) {
-    int hashvalue = 0;
-    for (char ch : key) {
-        hashvalue += ch;
-    }
-    return (hashvalue % tablesize);
-}
