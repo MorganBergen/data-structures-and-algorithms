@@ -39,4 +39,49 @@ the following figure is typical of a perfect situation.  in this example `john` 
 
 ##  hash function
 
-if the input keys are integers, then simply returning `key mod tableSize` is generally a reasonable strategy, unless `key` happens to have some undesirable properties.
+if the input keys are integers, then simply returning `key mod tableSize` is generally a reasonable strategy, unless `key` happens to have some undesirable properties.  in this case, the choice of hash function needs to be carefully considered.  for instance, if the table size is 10 and the keys all end in zero, then the hash function is a bad choice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
