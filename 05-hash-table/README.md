@@ -7,6 +7,7 @@
 -  [hash function](#hash-function)
     -  [simple hash function](#simple-hash-function)
     -  [another possible hash function that is not so good](#another-possible-hash-function-that-is-not-so-good)
+    -  [a good hash function](#a-good-hash-function)
 -  [separate chaining](#separate-chaining)
 -  [hash tables without linked lists](#hash-tables-without-linked-lists)
 -  [linear probing](#linear-probing)
