@@ -1,3 +1,1 @@
-#  hash table with separate chaining
-
-
+#  hash table
