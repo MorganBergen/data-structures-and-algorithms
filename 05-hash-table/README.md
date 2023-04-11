@@ -85,7 +85,7 @@ int hash (const std::string &key, int tablesize) {
 }
 ```
 
-### output
+### output and example collision 💥💣
 
 ```bash
 ❯ ./main
