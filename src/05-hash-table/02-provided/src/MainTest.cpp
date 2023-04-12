@@ -9,6 +9,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+    
     //hash_table.preCalPrimes(100);
     //cout << hash_table.nextPrime(83) << endl;
 

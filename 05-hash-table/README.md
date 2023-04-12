@@ -215,7 +215,70 @@ the main programming detail left is collision resolution.  if when an element is
 
 and then address some more recently discovered alternatives.
 
+so note there is no universal hash function that can guarantee zero collisions for arbitrary inputs and a fixed-size hash table.  hash functions can be designed to minimize collisions, but it's impossible to completely eliminate them.
+
+the reason for this is the pigeonhole principle, a fundamental concept incombinatorics.  it states that if you have more items (pigeons) than containers (pigeonholes) to put them in, at least one container must have more than one item.  in the context of hash tables, if you have more keys than table locations, you're bound to have at least one location with more than one key, leading to a collision.
+
+when implementing a hash table, you should be prepared to handle collisions using techniques like chaining (linked lists at each cell location) or open addressing (probing the table for an available cell location).  these techniques help manage collisions while still maintaining the efficiency of hash tables.
+
 ##  separate chaining 
+
+the first strategy commonly known as **separate chaining** is to keep a list of all elements that hash to the same value.  we can use the standard library list implementation.  if space is tight, it might be preferable to avoid their use (since these lists are doubly linked and waste space).  we assume for this section that the keys are the first 10 perfect squares and that the hashing function is simply $\text{ hash }(x) = x \mod 10$.  (the table size is not prime but is here for simplicity).  the following figure shows the resulting separate chaining hash table.
+
+<br><br>
+<img src="./assets/chaining.png" width=300px>
+<br><br>
+
+to perform a `search` we use the hash function to determine which list to traverse.  we then search the appropriate list.  to perform an `insert`, we check the appropriate list to see whether the element is already in place (if duplicates are expected, an extra data member is usually kept, and this data member would be incremented in the event of a match).  if the element turns out to be a new, it can be inserted at the front of the list, since it is convenient and also because frequently it happens that recently inserted elements are the most likely to be accessed in the near future.
+
+the class interface for separate chaining implementation is shown below.  the hash table stores an array of linked lists, which are allocated in the constructor.  the class interface illustrates an syntax point:
+
+prior to c++11, in the declaration of `theLists` a space was required between the two `>`'s; since `>>` is a c++ token, and becaus eit is longer than `>`, `>>` would be recognized as a the token.  c++ is no longer the case.  
+
+just as the binary search tree works only for objects that are `comparable`, the has tables in this work only for objects that provide a hash function and equality operators `operator==` or `operator!=`, (or possibly both).  
+
+instead of requiring hash functions that take both the object and the table size as parameters, we have our hash function take only the object as the parameter and return an appropriate intergal type.  the standaard mechanism for doing this uses function objects, and the protocol for hash tables was introduced in c++11.  specifically in c++11 hash functions can be expressed by the function object template:
+
+```c++
+template <typename hashobj>
+class hashtable {
+    public:
+        explicit hashtable(int size = 101);
+        bool contains(const hashobj &x) const;
+        void makeempty();
+        bool insert(const hashobj &x);
+        bool insert(hashobj &&x);
+        bool remove(const hashobj &x);
+
+    private:
+        // an array of lists
+        vector<list<hashobj>> theLists;
+        int currentSize;
+        void rehash();
+        size_t myhash(const hashobj &x);
+
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
