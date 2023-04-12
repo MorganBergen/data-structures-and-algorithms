@@ -9,6 +9,7 @@
     -  [another possible hash function that is not so good](#another-possible-hash-function-that-is-not-so-good)
     -  [a good hash function](#a-good-hash-function)
 -  [separate chaining](#separate-chaining)
+    -  [type declaraction for separate chaining](#type-declaraction-for-separate-chaining)
 -  [hash tables without linked lists](#hash-tables-without-linked-lists)
 -  [linear probing](#linear-probing)
 -  [quadratic probing](#quadratic-probing)
@@ -225,19 +226,10 @@ when implementing a hash table, you should be prepared to handle collisions usin
 
 the first strategy commonly known as **separate chaining** is to keep a list of all elements that hash to the same value.  we can use the standard library list implementation.  if space is tight, it might be preferable to avoid their use (since these lists are doubly linked and waste space).  we assume for this section that the keys are the first 10 perfect squares and that the hashing function is simply $\text{ hash }(x) = x \mod 10$.  (the table size is not prime but is here for simplicity).  the following figure shows the resulting separate chaining hash table.
 
-<br><br>
-<img src="./assets/chaining.png" width=300px>
-<br><br>
+###  separate chaining hash table
+<br><img src="./assets/chaining.png" width=300px><br><br>
 
-to perform a `search` we use the hash function to determine which list to traverse.  we then search the appropriate list.  to perform an `insert`, we check the appropriate list to see whether the element is already in place (if duplicates are expected, an extra data member is usually kept, and this data member would be incremented in the event of a match).  if the element turns out to be a new, it can be inserted at the front of the list, since it is convenient and also because frequently it happens that recently inserted elements are the most likely to be accessed in the near future.
-
-the class interface for separate chaining implementation is shown below.  the hash table stores an array of linked lists, which are allocated in the constructor.  the class interface illustrates an syntax point:
-
-prior to c++11, in the declaration of `theLists` a space was required between the two `>`'s; since `>>` is a c++ token, and becaus eit is longer than `>`, `>>` would be recognized as a the token.  c++ is no longer the case.  
-
-just as the binary search tree works only for objects that are `comparable`, the has tables in this work only for objects that provide a hash function and equality operators `operator==` or `operator!=`, (or possibly both).  
-
-instead of requiring hash functions that take both the object and the table size as parameters, we have our hash function take only the object as the parameter and return an appropriate intergal type.  the standaard mechanism for doing this uses function objects, and the protocol for hash tables was introduced in c++11.  specifically in c++11 hash functions can be expressed by the function object template:
+### type declaraction for separate chaining 
 
 ```c++
 template <typename hashobj>
@@ -259,6 +251,43 @@ class hashtable {
 
 };
 ```
+
+to perform a `search` we use the hash function to determine which list to traverse.  we then search the appropriate list.  to perform an `insert`, we check the appropriate list to see whether the element is already in place (if duplicates are expected, an extra data member is usually kept, and this data member would be incremented in the event of a match).  if the element turns out to be a new, it can be inserted at the front of the list, since it is convenient and also because frequently it happens that recently inserted elements are the most likely to be accessed in the near future.
+
+the class interface for separate chaining implementation is shown below.  the hash table stores an array of linked lists, which are allocated in the constructor.  the class interface illustrates an syntax point:
+
+prior to c++11, in the declaration of `theLists` a space was required between the two `>`'s; since `>>` is a c++ token, and becaus eit is longer than `>`, `>>` would be recognized as a the token.  c++ is no longer the case.  
+
+just as the binary search tree works only for objects that are `comparable`, the has tables in this work only for objects that provide a hash function and equality operators `operator==` or `operator!=`, (or possibly both).  
+
+instead of requiring hash functions that take both the object and the table size as parameters, we have our hash function take only the object as the parameter and return an appropriate intergal type.  the standaard mechanism for doing this uses function objects, and the protocol for hash tables was introduced in c++11.  specifically in c++11 hash functions can be expressed by the function object template:
+
+```c++
+template <typename key>
+class hash {
+    public:
+        size_t operator() (const key &k) const;
+};
+```
+
+default implementations of this template are provided for standard types such as `int` and `std::string`, thus the hash function described in the hash routine for string objects with algo `hashval = 37 * hashval + ch;` could be implemented as,
+
+```c++
+template <>
+class hash<std::string> {
+    public:
+        size_t operator()(const std::string &key) {
+            size_t hashval = 0;
+            for(char ch : key) {
+                hashval = 37 * hashval + ch;
+            }
+            return hashval;
+        }
+};
+```
+
+the type `size_` is an unighed integral tyoe that represents the size of an object; therefore, it is guaranteed to be able to store an array index.  a class that implements a hash table algorithm can then use calls to the generic hash function object to generate an integral type `size_t` and then scale the result into asuitable array index.  in our hash tables, this is manifested in private member function `myhash`.
+
 
 
 
