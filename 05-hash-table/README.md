@@ -286,37 +286,14 @@ class hash<std::string> {
 };
 ```
 
-the type `size_` is an unighed integral tyoe that represents the size of an object; therefore, it is guaranteed to be able to store an array index.  a class that implements a hash table algorithm can then use calls to the generic hash function object to generate an integral type `size_t` and then scale the result into asuitable array index.  in our hash tables, this is manifested in private member function `myhash`.
+the type `size_` is an unsigned integral type that represents the size of an object; therefore, it is guaranteed to be able to store an array index.  a class that implements a hash table algorithm can then use calls to the generic hash function object to generate an integral type `size_t` and then scale the result into asuitable array index.  in our hash tables, this is manifested in private member function `myhash`.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```c++
+size_t myhash(const hashedobj hashedobj &x) const {
+    static hash<hashobj> hf;
+    return hr(x) % thelists.size();
+}
+```
 
 
 

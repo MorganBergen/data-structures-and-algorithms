@@ -22,7 +22,7 @@ class hashtable {
         vector<list<hashobj>> theLists;
         int currentSize;
         void rehash();
-        size_t myhash(const hashobj &x);
+        bool remove(const hashobj &x);
+        size_t myhash(const hashobj &x) const;
 };
-
 #endif

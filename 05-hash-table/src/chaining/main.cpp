@@ -7,6 +7,8 @@
 int main() {
 
     hashtable<std::string> ht;
+    // hashtable<std::string, int> hashtable;
+
 
     return(0);
 }
