@@ -295,6 +295,47 @@ size_t myhash(const hashedobj hashedobj &x) const {
 }
 ```
 
+the next figure illustrates `makeEmpty`, `contains`, `remove` for separate chaining hash table
+
+
+```c++
+void makeEmpty() {
+    for(auo & thisList : theList) {
+        thisList.clear()
+    }
+}
+
+bool contain(const hashedObj & x) const {
+    auto & whichList = theLists[myhash(x)];
+    return(find(begin(whichList), end(whichList), x) != end(whichList));
+}
+
+bool remove(const hashedObj &x) {
+    auto & whichList = theLists[myhash(x)];
+    auto itr = find(begin(whichList), end(whichList), x);
+    if (itr == end(whichList)) {
+        return(false);
+    }
+    whichList.erase(itr);
+    --currentSize;
+    return(true);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
