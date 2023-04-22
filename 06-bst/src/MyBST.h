@@ -5,26 +5,22 @@
 #include <fstream>
 #include <cstdlib>
 
-enum TreeTravOrderType
-{
+enum TreeTravOrderType {
     PreOrder,
     InOrder,
     PostOrder
 };
 
-enum NodePosType
-{
+enum NodePosType {
     Left,
     Right,
     Root
 };
 
 template <typename ComparableType>
-class MyBST
-{
+class MyBST {
   private:
-    struct BinaryNode
-    {
+    struct BinaryNode {
         ComparableType element;
         size_t height;
         BinaryNode *left;
@@ -34,38 +30,43 @@ class MyBST
             element{x}, 
             height{h},
             left{l}, 
-            right{r} 
-        { 
-            ;
-        }
+            right{r} { : }
 
         BinaryNode(ComparableType && x, const size_t h, BinaryNode *l, BinaryNode *r) : 
             element{std::move(x)}, 
             height{h},
             left{l},
-            right{r}
-        {
-            ;
-        }
+            right{r} { : }
     };
 
-    BinaryNode *root;       // the root node
-    size_t theSize;         // the number of data elements in the tree
+    BinaryNode *root;       
+    size_t theSize;         
+
+    const ComparableType& findMin() const {
+        if (root == nullptr) {
+            throw std::out_of_range("the tree is empty");
+        }
+        return findMin(root) -> element;
+    }
 
     // finds the minimum data element from the tree rooted at t
-    BinaryNode* findMin(BinaryNode *t) const
-    {
-        // code begins
-
-        // code ends
+    BinaryNode* findMin(BinaryNode *t) const {
+        if (t == nullptr) {
+            return nullptr;
+        } if (t -> left == nullptr) {
+            return (t);
+        } 
+        return findMin(t -> left);
     }
 
     // finds the maximum data element from the tree rooted at t
-    BinaryNode* findMax(BinaryNode *t) const
-    {
-        // code begins
-
-        // code ends
+    BinaryNode* findMax(BinaryNode *t) const {
+        if (t == nulptr) {
+            return nullptr;
+        } while (t -> right != nullptr) {
+            t = t -> right;
+        }
+        return (t);
     }
 
     // checks if x is contained in the tree rooted at t
