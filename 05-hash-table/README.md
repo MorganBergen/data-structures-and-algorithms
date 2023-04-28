@@ -322,8 +322,11 @@ bool remove(const hashedObj &x) {
 }
 ```
 
+the next figure illustrates an `Employee` class that can be stored in the generic hash table, using the `name` member as the key.  the `Employee` class implements the `HashedObj` requirements by providing equality operators and a hash function object.
 
+the insertion routine:  if the item to be inserted is already present, then we do nothing; otherwise we place it in the list.  the element can be placed anywhere in the list; using `push_back`
 
+any scheme could be used besides linked lists to reolsve the collisions; a binary search tree or even another hash table would work, but we expect that if the table is large and the hash function is good, all the lists should be short, so basic separate chaining amkes no attempt to try anything complicated.  we define the load factor $\lambda$ of a hash table to be the ratio of the number of elements in the hash table to the table size.  in the example above, $\lambda = 1.0$.  the average length of a list is $\lambda$.  the effort required to perform a search is the constnat time required to evaluate the hash function plus the time to traverse the list.  in a unsuccessful search, the number of nodes to examine is $\lambda$ on average.  a successful search requires that about $1 + (\lambda / 2)$
 
 
 
