@@ -1,11 +1,13 @@
 #  lab 07 binary heap
 
-**contents**
+###  contents
 
 1.  [objective](#objective)
 2.  [specification](#specification)
 3.  [testing](#testing)
 4.  [deliverables](deliverables)
+
+##  [intro](#intro)
 
 ## objective
 
@@ -32,4 +34,59 @@ we will test your implementation using the tester main function.  if your code d
 1.  `MyVector_m358b583.h`
 2.  `MyBinaryHeap_m358b583.h`
 
+##  intro
 
+**tree**
+
+```
+.
+├── EECS330_Lab07_BinaryHeap.pdf
+├── GradingScript.py
+├── Inputs
+│   ├── input_0.txt
+│   ├── input_1.txt
+│   ├── input_2.txt
+│   ├── input_3.txt
+│   ├── input_4.txt
+│   ├── input_5.txt
+│   ├── input_6.txt
+│   ├── input_7.txt
+│   ├── input_8.txt
+│   └── input_9.txt
+├── MainTest.cpp
+├── MyBinaryHeap.h
+├── MyVector_m358b583.h
+├── Outputs
+│   ├── output_0.txt
+│   ├── output_1.txt
+│   ├── output_2.txt
+│   ├── output_3.txt
+│   ├── output_4.txt
+│   ├── output_5.txt
+│   ├── output_6.txt
+│   ├── output_7.txt
+│   ├── output_8.txt
+│   └── output_9.txt
+└── README.txt
+
+3 directories, 26 files
+```
+
+
+```
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+#include "binaryheap.h"
+
+int main(int argc, char* argv[]) {
+
+    if (argc !=) {
+        std::cout << "please provide input file."
+    }
+
+}
+
+```
