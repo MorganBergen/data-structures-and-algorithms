@@ -12,7 +12,6 @@ int main(int argc, char* argv[]) {
     
     //hash_table.preCalPrimes(100);
     //cout << hash_table.nextPrime(83) << endl;
-
     if (argc != 2) {
         std::cout << "Please provide the input file.\n";
         return 1;
@@ -25,6 +24,11 @@ int main(int argc, char* argv[]) {
     if (inFile.is_open()) {
         string str;
         while(std::getline(inFile, str)) {
+            /*
+             * str.find("\t")
+             * find walks a file hierachy
+             * size_t tp = str.find("\t")
+             */
             size_t tp = str.find("\t");
             string k = str.substr(0, tp);
             int v = stoi(str.substr(tp + 1));
