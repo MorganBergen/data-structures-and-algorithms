@@ -8,7 +8,6 @@
 -  [testing](#testing)
 
 ##  objective
-
 -  get familiar with the implementation of hash table with separate chaining in c++
 -  dynamic hash table size adjustments and rehashing operations
 -  universal hash function calculations and modulo speed up with mersenne prime
@@ -27,7 +26,7 @@
 
 ##  hints
 
--  you can make use of the `HashFunc` and `HashObj` classes that have already been implemented
+-  you can make use of the ```HashFunc``` and `HashObj` classes that have already been implemented
 -  you should use sieve of eratosthenes to precompute prime numbers
 -  recall the difference between `MyVector::size()` and `MyVector::capacity()`, make the proper use of them 
 
@@ -37,7 +36,7 @@ test the implementation using the tester main function.  the posted input and ou
 
 ##  directory
 
-```
+```zsh
 ❯ tree
 .
 ├── GradingScript.py
@@ -150,8 +149,39 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-
 ```
+
+## `Vector.h`
+
+###  private member variables
+
+1.  `size_t size;`
+2.  `size_t capacity;`
+3.  `T *data`
+
+###  public member variable
+
+1.  `static const size_t SPARE_CAPACITY = 16;`
+
+###  public member functions
+
+1.  `explicit Vector(size_t init_size = 0);`
+2.  `Vector(const Vector& rhs):`
+3.  `Vector(const std::vector<T>& rhs):`
+4.  `~Vector()`
+5.  `Vector& operator =(const std::vector& rhs)`
+6.  `Vector& operator =` 
+
+
+
+
+
+
+
+
+
+
+
 
 
 

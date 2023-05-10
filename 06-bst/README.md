@@ -1,100 +1,43 @@
-#  self-balancing avl binary search tree **avl-bst**
+# binary trees questions
 
-[start here](#start-here)
+4.4.  show that a non-empty binary tree with $n$ nodes has a $n + 1$ nullptr representing the children.
 
-## contents
+proof
 
-1.  [objective](#objective)
-2.  [specifications](#specifications)
-3.  [evaluation](#evaluation)
-4.  [deadline](#deadline)
+base case:  when n = 1, we have 2 nullptrs representing the children
 
-##  objective
+induction hypothesis:  assume that for $k \geq 1$, we have a binary tree with $k$ nodes having $k + 1$ nullptrs representing children.
 
--  get familiar with binary search tree implementation with c++
--  get familiar with avl tree implementation with c++
+when we add the $k + 1$ the node to the binary tree we have ot attach it to the one of the exisiting nullptrs, in this case, we have $k$ nullptrs.  but, the new node has two nullptrs representing children.  so we have $k + 2$, nullptrs in total.  the tree has a size of $k + 1$, because of the newly inserted node.  so, the hypothesis is true for $k + 1$
 
-##  specifications
+4.22.  design a linear time algorithm to verify that the heights of an avl tree are correct.
 
-1.  implement the self balancing avl binary search tree data structure as the `mybst` class
-2.  implement a function - 
+-  post order traversal
+-  for each node, check that the heights of the children are correct
+-  if the heights are correct, then the heights of the parents are correct
 
-    `bool lowestCommonAncestor(const ComparableType& x, const ComparableType& y, ComparableType& lca);`
+<br><img src="./assets/0-tree.png" align=left width=200px>
 
-    that calculates the lowest common ancestor **lca** of the two input data elements `x` and `y`.  if both data elements are in the avl-bst return true and store their lca in `lca`.  otherwise return false.
+    1.  leaf node
 
-##  evaluation
+    2.  avl property
 
-we will test your implementation using the tester main function posted online.  the posted input and output examples should be used for a testing purpose, while we will use another set of inputs for grading.  your code will be compiled under ubuntu 20.04.01 lst using g++ version 9.4.0 (default) with c++11 standard.
+    3.  height(p) = max(height(L), height(R)) + 1
 
-##  deadline
+<br><br><br><br><br>
 
-april 21st 2023
+4.46.  two trees, $t_{1}$ and $t_{2}$ are _isomorphic_ if $t_{1}$ can be transformed into $t_{2}$ by swapping left and right children of (some of the) nodes in $t_{1}$.  for instance, the two trees in the following figure are isomorphic because they are the same if the children of $a$ and $b$, and $g$, but not the other nodes, are swapped.
 
-##  start here
+a.  give a polynomial time algorithm to decide if two trees are isomorphic.
 
-1.  [trees](#trees)
+b.  what is the running time of your program (is there a linear solution)?
 
-##  trees
-
-for large amounts of input the lijnear access time of linked lists is prohibitive.  in this chater we look at a simple data structure for which the average running time of most operations is $O(\log N)$.  we also sketch a conceptually simple modification to this data structure that guarantees the above time bound in the worst case and discuss a second modifiction that essentially gives an $O(\log N)$ running time per operation for a long sequence of instructions.
-
-the data structure that we are referring to is known as a **binary search tree**.  the binary search tree is the basis for the implementation of two library collection classes, `set`, and `map`, whcih are used in many applications.  _trees_ in general are very useful abstractions in computer science, so we will discuss their use in other, more general apps.
-
--  how trees are used to implement the file system of several popular operation systems.
--  how trees can be used to evaluate expressions
--  how to use trees to support searching operations in $O(\log N)$ average time and how to refine these ideas to obtain $Olog(N)$ worst-case bounds.  we will also see how to implement these operations when the data is stored on a disk.
--  discuss and use the `set` and `map` classes
-
-##  4.1 preliminaries
-
-a **tree** can be defined in several ways.  one natural way to define a tree is recursively.  a tree is a collection of nodes. the collection cna be empty; otherwise, a tree consists of a distinguished node, _r_, called the **root**, and zero or more non empty subtrees $T_{1}, T_{2}, \dots, T_{k}$, each of whose root are connected by a directed **edge** from _r_.
-
-the root of each subtree is said to be a **child** of _r_, and _r_ is the **parent** of each subtree root.  
-
-<img src="./assets/4.1-tree.png" width=300px>
-
-from the recursive definition, we find that a tree is a collection of $N$ nodes, one of which is the root, and $N - 1$ edges.  that there are $N - 1$ edges follows from the fact that each edge connects some node to its parent, and every node expect the root has one parent.
-
-in the tree of figure 4,3 the root is $A$.  node $F$ has $A$ as a parent and $K$, $L$, and $M$ as children.  each node may have an arbitrary number of children, possibly zero.  nodes with no children are known as **leaves**; the leaves in the tree above are $B, C, H, I, P, Q, K, L, M, N$.  nodeswith the same parent are **siblings**; thus $K, L, M$ are all siblings.  **grandparent** and **grandchild** relations can be defined in a similar manner.
-
-a path form node $n_{1}$ to $n_{k}$ is defined as a sequence of nodes $n_{1}, n_{2}, \dots n_{3}$  such 
+-  pre order traversal for $t_{1}$ and $t_{2}$
+-  for the node $t_{1} \in T_{1}$ and  $t_{2} \in T_{2}$ 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-<img src="./assets/4.2-tree.png" width=300px>
-
-<img src="./assets/4.3-tree.png" width=300px>
-
-<img src="./assets/4.4-tree.png" width=300px>
 
 
 
