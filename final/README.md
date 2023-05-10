@@ -117,7 +117,7 @@ the tree is now balanced and the avl property is maintained.
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
 </summary>
-<code>
+```
 void Graph::dijkstra(Vertex s) {
     for each Vertex v {
         v.dist = INFINITY;
@@ -142,7 +142,7 @@ while(there is an unknown distance vertex) {
         }
     }
 }
-</code>
+```
 </details>
 
 <br>
@@ -262,7 +262,7 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
 </summary>
-<code>
+```cpp
 #include <cstddef>
 #include <iostream>
 
@@ -332,7 +332,7 @@ QueueList::~QueueList() {
     tail = nullptr;
     queue_size = 0;
 }
-</code>
+```
 </details>
 
 <details>
