@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/02-linkedlist.iml" filepath="$PROJECT_DIR$/.idea/02-linkedlist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/05-hash-table.iml" filepath="$PROJECT_DIR$/.idea/05-hash-table.iml" />
     </modules>
   </component>
 </project>
