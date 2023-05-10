@@ -110,14 +110,11 @@ the tree is now balanced and the avl property is maintained.
 
 </details>
 
-<br>
-
 ####  3.  give the pseudocode of the Dijkstra’s algorithm for finding the shortest path from an edge- weighted graph that contains no negative edge. Let the source node be 𝑠, and your algorithm should find the shortest path between 𝑠 and all other nodes in the graph.
 
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
-</summary>
-```
+<details><summary>explaination</summary></details>
+
+```cpp
 void Graph::dijkstra(Vertex s) {
     for each Vertex v {
         v.dist = INFINITY;
@@ -143,9 +140,6 @@ while(there is an unknown distance vertex) {
     }
 }
 ```
-</details>
-
-<br>
 
 ####   4.  prove that the dijkstra’s algorithm is correct when assuming no negative edge and give a counter example that the algorithm will not work if the graph contains negative edges.
 
@@ -166,9 +160,6 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 
 </details>
 
-
-<br>
-
 ###  5.  write the pseudocode (not the C++ code; it doesn’t need to be runnable) for the forest-based implementation of disjoint sets with union-by-size and path compression. Argue that the union(𝑟1, 𝑟2) operation can be done in 𝑂(1) time (where 𝑟1, 𝑟2 are the roots of the trees to be merged.)
 
 <details>
@@ -182,8 +173,6 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 </summary>
 
 </details>
-
-<br>
 
 ####  6.  continuing from the above question, prove that the find(𝑥) operation is in 𝑂(log 𝑛) with union- by-size. Note that 𝑥 is an arbitrary element contained in the disjoint set. 
 
@@ -199,8 +188,6 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 
 </details>
 
-<br>
-
 ####  7.  recall the leftist heap. what is the definition of “null path length”? draw the resulted leftist heap from merging the following two leftist heaps.  we define the null path length, `npl(X)`, of any node `X` to be the length of the shortest path from `X` to a node without two children. 
 
 <details>
@@ -215,8 +202,6 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 
 </details>
 
-<br>
-
 ####   8.  recall the adjacency matrix and adjacency list implementation of the graph data structure. what are the time/space complexity of both implementations w.r.t. the following aspects: storage required, adding a new node, adding a new edge, deciding whether an edge exists between two nodes, and enumerating all neighbors of a given node. use |𝑉| for the number of vertices in the graph, |𝐸| for the number of edges in the graph, and 𝑑 for the average degree of the graph.
 
 <details>
@@ -229,7 +214,7 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
 
-</details><br>
+</details>
 
 ####  9.  what are “Big Five” defined in the context of c++ object interface?
 
@@ -243,7 +228,7 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
 
-</details><br>
+</details>
 
 ####  10.  write the pseudocode for depth-first search (DFS) and bread-first search (BFS) algorithms. let 𝑠 be the source node. your algorithms should print out the lists of visited nodes.
 
@@ -255,13 +240,17 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
-</details><br>
+</details>
 
 ####  11.  write the c++ code (expected to be runnable, while minor glitches in syntax are acceptable) for the top(), enqueue(), dequeue() operations and the destructor function of a queue data structure. the data structure is implemented using singly linked list. note that your implementation should not cause any memory leak nor leaving any uncollected memory blocks upon the termination of the program.
 
 <details>
-<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
+</details>
+
+**implementation**
+
 ```cpp
 #include <cstddef>
 #include <iostream>
@@ -333,9 +322,4 @@ QueueList::~QueueList() {
     queue_size = 0;
 }
 ```
-</details>
 
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
-</summary>
-</details><br>
