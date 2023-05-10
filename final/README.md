@@ -215,7 +215,9 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 
 </details>
 
-##   Recall the adjacency matrix and adjacency list implementation of the graph data structure. What are the time/space complexity of both implementations w.r.t. the following aspects: storage required, adding a new node, adding a new edge, deciding whether an edge exists between two nodes, and enumerating all neighbors of a given node. Use |𝑉| for the number of vertices in the graph, |𝐸| for the number of edges in the graph, and 𝑑 for the average degree of the graph. (10pts)
+<br>
+
+####   8.  recall the adjacency matrix and adjacency list implementation of the graph data structure. what are the time/space complexity of both implementations w.r.t. the following aspects: storage required, adding a new node, adding a new edge, deciding whether an edge exists between two nodes, and enumerating all neighbors of a given node. use |𝑉| for the number of vertices in the graph, |𝐸| for the number of edges in the graph, and 𝑑 for the average degree of the graph.
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -227,24 +229,9 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
 
-</details>
+</details><br>
 
-##  What are “Big Five” defined in the context of C++ object interface? (10pts)
-
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
-</summary>
-
-</details>
-
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
-</summary>
-
-</details>
-
-##  Write the pseudocode for depth-first search (DFS) and bread-first search (BFS) algorithms. Let 𝑠 be the source node. Your algorithms should print out the lists of visited nodes. (5pts for DFS, 5pts for BFS)
-
+####  9.  what are “Big Five” defined in the context of c++ object interface?
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -256,8 +243,28 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
 
+</details><br>
+
+####  10.  write the pseudocode for depth-first search (DFS) and bread-first search (BFS) algorithms. let 𝑠 be the source node. your algorithms should print out the lists of visited nodes.
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+</summary>
 </details>
 
-##  Write the C++ code (expected to be runnable, while minor glitches in syntax are acceptable) for the top(), enqueue(), dequeue() operations and the destructor function of a queue data structure. The data structure is implemented using singly linked list. Note that your implementation should not cause any memory leak nor leaving any uncollected memory blocks upon the termination of the program. (20pts)
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
+</summary>
+</details><br>
 
+####  11.  write the c++ code (expected to be runnable, while minor glitches in syntax are acceptable) for the top(), enqueue(), dequeue() operations and the destructor function of a queue data structure. the data structure is implemented using singly linked list. note that your implementation should not cause any memory leak nor leaving any uncollected memory blocks upon the termination of the program.
 
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+</summary>
+</details>
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
+</summary>
+</details><br>
