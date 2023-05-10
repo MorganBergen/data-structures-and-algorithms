@@ -6,7 +6,7 @@ may 11 7:30 am - 10:00 am
 
 <br>
 
-###  1.  describe two essential requirements for hash function design
+####  1.  describe two essential requirements for hash function design
 
 <details>
   <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -26,7 +26,7 @@ a hash function is a mathmematical function that takes an input (such as a strin
 
 <br>
 
-###  2. recall avl tree what is the avl property and draw the resulted avl tree after inserting 10 into the following avl tree.
+####  2. recall avl tree what is the avl property and draw the resulted avl tree after inserting 10 into the following avl tree.
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -110,8 +110,9 @@ the tree is now balanced and the avl property is maintained.
 
 </details>
 
-##  give the pseudocode of the Dijkstra’s algorithm for finding the shortest path from an edge- weighted graph that contains no negative edge. Let the source node be 𝑠, and your algorithm should find the shortest path between 𝑠 and all other nodes in the graph.
+<br>
 
+####  3.  give the pseudocode of the Dijkstra’s algorithm for finding the shortest path from an edge- weighted graph that contains no negative edge. Let the source node be 𝑠, and your algorithm should find the shortest path between 𝑠 and all other nodes in the graph.
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -144,7 +145,20 @@ while(there is an unknown distance vertex) {
 </code>
 </details>
 
-##   Prove that the Dijkstra’s algorithm is correct when assuming no negative edge (7pts). And give a counter example that the algorithm will not work if the graph contains negative edges (3pts).
+<br>
+
+####   4.  prove that the dijkstra’s algorithm is correct when assuming no negative edge and give a counter example that the algorithm will not work if the graph contains negative edges.
+
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+</summary>
+
+a.  dijkstra’s algorithm is correct when assuming no negative edge 
+
+<img src="./assets/00-ans.png">
+
+</details>
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
@@ -152,7 +166,10 @@ while(there is an unknown distance vertex) {
 
 </details>
 
-##  Write the pseudocode (NOT the C++ code; it doesn’t need to be runnable) for the forest-based implementation of disjoint sets with union-by-size and path compression. Argue that the union(𝑟1, 𝑟2) operation can be done in 𝑂(1) time (where 𝑟1, 𝑟2 are the roots of the trees to be merged.)
+
+<br>
+
+###  5.  write the pseudocode (not the C++ code; it doesn’t need to be runnable) for the forest-based implementation of disjoint sets with union-by-size and path compression. Argue that the union(𝑟1, 𝑟2) operation can be done in 𝑂(1) time (where 𝑟1, 𝑟2 are the roots of the trees to be merged.)
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -166,8 +183,9 @@ while(there is an unknown distance vertex) {
 
 </details>
 
+<br>
 
-##  continuing from the above question, prove that the find(𝑥) operation is in 𝑂(log 𝑛) with union- by-size. Note that 𝑥 is an arbitrary element contained in the disjoint set. 
+####  6.  continuing from the above question, prove that the find(𝑥) operation is in 𝑂(log 𝑛) with union- by-size. Note that 𝑥 is an arbitrary element contained in the disjoint set. 
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -181,8 +199,9 @@ while(there is an unknown distance vertex) {
 
 </details>
 
-##  Recall the leftist heap. What is the definition of “null path length”? Draw the resulted leftist heap from merging the following two leftist heaps.  We define the null path length, npl(X), of any node X to be the length of the shortest path from X to a node without two children. 
+<br>
 
+####  7.  recall the leftist heap. what is the definition of “null path length”? draw the resulted leftist heap from merging the following two leftist heaps.  we define the null path length, `npl(X)`, of any node `X` to be the length of the shortest path from `X` to a node without two children. 
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
@@ -198,10 +217,46 @@ while(there is an unknown distance vertex) {
 
 ##   Recall the adjacency matrix and adjacency list implementation of the graph data structure. What are the time/space complexity of both implementations w.r.t. the following aspects: storage required, adding a new node, adding a new edge, deciding whether an edge exists between two nodes, and enumerating all neighbors of a given node. Use |𝑉| for the number of vertices in the graph, |𝐸| for the number of edges in the graph, and 𝑑 for the average degree of the graph. (10pts)
 
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+</summary>
+
+</details>
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
+</summary>
+
+</details>
+
 ##  What are “Big Five” defined in the context of C++ object interface? (10pts)
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+</summary>
+
+</details>
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
+</summary>
+
+</details>
 
 ##  Write the pseudocode for depth-first search (DFS) and bread-first search (BFS) algorithms. Let 𝑠 be the source node. Your algorithms should print out the lists of visited nodes. (5pts for DFS, 5pts for BFS)
 
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
+</summary>
+
+</details>
+
+<details>
+<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
+</summary>
+
+</details>
 
 ##  Write the C++ code (expected to be runnable, while minor glitches in syntax are acceptable) for the top(), enqueue(), dequeue() operations and the destructor function of a queue data structure. The data structure is implemented using singly linked list. Note that your implementation should not cause any memory leak nor leaving any uncollected memory blocks upon the termination of the program. (20pts)
 
