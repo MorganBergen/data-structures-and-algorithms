@@ -1,29 +1,1 @@
-# linked list
-
-**contents**
-
-1.  [objective](#objective)
-2.  [specification of the adt](#specification-of-the-adt)
-3.  [testing](#testing)
-
-## objective 
-
--  get familiar with doubly linked list basic operations and their implementations using c++11
--  get familiar with iterators
--  get familiar with c++ inheritance and overloading
-
-## specification of the adt
-
--  implement the basic linked list methods as summarized in the template file
-
-1.  rename the object name to `MyLinkedList`
-2.  implement `operator-- ()` and `operator-- (int)` for both of the `const_iterator` and `iterator` classes
-3.  implement a `void reverseList(void)` method for the `MyLinkedList` object which reverse the current list
-4.  implement a `MyLinkedList<DataType>& appendList (MyLinkedList<DataType&& rlist)` method for the `MyLinkedList` class, which accepts as parameter another `MyLinkedList` class and appends all its items to the end of the current linked list.
-5.  implement a `bool swapAdjElement(iterator &itr)` method, which swaps the element pointed by `itr` with its next element.  if the swap is success, return `TRUE` otherwise (e.g. the next element $DNE$) and return `FALSE`
-
-## testing
-
-compiled under Ubuntu 20.04 LTS using `g++` version 9.3.0 (default) with C++11 standard.
-
-
+# linked list**contents**1.  [objective](#objective)2.  [specification of the adt](#specification-of-the-adt)3.  [testing](#testing)## objective -  get familiar with doubly linked list basic operations and their implementations using c++11-  get familiar with iterators-  get familiar with c++ inheritance and overloading## specification of the adt-  implement the basic linked list methods as summarized in the template file1.  rename the object name to `MyLinkedList`2.  implement `operator-- ()` and `operator-- (int)` for both of the `const_iterator` and `iterator` classes3.  implement a `void reverseList(void)` method for the `MyLinkedList` object which reverse the current list4.  implement a `MyLinkedList<DataType>& appendList (MyLinkedList<DataType&& rlist)` method for the `MyLinkedList` class, which accepts as parameter another `MyLinkedList` class and appends all its items to the end of the current linked list.5.  implement a `bool swapAdjElement(iterator &itr)` method, which swaps the element pointed by `itr` with its next element.  if the swap is success, return `TRUE` otherwise (e.g. the next element $DNE$) and return `FALSE`## testingcompiled under Ubuntu 20.04 LTS using `g++` version 9.3.0 (default) with C++11 standard.
