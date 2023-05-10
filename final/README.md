@@ -57,7 +57,6 @@ when an insertion or deletion operation causes the avl property to be violated, 
 
 these rotations ensure that the avl property is maintained after insertions and deletions, keeping the tree balanced and guaranteed $O(log n)$ time compleity for search, insertion, and deletion operations.
 
-</details>
 
 ```markdown
       15
@@ -108,6 +107,8 @@ in order to insert the value 10 into the avl tree we must follow the following s
 ```
 
 the tree is now balanced and the avl property is maintained.
+
+</details>
 
 ##  give the pseudocode of the Dijkstra’s algorithm for finding the shortest path from an edge- weighted graph that contains no negative edge. Let the source node be 𝑠, and your algorithm should find the shortest path between 𝑠 and all other nodes in the graph.
 
