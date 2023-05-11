@@ -4,15 +4,12 @@ practice final questions
 
 may 11 7:30 am - 10:00 am
 
-<br>
-
 ####  1.  describe two essential requirements for hash function design
 
 <details>
   <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
 the main objectives of desiging a has function is to evenly distribute the records and easy to compute (associate with a smaller constant even in O(1) time)
 </details>
-
 <details>
   <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 <p>
@@ -33,7 +30,6 @@ a hash function is a mathmematical function that takes an input (such as a strin
 </summary>
 for each node, the height of its left subtree and the height of its right subtree cannot differ by more than 1.  
 </details>
-
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
@@ -141,25 +137,6 @@ while(there is an unknown distance vertex) {
 }
 ```
 
-####   4.  prove that the dijkstra’s algorithm is correct when assuming no negative edge and give a counter example that the algorithm will not work if the graph contains negative edges.
-
-
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
-</summary>
-
-a.  dijkstra’s algorithm is correct when assuming no negative edge 
-
-<img src="./assets/00-ans.png">
-
-</details>
-
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
-</summary>
-
-</details>
-
 ###  5.  write the pseudocode (not the C++ code; it doesn’t need to be runnable) for the forest-based implementation of disjoint sets with union-by-size and path compression. Argue that the union(𝑟1, 𝑟2) operation can be done in 𝑂(1) time (where 𝑟1, 𝑟2 are the roots of the trees to be merged.)
 
 <details>
@@ -221,21 +198,64 @@ a.  dijkstra’s algorithm is correct when assuming no negative edge
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
 </summary>
+destructor:  reclaim allocated memory to the object
 
+copy constructor:  initialize the object from another object
+
+move constructor:  initialize the object from rvalue
+
+copy assignment:  overwrite the object using another object
+
+move assignment:  overwrite the object using rvalue
 </details>
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
-
+no explaination needed for now
 </details>
 
 ####  10.  write the pseudocode for depth-first search (DFS) and bread-first search (BFS) algorithms. let 𝑠 be the source node. your algorithms should print out the lists of visited nodes.
 
-<details>
-<summary style="cursor: pointer;"> <b>&nbsp answer</b> </summary>
-</summary>
-</details>
+**answer**
+
+```pseudocode
+DFS(s, g):
+    let S be stack
+    S.push(s)
+    mark s as visited
+    Print S
+    while(S is not empty):
+        v = S.top()
+        S.pop()
+        for all neighbors w of v in Graph g:
+            if w is not visited:
+                S.push(W)
+                mark w as visited
+```
+
+```pseudocode
+DFS(s, g):
+    mark s as visited
+    Print s
+    for all neighbors w of s in Graph g:
+        if w is not visited:
+            DFS(g, w)
+```
+
+```pseudocode
+BFS(s, g):
+    let Q be queue
+    Q.enqueue
+    mark s as visited
+    Print s
+    while (Q is not empty)
+        v = Q.dequeue()
+        for all neighbors w of v in Graph g
+            if w is not visited
+                Q.enqueue
+                mark w as visited
+```
 
 <details>
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
