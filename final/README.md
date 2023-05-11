@@ -4,6 +4,16 @@ practice final questions
 
 may 11 7:30 am - 10:00 am
 
+####  0.  given a Linked list P and a vector L, both containing integers. we want to print the integers in P by taking the integers in L as the indexes.  ex: when L = ( 1, 4, 6 ) we want to print P[1], P[4], P[6]. discuss your print function complexity when:  P is singly-linked and L is sorted, P is singly-linked and L is unsorted, P is doubly-linked and L is sorted, P is doubly-linked and L is unsorted
+
+<img src="./assets/01-ans.png">
+
+-  p as a singly linkedlist, l sorted is $O(m + n)$
+-  p as a singly linkedlist, l unsorted is $O(m * n)$
+-  p as a doubly linkedlist, l sorted is $O(m + n)$
+-  p as a doubly linkedlist, l unsorted is $O(m * n)$
+
+
 ####  1.  describe two essential requirements for hash function design
 
 <details>
@@ -34,6 +44,7 @@ for each node, the height of its left subtree and the height of its right subtre
 <summary style="cursor: pointer;"> <b>&nbsp explaination</b> </summary>
 </summary>
 the main goal of avl trees is to maintain a balanced structure, ensuring that search, insertion, and deletion operations have logarithmic time complexity.
+
 
 the avl property states that for each node in the tree, the height difference between its left and right subtrees must not exceed 1.  this property ensures that the tree remains balanced, preventing it from degenerating into a linear structure like a linked list, whcih would lead to much slower search times.  here is more details to the answer,
 
