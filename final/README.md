@@ -13,7 +13,6 @@ may 11 7:30 am - 10:00 am
 -  p as a doubly linkedlist, l sorted is $O(m + n)$
 -  p as a doubly linkedlist, l unsorted is $O(m * n)$
 
-
 ####  1.  describe two essential requirements for hash function design
 
 <details>
@@ -30,8 +29,6 @@ a hash function is a mathmematical function that takes an input (such as a strin
 2.  **easy to compute**: the hash function should be easy to compute, meaning that it should be associated with a smaller constant even in O(1) time.  this means that the time it take to compute the hash function should be constant, regardless of the size of the input data.  if the hash function is too complex or time-consuming to compute, it can slow down the performance of the hash table.
 </p>
 </details>
-
-<br>
 
 ####  2. recall avl tree what is the avl property and draw the resulted avl tree after inserting 10 into the following avl tree.
 
