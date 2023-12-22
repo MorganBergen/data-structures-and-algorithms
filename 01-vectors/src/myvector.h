@@ -3,6 +3,7 @@
 #include <iostream>
 
 template <typename datatype>
+
 class myvector {
     public:
         myvector(const int init_capacity = 16) 
